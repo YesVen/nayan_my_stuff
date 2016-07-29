@@ -1,0 +1,210 @@
+Oracle :
+Finding nth largest query :
+using corelated querry :
+SELECT * FROM Employee Emp1
+WHERE (N-1) = ( 
+SELECT COUNT(DISTINCT(Emp2.Salary))
+FROM Employee Emp2
+WHERE Emp2.Salary > Emp1.Salary)
+
+using row-number():
+select * from (
+select salary , row_number() over (order by salary desc) rownumb
+) where rownumb > n;
+
+using ranking():
+select * from (
+select salary , rank() over (order by salary desc) ranking
+) where ranking > n;
+
+
+GENRAL :
+
+Agile methodology is a phrase used in software development to describe methodologies for incremental software development. Agile development is an alternative to traditional project management where we break up the project cycle into multiple phases or milestones.where as in Agile emphasis is placed on empowering people to collaborate and make team decisions in addition to continuous planning, continuous testing and continuous integration.
+Adv :
+customer satisfaction by rapid delivery of working software product.
+you can incorporate customer request at any given point of time
+
+
+Web services are XML-based information exchange systems that use the Internet for direct application-to-application interaction. 
+It is any piece of software that makes itself available over the internet. 
+A client invokes a web service by sending an XML message,then waits for a corresponding XML response. 
+Is not tied to any one operating system or programming language
+All the standard Web Services works using following components
+• SOAP (Simple Object Access Protocol)
+SOAP defines a standard communication protocol (set of rules) specification for XML-based message exchange. SOAP uses different transport protocols, such as HTTP and SMTP.
+• UDDI (Universal Description, Discovery and Integration) :
+Universal Description, Discovery and Integration (UDDI) is a directory service where businesses can register and search for Web services.
+UDDI is a platform-independent framework for describing services, discovering businesses, and integrating business services by using the Internet.
+• WSDL (Web Services Description Language)
+
+Web service is a technology to communicate one programming language with another. For example, java programming language can interact with PHP and .Net by using web services. In other words, web service provides a way to achieve interoperability.
+
+Web Service is can be defined by following ways:
+
+SOAP Web Services
+SOAP stands for Simple Object Access Protocol. It is a XML-based protocol for accessing web services.
+SOAP is a W3C recommendation for communication between two applications.
+
+SOAP is XML based protocol. It is platform independent and language independent. By using SOAP, you will be able to interact with other programming language applications.
+Advantages of Soap Web Services
+WS Security: SOAP defines its own security known as WS Security.
+Language and Platform independent: SOAP web services can be written in any programming language and executed in any platform.
+
+Disadvantages of Soap Web Services
+Slow: SOAP uses XML format that must be parsed to be read. It defines many standards that must be followed while developing the SOAP applications. So it is slow and consumes more bandwidth and resource.
+WSDL dependent: SOAP uses WSDL and doesn't have any other mechanism to discover the service.
+
+you can implement SOAP by two ways :
+RPC style:
+DocumentedStyle:
+
+RESTful Web Services :
+REST stands for REpresentational State Transfer.
+REST is an architectural style not a protocol.
+
+Advantages of RESTful Web Services :
+Fast: RESTful Web Services are fast because there is no strict specification like SOAP. It consumes less bandwidth and resource.
+Language and Platform independent: RESTful web services can be written in any programming language and executed in any platform.
+Can use SOAP: RESTful web services can use SOAP web services as the implementation.
+Permits different data format: RESTful web service permits different data format such as Plain Text, HTML, XML and JSON.
+
+you can implement RESTful web services using :
+jersey
+RESTeasy
+
+No.	SOAP REST
+1)	SOAP is a protocol.	
+REST is an architectural style.
+2)	SOAP stands for Simple Object Access Protocol.	
+REST stands for REpresentational State Transfer.
+3)	SOAP can't use REST because it is a protocol.	
+REST can use SOAP web services because it is a concept and can use any protocol like HTTP, SOAP.
+4)	SOAP uses services interfaces to expose the business logic.	
+REST uses URI to expose business logic.
+5)	JAX-WS is the java API for SOAP web services.	
+JAX-RS is the java API for RESTful web services.
+6)	SOAP defines standards to be strictly followed.	
+REST does not define too much standards like SOAP.
+7)	SOAP requires more bandwidth and resource than REST.	
+REST requires less bandwidth and resource than REST.
+8)	SOAP defines its own security.	
+RESTful web services inherits security measures from the underlying transport.
+9)	SOAP permits XML data format only.	
+REST permits different data format such as Plain text, HTML, XML, JSON etc.
+10)	SOAP is less preferred than REST.	
+REST more preferred than SOAP.
+
+Continious integration : 
+QuickBuild : PMEase QuickBuild is a continuous integration and release management tool, acting as the central place to produce, test, deploy and release software builds. It is designed to guard the health of development projects by preventing broken builds, and to improve your build delivery process by pushing builds going through a customizable pipeline, such as Dev to QA to Release, with related resolved issues and SCM changes.
+We give svn repository path to quick build.and provide ant ant target to help quild proceed with the builds.
+
+Jenkins :
+Jenkins provides continuous integration services for software development. It is a server-based system running in a servlet container such as Apache Tomcat. It supports SCM tools including AccuRev, CVS, Subversion, Git, Mercurial, Perforce, Clearcase and RTC, and can execute Apache Ant and Apache Maven based projects as well as arbitrary shell scripts and Windows batch commands. 
+
+Automated Testing (selenium and QTP):
+Selenium : Selenium is an open-source licensed under Apache License 2.0. and a portable automated software testing tool for testing web applications. It has capabilities to operate across different browsers and operating systems. Selenium is not just a single tool but a set of tools that helps testers to automate web-based applications more efficiently.
+
+Selenium IDE:
+Selenium Integrated Development Environment (IDE) is a Firefox plugin that lets testers to record their actions as they follow the workflow that they need to test.The Selenium-IDE (Integrated Development Environment) is an easy-to-use Firefox plug-in to develop Selenium test cases. It provides a Graphical User Interface for recording user actions using Firefox which is used to learn and use Selenium, but it can only be used with Firefox browser as other browsers are not supported.However, the recorded scripts can be converted into various programming languages supported by Selenium and the scripts can be executed on other browsers as well.
+Selenium RC:Selenium Remote Control (RC) was the flagship testing framework that allowed more than simple browser actions and linear execution. It makes use of the full power of programming languages such as Java, C#, PHP, Python, Ruby and PERL to create more complex tests.
+Selenium WebDriver:Selenium WebDriver is the successor to Selenium RC which sends commands directly to the browser and retrieves results.
+Selenium Grid:	Selenium Grid is a tool used to run parallel tests across different machines and different browsers simultaneously which results in minimized execution time.
+
+Types of Testing :
+Performance Test: This test sets the ‘best possible’ performance expectation under a given configuration of infrastructure. It also highlights early in the testing process if changes need to be made before application goes into production.
+Load Test: This test is basically used for exercising\discovering the system under the top load it was designed to operate under.
+Stress Test: This test is an attempt to break the system by overwhelming its resources.
+
+Jmeter :jMeter is an Open Source testing software. It is 100% pure Java application , desktop application with a graphical interface using the Swing graphical API, for load and performance testing.
+jMeter is designed to cover categories of tests like load, functional, performance, regression, etc., and it requires JDK 5 or higher.
+JMeter simulates a group of users sending requests to a target server, and return statistics that show the performance/functionality of the target server / application via tables, graphs etc.
+
+Java Code Coverage Tools are distinguished in two main categories: first tools that add statements to the source code and require to recompile the source code. And second, tools which instrument the byte code either before or while running it. The goal is to find out which parts of code are tested by registering the lines of code executed when doing the test.
+e.g :Cobertura,Emma,Clover
+
+Unit  Testing : JUnit
+JUnit is a unit testing framework for the Java programming language. JUnit has been important in the development of test-driven development, and is one of a family of unit testing frameworks collectively known as xUnit that originated with JUnit.
+JUnit executes unit test cases.A Unit Test Case is a part of code which ensures that the another part of code (method) works as expected. To achieve those desired results quickly, test framework is required .JUnit is perfect unit test framework for java programming language.
+
+Components in JUnit :
+Test suite
+Test suite means bundle a few unit test cases and run it together. In JUnit, both @RunWith and @Suite annotation are used to run the suite test. 
+
+Test runner:
+Test runner is used for executing the test cases. 
+
+JUnit classes:
+JUnit classes are important classes which is used in writing and testing JUnits. Some of the important classes are
+Assert which contain a set of assert methods.
+TestCase which contain a test case defines the fixture to run multiple tests.
+TestResult which contain methods to collect the results of executing a test case.
+
+Annotations used in writting the unit test cases :
+@Test 
+public void method()
+The @Test annotation identifies a method as a test method.
+@Test (expected = Exception.class)
+Fails if the method does not throw the named exception.
+@Test(timeout=100)
+Fails if the method takes longer than 100 milliseconds.
+@Before 
+public void method()
+This method is executed before each test. It is used to prepare the test environment (e.g., read input data, initialize the class).
+@After 
+public void method()
+This method is executed after each test. It is used to cleanup the test environment (e.g., delete temporary data, restore defaults). It can also save memory by cleaning up expensive memory structures.
+@BeforeClass 
+public static void method()
+This method is executed once, before the start of all tests. It is used to perform time intensive activities, for example, to connect to a database. Methods marked with this annotation need to be defined asstatic to work with JUnit.
+@AfterClass 
+public static void method()
+This method is executed once, after all tests have been finished. It is used to perform clean-up activities, for example, to disconnect from a database. Methods annotated with this annotation need to be defined as static to work with JUnit.
+@Ignore
+Ignores the test method. This is useful when the underlying code has been changed and the test case has not yet been adapted. Or if the execution time of this test is too long to be included.
+
+
+Methods used for writting unit test cases :
+fail(String)
+Let the method fail. Might be used to check that a certain part of the code is not reached or to have a failing test before the test code is implemented. The String parameter is optional.
+assertTrue([message], boolean condition)
+Checks that the boolean condition is true.
+assertFalse([message], boolean condition)
+Checks that the boolean condition is false.
+assertEquals([String message], expected, actual)
+Tests that two values are the same. Note: for arrays the reference is checked not the content of the arrays.
+assertEquals([String message], expected, actual, tolerance)
+Test that float or double values match. The tolerance is the number of decimals which must be the same.
+assertNull([message], object)
+Checks that the object is null.
+assertNotNull([message], object)
+Checks that the object is not null.
+assertSame([String], expected, actual)
+Checks that both variables refer to the same object.
+assertNotSame([String], expected, actual)
+Checks that both variables refer to different objects.
+
+
+Mocking :
+In the real world, software has dependencies. We have action classes that depend on services and services that depend on data access objects (DAOs) and the list goes on.
+The idea of unit testing is that we want to test our code without testing the dependencies. This test allows you to verify that the code being tested works, regardless of it's dependencies. The theory is that if the code I write works as designed and my dependencies work as designed, then they should work together as designed
+The concept behind mock objects is that we want to create an object that will take the place of the real object. This mock object will expect a certain method to be called with certain parameters and when that happens, it will return an expected result.
+
+syntax :
+Object m = Moctito.mock(object o);
+Mockito.when(mtd name).then(expected result);
+Mockito.verify(u can inspect the object here);
+
+Apache Maven :
+Maven is a powerful project management tool that is based on POM (project object model). It is used for projects build, dependency and documentation.
+It simplifies the build process like ANT. But it is too much advanced than ANT.
+Ant :It is procedural, you need to provide information about what to do and when to do through code. You need to provide order.It is mainly a build tool.
+Maven :Maven is declarative, everything you define in the pom.xml file.It is mainly a project management tool.
+
+Apache Maven helps to manage : Builds,Documentation,Reporing,SCMs,Releases,Distribution.
+
+A maven repository is a directory of packaged JAR file with pom.xml file. Maven searches for dependencies in the repositories. There are 3 types of maven repository: Local Repository,Central Repository,Remote Repository
+
+POM is an acronym for Project Object Model. The pom.xml file contains information of project and configuration information for the maven to build the project such as dependencies, build directory, source directory, test source directory, plugin, goals etc.
+
+Maven reads the pom.xml file, then executes the goal.

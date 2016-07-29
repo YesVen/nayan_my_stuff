@@ -1,0 +1,736 @@
+
+Topics Covered :
+#Strings #Static #Overriding #InstanceInitializerBlock #Final #Abstract#Interface #Casting #Basics #Threads #GarbageCollector #Syncronisation #Collection #WrapperClass #Interface #Immutable #Volatile #WebServer #Enums and 
+# comparableAndComparator #Exception #Serialization #RMI #Java Memory Model
+ApplciationServer 
+___________________
+
+* Set uses equals() method to check uniqueness of elements stored in Set, while SortedSet uses compareTo() method to implement natural sorting order of elements. In order for an element to behave properly in Set and SortedSet, equals and compareTo must be consistent to each other.
+_________________________________________________________________
+
+#Basics :
+http://javarevisited.blogspot.in/2011/12/jre-jvm-jdk-jit-in-java-programming.html
+JVM (Java Virtual Machine) is an abstract machine. It is a specification that provides runtime environment in which java bytecode can be executed.
+JVMs are available for many hardware and software platforms. JVM, JRE and JDK are platform dependent because configuration of each OS differs. But, Java is platform independent.
+The JVM performs following main tasks:
+Loads code
+Verifies code
+Executes code
+Provides runtime environment.
+When you download JRE and install on your machine you got all the code required to create JVM. Java Virtual Machine is get created when you run a java program using java command e.g. java HelloWorld. JVM is responsible for converting byte code into machine specific code and that's why you have different JVM for Windows, Linux or Solaris but one JAR can run on all this operating system. Java Virtual machine is at heart of Java programming language and provide several feature to Java programmer including Memory Management and Garbage Collection, Security and other system level services. Java Virtual Machine can be customized e.g we can specify starting memory or maximum memory of heap size located inside JVM at the time of JVM creation.
+Sometimes we heard this term and being it a part of JVM it confuses us. JIT is part of JVM that optimizes byte code to machine specific language compilation by compiling similar byte codes at same time, hence reducing overall time taken for compilation of byte code to machine specific language.
+
+JRE:Java Runtime Environment (JRE) The Java Runtime Environment (JRE) provides the libraries, the Java Virtual Machine, and other components to run applets and applications written in the Java programming language. In addition, two key deployment technologies are part of the JRE: Java Plug-in, which enables applets to run in popular browsers; and Java Web Start, which deploys standalone applications over a network. It is also the foundation for the technologies in the Java 2 Platform, Enterprise Edition (J2EE) for enterprise software development and deployment. The JRE does not contain tools and utilities such as compilers or debuggers for developing applets and applications.
+
+JDK :Java Development Kit (JDK) The JDK is a superset of the JRE, and contains everything that is in the JRE, plus tools such as the compilers and debuggers necessary for developing applets and applications.
+
+
+* Top Java SE 6 Features
+No More Class.forName for JDBC Driver
+Java SE 6 does not require you to load the JDBC driver prior to creating a JDBC connection.
+JDBC 4.0 Annotations
+JDBC annotations are a new way of building Data Access Objects (DAO)
+
+* Feature of java 7 :
+1) Type inference:
+Map<list<String>> map = new HashMap<>();
+2) we can use string in switch statement
+3)try with resource i.e
+	try(open resource){
+	}
+	this open resource will get closed by jvm
+4) can use underscore '_' in the numeric literals
+5) catching multiple exception in catch block
+6)Binary Literals with prefix "0b"	
+7)More Precise Re throwing of Exception
+
+java 8 features:
+
+* Class can not be private,protected
+* If you make Class and its data member as final then then that class can be called as immutable.
+  because : Since it is final you can not change its variable and can not create its subclass.
+* A file can have n number of main methods. but it will execute the only of those class whose file name is equal to class name... else NOMAINMTDFOUNF exception.
+* A file can contain only 1 public class.because JVM looks for public class for its execution at first place.
+
+* static keyword is like any other keyword a simple keyword which can be applied to Java method , nested class or member variable inside a class. static variable in Java belong to whole Class than individual Object. Which means if Class A has a static int variable counter and A has two instance a1 and a2 both will have a static variable counter whose value would be always same except race conditions. Remember class is a blueprint while objects are real instances. So a static variable no matter whether its int, char or String will always hold same value for all instances of that class. In other words there is only one copy of static variable will be present in Java Heap memory, which can be accessed or altered by any object. When we make a method static means that method belongs to class and you can call it without creating any instance of that class. Mostly utility methods are declared as static method, so that program can call them directly by using class name and not to wait for object to be ready.
+
+
+* order of execution try catch block :
+	a. try gets executed and finally is executed if there is no exception in try.
+	b. if there is exception in try block then catch block is executed and finally block is executed.
+	c. if there is exception in catch block or throws exception then finally block executed before throwing exception.
+	d. if there is return in try block then finally is executed in before returning.
+	e. if there there is return in try block as well as finally block then return value of finally block is executed.
+* The try block must be followed by a catch or a finally block. It is acceptable to omit the either catch or the finally block but not both.
+* All the exceptions inherit a method printStackTrace() from the Throwable class.
+* the order of the catch blocks does not matter if the Exceptions caught by them are not subtype or supertype of each other
+* If the calling method does not handle and declares the exception, the exceptions is passed to the next method in the method stack. This is called as ducking the exception down the method stack.
+* In a try catch block you cannot write checked exception in catch block if your try block does not throws that checked exception.because checked Exception are always thrown by throw keyword,only then you can catch it or add throws to method signature.
+ where as unchecked Exception can be generated at run time,so you can add any number of unchecked exception in catch block weather try block throws those exceptions or not.
+
+* There are 4 types of nested class : memberLocal Class,Anonymous inner class,local inner class and static inner class.
+* Be it a static inner class or non static you will have create insatnce of inner class
+* Member inner class can be make private, protected or public. its just like any other member of class.
+* Local/method inner class can not be private, protected or public because they exist only inside of local block or method. You can only use final modifier with local inner class.
+* A non-static nested class (or 'inner class') has full access to the members of the class within which it is nested. A static nested class does not have a reference to a nesting instance, so a static nested class cannot invoke non-static methods or access non-static fields of an instance of the class within which it is nested
+		A o=new A();
+        A.B obj1 =o.new B();//non static
+
+        A.C obj2 =new A.C();// static
+
+* A nested class could be non static or static and in each case is a class defined within another class. A nested class should exist only to serve is enclosing class, if a nested class is useful by other classes (not only the enclosing), should be declared as a top level class.
+* Difference :
+	- Non static Nested class : is implicitly associated with the enclosing instance of the containing class, this means that it is possible to invoke methods and access variables of the enclosing instance. One common use of a non static nested class is to define an Adapter class.
+	- Static Nested Class : can't access enclosing class instance and invoke methods on it, so should be used when the nested class doesn't require access to an instance of the enclosing class . A common use of static nested class is to implement a components of the outer object.
+	- Can not write static methods in non static inner class.
+The outer class can call even the private methods of the inner class.ViceVersa	
+
+* Object class is stored in the java.lang package. This package is by far the most used package which jvm imports by default irrespective of whether we write or not the import command.
+* Examples of other packages mostly used are : lang,utils,io,awt,swings,crypto,sql,reflect
+* System.exit(0) means it is a normal exit from a program.But System.exit(-1) means the exit may be due to some error. Any number other than zero means abnormal exit.
+* Blank final variable can only be initialised in constructor if it is non-static. If it is static blank final variable, it can be initialized only in the static block.
+* The static import feature of Java 5 facilitate the java programmer to access any static member of a class directly. There is no need to qualify it by the class name.
+
+
+* Abstraction : showing only relevant data.It deals with the outside view of the object.
+* Abstraction lets you focus on what the object does instead of how it does it
+* Abstraction: Is a way of providing generalisation and hence a common way to work with objects of vast diversity.
+e.g: Basic example of abstraction would be an Interface/abstract class(abstract methods) which shows only relevant data related to its own identity rather that its implementation class and it is the way to write more generalise code related to that entity.
+
+* Encapsulation is binding or wrapping the data to protect it from external interface.
+E.g:getter/setter: making variables of class as private and providing public interface i.e getter/setter  to access the data.
+Another example whould be class where in we encapsulate the properties and behaviour of class i.e class encapuslates properties and bahaviour of class or a method inside the class is an example of encapsulation
+* Encapsulation means hiding the internal details or mechanics of how an object does something.
+
+* If no arguments are passed to the String array for executing main method.Empty String are passed and not null.
+* A language which uses all Oops principle expect inheritance are called object based programming language. e.g : javascripts.
+* Static variable gets memory only once during the class load.
+
+*Assocaiation: a relationship between two object is called association where one object uses other object.
+Is-A relation is called inheritance.
+Has-A relation is called composition were two different objects are heavily dependent on each other.
+A relationship where a parent object own set/list of child objects is called aggregation
+* Both Composition and Aggregation are form of association between two objects, but there is subtle difference between composition and aggregation.Composition is more stronger than Aggregation.In Short, relationship between two objects is referred as association, and an association is known as composition when one object owns other, while an association is known as aggregation when one object uses other object.
+
+* Classpath is the path in which JVM searches for class libraries at the time of compiling the Java Application. By setting the CLASSPATH environment variable, JVM invokes the Java API and related classes, supported library files needed for compiling java program. Instead of placing all the applications in the library directory, the applications can be saved in different directories and set the classpath for compiling them.
+
+* native keyword : It marks a method, that it will be implemented in other languages, not in Java. It works together with JNI (Java Native Interface).
+Native methods were used in the past to write performance critical sections but with Java getting faster this is now less common. Native methods are currently needed when
+You need to call a library from Java that is written in other language.
+You need to access system or hardware resources that are only reachable from the other language (typically C). Actually, many system functions that interact with real computer (disk and network IO, for instance) can only do this because they call native code
+
+* A private constructor prevents external instantiation of its containing class and sub classing(except through Reflection). Objects can be created. But the creation is done internally.
+A private constructor can be used in the following cases:
+- Classes that have only static methods and members 
+- Classes that have only widely used static final members (constants) 
+- To utilize singletons 
+- To utilize factory methods 
+- To use enumerations that are type safe 
+
+* Pointers are variable which refers to memory.Pointers are unsafe and are complex thus Java avoids.
+* When ever you override equals for equal definition of object make sure you check all the parameters in it are equal otherwise two different object might become equal when stored in Map.
+* Wrapper classes are great. But at same time they are slow. Primitive types are just values, whereas Wrapper classes are stores information about complete class.
+
+* Difference between ClassNotFoundException and NoClassDefFoundError :
+ClassNotFoundException:
+Thrown when an application tries to load in a class through its string name using:
+The forName method in class Class.
+The findSystemClassmethod in class ClassLoader.
+The loadClass method in class ClassLoader. 
+but no definition for the class with the specified name could be found.
+
+NoClassDefFoundError:
+Thrown if the Java Virtual Machine or a ClassLoaderinstance tries to load in the definition of a class (as part of a normal method call or as part of creating a new instance using the new expression) and no definition of the class could be found.
+
+The searched-for class definition existed when the currently executing class was compiled, but the definition can no longer be found.
+
+So, it appears that the NoClassDefFoundError occurs when the source was successfully compiled, but at runtime, the required class files were not found. This may be something that can happen in the distribution or production of JAR files, where not all the required class files were included.
+
+As for ClassNotFoundException, it appears that it may stem from trying to make reflective calls to classes at runtime, but the classes the program is trying to call is does not exist.
+
+The difference between the two is that one is an Error and the other is an Exception. With NoClassDefFoundError is an Error and it arises from the Java Virtual Machine having problems finding a class it expected to find. A program that was expected to work at compile-time can't run because of class files not being found, or is not the same as was produced or encountered at compile-time. This is a pretty critical error, as the program cannot be initiated by the JVM.
+
+On the other hand, the ClassNotFoundException is an Exception, so it is somewhat expected, and is something that is recoverable. Using reflection is can be error-prone (as there is some expectations that things may not go as expected. There is no compile-time check to see that all the required classes exist, so any problems with finding the desired classes will appear at runtime.
+
+Types of variables in java:
+Local variables:Local variables are created when the method, constructor or block is entered and the variable will be destroyed once it exits the method, constructor or block.
+Instance variable:Instance variables are created when an object is created with the use of the keyword 'new' and destroyed when the object is destroyed
+class/static variables:Static variables are created when the program starts and destroyed when the program stops.
+
+
+#Java Memory Model:
+* The Java memory model used internally in the JVM divides memory between thread stacks and the heap. 
+* The thread stack also contains all local variables for each method being executed (all methods on the call stack). A thread can only access it's own thread stack.Each thread has its own version of each local variable.
+* All local variables of primitive types ( boolean, byte, short, char, int, long, float, double) are fully stored on the thread stack and are thus not visible to other threads.
+* The heap contains all objects created in your Java application, regardless of what thread created the object. This includes the object versions of the primitive types (e.g. Byte, Integer, Long etc.)
+* A local variable may also be a reference to an object. In that case the reference (the local variable) is stored on the thread stack, but the object itself if stored on the heap.
+* An object may contain methods and these methods may contain local variables. These local variables are also stored on the thread stack, even if the object the method belongs to is stored on the heap.
+* An object's member variables are stored on the heap along with the object itself. That is true both when the member variable is of a primitive type, and if it is a reference to an object.
+* Static class variables are also stored on the heap along with the class definition.
+Hardware memory architecture :
+CPU * x
+-Its own CPU registers.
+-Its own CPU cache memory.
+RAM(Main memory)
+
+* A modern computer often has 2 or more CPUs in it.It is possible to have more than one thread running simultaneously. Each CPU is capable of running one thread at any given time.
+* The CPU can perform operations much faster on these registers than it can perform on variables in main memory. That is because the CPU can access these registers much faster than it can access main memory.
+* Each CPU may also have a CPU cache memory layer.
+* The CPU can access its cache memory much faster than main memory, but typically not as fast as it can access its internal registers. So, the CPU cache memory is somewhere in between the speed of the internal registers and main memory.
+* A computer also contains a main memory area (RAM). All CPUs can access the main memory. The main memory area is typically much bigger than the cache memories of the CPUs.
+* Typically, when a CPU needs to access main memory it will read part of main memory into its CPU cache. It may even read part of the cache into its internal registers and then perform operations on it. When the CPU needs to write the result back to main memory it will flush the value from its internal register to the cache memory, and at some point flush the value back to main memory.The values stored in the cache memory is typically flushed back to main memory when the CPU needs to store something else in the cache memory. 
+
+* On the hardware, both the thread stack and the heap are located in main memory. Parts of the thread stacks and heap may sometimes be present in CPU caches and in internal CPU registers
+
+* In multi threading application,A thread can cache a sharedObject into cache memory or cpu registers.Thus , possibility of race condition and other might not get updated value.The solution to this problem is volatile and synchronization.Volatile makes sure of flush data into main memory when ever write operation happens on that object.
+
+#Assert:
+Assertion is a statement in java. It can be used to test your assumptions about the program.While executing assertion, it is believed to be true. If it fails, JVM will throw an error named AssertionError. It is mainly used for testing purpose.By default it is disabled
+
+# comparableAndComparator
+* Comparable interface is used to compare user defined class.It has method called compareTo which actually compares.
+public int compareTo() methods takes existing class object type.for this we need to declare generic type in implementation declaration  
+* comparator interface used to compare used defined class in a way comparator wants.we can define multiple comparators and pass for sorting which ever one we require.It has one method called compare.
+public int compare()
+* compareTo method of String class compares two string object and returns int where zero is returned if objects are equal and +int if greater and -int if the smaller.
+
+#Strings :
+* When you create String object by new operator jvm creates two objects one for the object and other for storing it in String pool
+* To make immutable class :
+  - make it as a final class.
+  - makes its variables as final and private and not use getter setter.and most importantly when ever you return that object copy its content
+    and return new object
+* String Class and Wrapper Classes implements comparable.So the collection of this object gets sorted automatically.
+* Strings are backed up by character Array and represented in UTF-16 format. By the way this behaviour can cause memory leak in String because same character array is shared between source String and SubString which can prevent source String from being garbage collected
+* Java uses concept of string literal because of memory efficient since String are widely used.
+* Excessive modification to String object will result into wastage of memory since String are immutable every time new reference will be utilised.
+
+#Static :
+* Access to the static methods and variables are always resolved using their compile time type information only.
+* Can static methods be overridden ?
+No,static method cannot be overridden since overridden works at runtime where as static method and variable gets resolved at compile time.
+
+#Overriding :
+* Few points related to method overriding : 
+ - If your child class extends superclass, superclass constructor is called by default (is called constructor chaining) when you create the object of child class.
+ - If you use runtime polymorphism i.e obj of subclass and reference of SuperClass,In that case methods of subclass will be executed because of overridden but instance variable if present of that object will have the value of parent class
+   because : only methods are overridden and not the instance variables.Access to instanceVariables/staticVariable/static method will be resolved at compile time.
+ - In case of AccessModifier overridden method should have broad-level or more easily accessible modifier.
+   because it is the property of OOPS ,child class is a fully-fledged class of parents.Achieving polymorphism becomes tricky.
+ - Exception Handling in overridden methods : 
+   parent class - no exception,child class -no exception or uncheckedException
+   parent class - exception ,child class -exception of same class or its subclass
+   (this is because you cant achieve polymorphism. )
+ - RunTimePolymorphism(dynamic binding) : A call to a override method decides at runtime by compiler so it is called RTP(This is not same with the static method because access to the
+   static method is resolved at the compile time).It is also called dynamic binding and static binding.
+ - The difference between static and dynamic binding  is static binding is a compile time operation 
+   while dynamic binding is a runtime. one uses class Type and other uses Object to bind. static, private and final methods and
+   variables are resolved using static binding which makes there execution fast because no time is wasted to find correct method during runtime.
+ - 1. You can not create objects for abstracts class and interface but you can refer to it at runtime.By this we can achive only parents class mtds.
+* co variant return type : it is possible to override method by changing the return type if subclass overrides any method whose return type is Non-Primitive but it changes its return type to subclass type
+* Overriding is an example of runtime polymorphism.overriding is also called dynamic binding,late binding.
+* overriding is performed in different classes.
+ 
+#overloading :
+Rule for Overloading:
+- Overloaded methods MUST change the argument list.
+- Overloaded methods CAN change the return type.
+- Overloaded methods CAN change the access modifier.
+- Overloaded methods CAN declare new or broader checked exceptions.
+- A method can be overloaded in the same class or in a subclass.
+* we can declare one overloaded method as static and another one as non-static
+* overloading is an example of static binding , compile time polymorphism , early binding.
+* overloading can be performed in same class of different class.
+public class NullTest {
+
+   public static void method(Object obj){
+     System.out.println("method with param type - Object");
+   }
+ 
+   public static void method(String obj){
+     System.out.println("method with param type - String");
+   }
+ 
+   public static void main(String [] args){
+     method(null);
+   }
+}
+Since the methods are overloaded, the resolution will be done at compile-time only. Which method do you see being bind here - the one with parameter type 'Object' or the one with parameter type 'String' and why? Of course, the compiler can't bind two methods with one call, so on what basis would it pick the most suitable? Which method would be picked, is evident from the output given below:-
+method with param type - String
+Any guesses for why a special treatment is being given to 'String' here? Well... it's not actually for 'String' class specifically, but any sub-class would get a preference over the super class in such a situation
+
+#InstanceInitializerBlock :
+ - It is used to initialise variable of object 
+ - It is executed every time when obj is created.
+ - It is invoked by constructor.Constructor 1st copy's IIB ,calls parent constructor and then invokes IIB and then its own constructor.
+
+# static block : Similar to the InstanceInitializerBlock java also has static block which gets called once during class load.We can declare final variable as null at class level and initialize it in static block.
+
+#Final :
+ - Final method can be inherited but not overridden
+ - Final parameters are one which will not change its value
+ - constructor is not allowed to be written as final,abstract,static : because you never inherit constructor,because you have to implement its method body,and because it is always used with object can be restricted to Class.
+
+#Abstract#Interface :
+- Interface do not inhert from Object class.
+- If an interface has no direct superinterfaces, then the interface implicitly declares a public abstract member method m with signature s, return type r, and throws clause t corresponding to each public instance method m with signature s, return type r, and throws clause t declared in Object, unless a method with the same signature, same return type, and a compatible throws clause is explicitly declared by the interface.
+- Abstract Class not be instantiated ,but can have constructor of it own because Abstract class are inherited and when subclass object is created and its constructor will invoke super() and call the superclass constructor.
+- For Abstract/interface all its methods should get override, but if abstract class implements interface it may not need to override all its interface method
+- Interface can also have data member.Its data member are by default public static and final and its methods are by default are public and abstract
+- Multiple Inheritance in not possible in Java but can be achieved through Interface(because :Implementation is done by subclass n not by superclass so no ambiguity)
+  Interface can also extend another interface.
+- Abstract class are more efficient since you inherit most of the part where as in case of interface you implement complete methods of it thus increasing the load.
+  
+
+Difference between interface and abstract :
+- interfaces can contains only abstract method where as abstract class can contain concrete methods as well.
+- a variable in interface is static and final. In abstract it is non final.
+- interface needs to be implemented and abstract class needs to be extended.
+
+#Casting :
+- UpCasting is safe.DownCasting is not safe.(because it checks the reference of that object at runtime before casting so scope of runtime error) best practice is to use Instance of operator when ever u use down-casting
+
+#Exception :
+* All the exceptions in java are extended to Throwable class.
+* Exceptions are of three types: 
+ - checkedException : are those exceptions which are directly extended to exception class,which are needed to be handled without which jvm wont compile the code.
+ - unchecked exception are those exception which are extended to RuntimeException.This are hard to detect at runTime and thus can not be handled all the time.
+ - Error: This class extends to Throwable.This something which are irrevocable.example outOfMemory, stackOverFlow, 
+ virtualMachineError, AssertionError, NoClassDefFound.
+ * Even if we write explicit throw for RuntimeException.We don't have to catch.
+ * You can catch anything that is Throwable and even all Errors.But we catch only exception because it exception results due bad coding practices or for the cases which are not handled and thus needs to overcome,errors should be avoided instead of handled. By catching these things you are masking an underlying problem of high importance.
+ * However, sometimes you need to catch specific Errors.If you're writing framework-ish code (loading 3rd party classes), it might be wise to catch LinkageErrors (no class def found, unsatisfied link, incompatible class change). I've also seen some stupid 3rd-party code throwing subclasses of Errors, so you'll have to handle these either.
+ *Finally block will always execute after catch or try or return from try block and even after catch throws exception. Only way we can avoid execution of finally is by system.exit or system shut-down.
+ 
+ 
+#Threads :
+- Difference between extending thread and implementing runnable :
+1) Implementing Runnable is the preferred way to do it. Here, you are not really specialising or modifying the threads behaviour. You are just giving the thread something to run. That means composition is the better way to go.
+2) Java only supports single inheritance, so you can only extend one class.
+3) Instantiating an interface gives a cleaner separation between your code and the implementation of threads.
+4) Implementing Runnable makes your class more flexible. If you extend thread then the action youíre doing is always going to be in a thread. However, if you extend Runnable it doesn’t have to be. You can run it in a thread, or pass it to some kind of executor service, or just pass it around as a task within a single threaded application.
+5) By extending Thread, each of your threads has a unique object associated with it, whereas implementing Runnable, many threads can share the same runnable instance.
+
+- Thread class implements RunnableCLass.It is advisable to implement Runnable class instead of extending class
+- with a obj of thread you can write only once .start method.once the thread gets started it gets terminated and cannot start again
+* Join method of Thread : it causes current running thread to stop executing until the thread to which the join method is written is completed.
+ i.e the thread on which join is written gets completed first and then all other general threads(which became runnable after join statements ) are executed. 
+* yield() method pauses the currently executing thread temporarily for giving a chance to the remaining waiting threads of the same priority to execute
+* Difference between Wait and Sleep , Yield in Java : 
+  - Out of three Sleep () and Yield () methods are defined in thread class while wait() is defined in Object class
+  - wait releases the lock where as sleep hold on the lock/monitor i.e in case of wait java provides scope to interrupt its wait state by notify where as in case of sleep it is not.
+  - wait is non static method and requires instance to invoke where as sleep is static method no need of instance.
+  - wait is used in conditional expression where as sleep is used of on jvm for certain time.
+  - wait can be interrupted by notify and notify all but sleep cannot.
+  - wait method need to write in synchronised block
+* When a thread executes a thread yield, the executing thread is suspended and the CPU is given to some other runnable thread. This thread will wait until the CPU becomes available again.
+* Unless the current thread is interrupting itself, which is always permitted, the checkAccess method of this thread is invoked, which may cause a SecurityException to be thrown.
+If this thread is blocked in an invocation of the wait(), wait(long), or wait(long, int) methods of the Object class, or of the join(), join(long), join(long, int), sleep(long), or sleep(long, int), methods of this class, then its interrupt status will be cleared and it will receive an InterruptedException.
+If this thread is blocked in an I/O operation upon an interruptible channel then the channel will be closed, the thread's interrupt status will be set, and the thread will receive a ClosedByInterruptException.
+* Daemon thread in Java are those thread which runs in background and mostly created by JVM for performing background task like Garbage collection and 
+  other house keeping tasks.Their purpose is to server user thread.jvm terminates them when all the user thread completes its execution.
+
+* ThreadPooling : it is technique where java provides thread pooling where it allows specified number of threads to execute at a time.thus decreasing the load,usability.
+  Servlet,jsp controller uses internally for handling requests.Hibernate uses cp3 pooling for handling DB connections.
+
+* ThreadGroup is used to just group the thread.it is mainly used in large Servers which need to handle large number Threads
+
+* ShutDownHook(Runnable obj) is the method in the Runtime class which executes the thread passed as a parameter on shut down
+
+* Race condition in java occurs in multi threading environment where two thread act on same data thus causing in inconsistency of data.
+
+- A simple non thread safe code would be an method which does read,updates,write like count++.
+1) Immutable objects are by default thread-safe because there state can not be modified once created. Since String is immutable in Java, its inherently thread-safe.
+2) Read only or final variables in Java are also thread-safe in Java.
+3) Locking is one way of achieving thread-safety in Java.
+4) Static variables if not synchronised properly becomes major cause of thread-safety issues.
+5) Example of thread-safe class in Java: Vector, Hashtable, ConcurrentHashMap, String etc.
+6) Atomic operations in Java are thread-safe e.g. reading a 32 bit int from memory because its an atomic operation it can't interleave with other thread.
+7) local variables are also thread-safe because each thread has there own copy and using local variables is good way to writing thread-safe code in Java.
+8) In order to avoid thread-safety issue minimise sharing of objects between multiple thread.
+9) Volatile keyword in Java can also be used to instruct thread not to cache variables and read from main memory and can also instruct JVM not to reorder or optimize code from threading perspective.
+
+A DeadLock condition will occur when a object of the class is shared between two threads having two resources.And that two thread lock the resources inversely
+
+Callable :
+public interface Callable<V>
+A task that returns a result and may throw an exception. Implementers define a single method with no arguments called call.
+The Callable interface is similar to Runnable, in that both are designed for classes whose instances are potentially executed by another thread. A Runnable, however, does not return a result and cannot throw a checked exception.
+The Executors class contains utility methods to convert from other common forms to Callable classes.
+
+java.util.concurrent.Callable has been introduced in JDK 5 . Callable is a thread that returns the result. There is a method call() in Callable interface that must be overridden for computation task. To run Callable, submit() method of ExecutorService is used. ExecutorService also provides invokeAll() and invokeAny () method to run Callable threads. To fetch the result of call() method of Callable interface, Java provides Future class. ExecutorService.submit() method returns Future instance and then get() method of Future, returns the result of call() method of Callable.
+
+call() in Callable Interface
+call() method returns the result. The result can be object of the class which has been declared in class declaration. The basic purpose of call() method is computation of result. This is same as run() method of Runnable interface but returns the result.
+
+#GarbageCollector :
+- GarbageCollector is process of the cleaning unreferenced objects from the heap memory.It is done by jvm internally using demon threads. It is also done by gc() method of Runtime.This method uses finalize before
+  garbageCollecting.
+
+#Synchronisation
+- Synchronised method or block cannot be executed by the object without its lock. syn mtd or block retains objects lock and gives it back after completion so that the same object can not execute the same block of code thus avoiding inconsistency.
+- Similarly their is also static synchronization but this time it will be on class instead of object
+
+#WrapperClass :
+- WrapperClass for byte,short,int and long has three static mtd of XxxValueOf() viz: XxxValueOf(primitiveValue),XxxValueOf("primitiveValue"),XxxValueOf("1010111",radix).
+Radix can be be a value up 35.
+- And similarly has static mts called Xxx.parseXxx();
+And also wrapper class has non static methods convert in other primitive objects.There are 6 such mtds in 6 wrapper class.
+- When ==,!= operator is used with wrapper objects and if the data is of range of 0 - 127 it will store its primitive value
+
+#Serialization : 
+* Object Serialization in Java is a process used to convert Object into a binary format which can be persisted into disk or sent over network to any other running jvm.It is achieved by FileOutput/InputStream and ObjectOutput/InputStream.
+* The serialVersionUID is used as a version control in a Serializable class.If you do not explicitly declare a serialVersionUID, JVM will do it for you automatically, based on various aspects of your Serializable class.
+* The serialVersionUID have to match during the serialization and deserialization process.Consequence of not specifying  serialVersionUID is that when you add or modify any field in class then already serialized class will not be able to deSerialize because serialVersionUID generated for new class and for old serialized object will be different.
+* When your serialization class is updated with some incompatible Java type changes to a Serializable class, you have to update your serialVersionUID.
+* There are chances in Client-server Environment.The client sends a Serializable class with default generated serialVersionUID (e.g 123L) to the server over socket, the server may generate a different serialVersionUID (e.g 124L) during deserialization process, and raises an unexpected InvalidClassExceptions.
+*** Java serialization process  only continues in object hierarchy till the class is Serializable i.e. implements Serializable interface in Java  and values of the instance variables inherited from super class will be initialized by calling constructor of Non-Serializable Super class during deserialization process. Once the constructor chaining will start.
+* In Serialization an object ObjectOutputStream.writeObject (saveThisobject) is invoked and for reading object ObjectInputStream.readObject() is invoked but there is one more thing which Java Virtual Machine provides you is to define these two method in your class. If you define these two methods in your class then JVM will invoke these two methods instead of applying default serialization mechanism. You can customize behavior of object serialization and deserialization here by doing any kind of pre or post processing task.
+* In Serialization if parent class implements serialization and child class doent want to serializile then in order to avoid serialization in child class , we can declare all the variables as transient or we can override ObjectOutOutStream ,ObjectInputStream methods i.e writeObject(); and readObject; and can throw NonSerializableClass
+* Externalize is not an marker interface which is used to customize the serialization process.Two methods which needs to be overridden in order to achieve externalization.
+* If transient variables needs to stores it can be done by manually writing the transient object state into the stream by overriding the two methods. 
+
+1.Serializable is a marker interfaces that tells JVM to write out the state of the object to some stream (basically read all the members, and write out their state to a stream, or to disk or something). The default mechanism is a binary format. You can also use it to clone things, or keep state between invocations, send objects across the network etc. 
+
+2. What is Java Serialization? Primary purpose of java serialization is to write an object into a stream, so that it can be transported through a network and that object can be rebuilt again. When there are two different parties involved, you need a protocol to rebuild the exact same object again. Java serialization API just provides you that. Other ways you can leverage the feature of serialization is, you can use it to perform a deep copy.
+
+Why I used ëprimary purposeí in the above definition is, sometimes people use java serialization as a replacement for database. Just a placeholder where you can persist an object across sessions. This is not the primary purpose of java serialization. Sometimes, when I interview candidates for Java I hear them saying java serialization is used for storing (to preserve the state) an object and retrieving it. They use it synonymously with database. This is a wrong perception for serialization.
+
+How do you serialize? When you want to serialize an object, that respective class should implement the marker interface serializable. It just informs the compiler that this java class can be serialized. You can tag properties that should not be serialized as transient. You open a stream and write the object into it. Java API takes care of the serialization protocol and persists the java object in a file in conformance with the protocol. De-serialization is the process of getting the object back from the file to its original form.
+
+Here protocol means, understanding between serializing person and de-serializing person. What will be the contents of file containing the serialized object? 
+
+3. when looked at contents byte by byte and find out what they are. It starts with ìac edî. It is is called STREAM_MAGIC. It is a magic number (java API guys says) that is written to the stream header. It denotes that is start of serialzed content.
+
+ * * * CLONING :
+1.It copy's data from one instance to other.
+2.There are two types copy:
+a. Shallow Copy and Deep copy.
+
+shallow copy can be achieved by using .clone() mtd of object Class by implementing Cloneable interface.It is not advisable.not safe.
+
+Deep copy can be achived by explicetly coyping data in the overriden clone() mtsd. And after implementing seriable interface it also does the same for the object which are transfered over th enetwork.
+
+* Cloneable is just an marker interface.For object cloning that object should implement Cloneable interface and override clone method.(clone method in object class is protected) 
+*java.lang.Object provides default implementation of clone() method in Java. It's declared as protected and native in Object class, so implemented in native code. Since it's convention to return clone() of object by calling super.clone() method, any cloning process eventually reaches to java.lang.Object clone() method. This method, first checks if corresponding object implements Cloneable interface, which is a marker interface. If that instance doesn't implements Cloneable then it throws CloneNotSupported in Java, a checked exception, which is always required to be handled while cloning an object. If object pass this check, than java.lang.Object's clone() method creates a shallow copy of object and returned it to the caller. Since Object class' clone() method creates copy by creating new instance, and then copying field-by-field, similar to assignment operator, it's fine for primitives and Immutable object, but not suited if your class contains some mutable data-structure e.g. Collection classes like ArrayList or arrays. In that case, both original object and copy of object will point to the same object in heap. You can prevent this by using technique known as deep cloning, on which each mutable field is cloned separately.
+* For deep cloning we need to make sure all the reference variables classes implements cloanable interface and override clone method and call super.clone() and if the class contains list/set of objects then we need to manually take care of creating different copy of this object.
+
+#AtomicInteger :
+* use Atomic Integer, which makes this ++ operation atomic and since atomic operations are thread-safe and saves cost of external synchronization.
+* Atomic means each action take place in one step without interruption or we can say that operation is performed as a single unit of work without the possibility of interference from other operations.
+An Atomic operation cannot stop in the middle, either it happened completely or doesnít happen at all.
+Java language specification guarantees that
+Reading or writing of a variable/reference is atomic unless the variable is of type long or double.
+Read and write are atomic for all variable declared volatile including long and double variable.
+ java 1.5, java language provides atomic variable e.g. AtomicInteger or AtomicLong which provides methods like
+getAndDecrement(),getAndIncrement() and getAndSet() in java.util.concurrent.atomic package which are all atomic.
+
+#Immutable :
+* Immutable objects are by default thread-safe because there state can not be modified once created. Since String is immutable in Java, its inherently thread-safe.
+* Example of thread-safe class in Java: Vector, Hashtable, ConcurrentHashMap, String etc.
+* Reason of Why String is immutable in Java is to allow String to cache its hashcode , being immutable String in Java caches its hashcode, and do not calculate every time we call hashcode method of String, which makes it very fast as hashmap key to be used in hashmap in Java.  This one is also suggested by  Jaroslav Sedlacek in comments below. In short because String is immutable, no one can change its contents once created which guarantees hashCode of String to be same on multiple invocation.
+* Security and String pool being primary reason of making String immutable.
+* When you use String.subString() in java it causes the problem of memory leak.Internally it calls new String(int offSet, int count , char []). This char is nothing but a original 1.Incase if the originals String has very huge memory it will still be referred to create new subString,thus jvm wont garbage collect it.
+
+Why strings are immutable in java :
+- it avoids inconsistency of data in multithreaded environment. For e.g if two threads are acting on same string variable and if one thread changes to that reference another thread will get affected if strings were not immutable.
+- since strings are immutable this hash value will also not change hence jvm does chaching if hashcode. It becomes efficient when immutable objects are used as keys in hashmap and hashset.
+- since string are widely used as parameters in java class like network connection, opening files immutable feature of string adds to the security as other variable referring to it wont able to change its content.
+
+Since string are immutable every time  any changes to that string will lead to creation of new reference resulting into memory wastage. To avoid this and optimize memory usage there is a concept called string pool.
+
+Now we can start to see why making String objects immutable is such a good idea. If several reference variables refer to the same String without even knowing it, it would be very bad if any of them could change the String's value.
+You might say, "Well that's all well and good, but what if someone overrides the String class functionality; couldn't that cause problems in the pool?" That's one of the main reasons that the String class is marked final. Nobody can override the behaviors of any of the String methods, so you can rest assured that the String objects you are counting on to be immutable will, in fact, be immutable.
+Strings immutable feature along with the string pool concept helps in memory optimization.
+
+How to make class immutable :
+- The class is final. That means no subclasses can be created. A subclass of an immutable class can be made mutable again. As noted above, an attacker could use that to get to confidential data.
+- The variables are all final and cannot be changed after construction
+- In the constructor we use the import org.joda.time.DateTime class. This is a better version than the java.util.Date because it is immutable. Using a java.util.Date would be dangerous as it is a mutable class and we canít control the calling thread (which might modify it).
+- There are no setter methods for the members.
+- If you provide an interface/method to change the content of object than method should create new object and modify the required changes and return it.
+
+
+#Volatile :
+ On declaring the variable as volatile it tells JVM that this variable need not to be cached and the value for the 
+ variable is always fetched from main memory.JVM performs write operation first before read on volatile methods.
+ updation on valatile variables is more accurate in volatile mtds
+ consistance error will be reduced in multi threading environment using volatile methods.
+ * volatile keyword in Java is only application to variable and using volatile keyword with class and method is illegal.
+ * volatile keyword in Java guarantees that value of volatile variable will always be read from main memory and not from Thread's local cache.
+* In Java reads and writes are atomic for all variables declared using Java volatile keyword (including long and double variables).
+* Reads and writes are atomic for reference variables are for most primitive variables (all types except long and double) even without use of volatile keyword in Java.
+
+#Enums :
+* Enum can implement interface in Java. Since enum is a type, similar to class and interface, it can implement interface. This gives a lot of flexibility to use Enum as specialized implementation in some cases.
+* Enum can not extend class in Java. Surprised, because I just said it's a type like a class or interface in Java. Well, this is why this question is a good follow-up question of previous Enum interview question. Since all Enum by default extend abstract base class java.lang.Enum, obviously they can not extend another class, because Java doesn't support multiple inheritance for classes. Because of extending java.lang.Enum class, all enum gets methods like ordinal(), values() or valueOf().
+*No, you can not create enum instances outside of Enum boundry, because Enum doesn't have any public constructor, and compiler doesn't allow you to provide any public constructor in Enum. Since compiler generates lot of code in response to enum type declaration, it doesnít allow public constructors inside Enum, which enforces declaring enum instances inside Enum itself.
+* you can create constructor, but remember you can only declare either private or package-private constructor inside enum. public and protected constructors are not permitted inside enum
+
+
+#Difference between WebServer and Application Server :
+*main difference between web server and application server is support of EJB. In order to run EJB or host enterprise Java application (.ear) file you need an application server like JBoss, WebLogic, WebSphere or Glassfish, while you can still run your servlet and JSP or java web application (.war) file inside any web server like Tomcat or Jetty.
+* Application Server supports distributed transaction and EJB. While Web Server only supports Servlets and JSP.
+* Application Server can contain web server in them. most of App server e.g. JBoss or WAS has Servlet and JSP container.
+* Though its not limited to Application Server but they used to provide services like Connection pooling, Transaction management, messaging, clustering, load balancing and persistence. Now Apache tomcat also provides connection pooling.
+* In terms of logical difference between web server and application server. web server is supposed to provide http protocol level service while application server provides support to web service and expose business level service e.g. EJB. and used to process protocol other than the http like RMI
+* Application server are more heavy than web server in terms of resource utilization.
+* web server can serve the purpose of app server by additional plugins but usually application server is designed for that purpose.
+*As web servers are well suited for static content and app servers for dynamic content, most of the production environments have web server acting as reverse proxy to app server. That means while service a page request, static contents such as images/Static html is served by web server that interprets the request. Using some kind of filtering technique (mostly extension of requested resource) web server identifies dynamic content request and transparently forwards to app server.
+
+#RMI :
+
+RMI (Remote Method Invocation) is a way that a programmer, using the Java programming language and development environment, can write object-oriented programming in which objects on different computers can interact in a distributed network.
+ 
+A stub program is the client side of the client/server relationship, and a corresponding skeleton at the server end. The stub appears to the calling program to be the program being called for a service. (Sun uses the term proxy as a synonym for stub.)
+A Remote Reference Layer that can behave differently depending on the parameters passed by the calling program. For example, this layer can determine whether the request is to call a single remote service or multiple remote programs as in a multicast.
+A Transport Connection Layer, which sets up and manages the request.
+How it works : At server side a Regestry is bound at certain port number.And an object of impl.java is binded to that registry with a name which is called stub. Where as at client side a registry is made with server ip address and port number to lookUp that object by same name which is called skeleton.By lookUp we get an object of impl.java which was binded to that registry and a reference of its interface is given,since interface of that impl class should present that client side as well.
+ 
+All the objects present in this impl should implement serialization.and impl class should extends to UnicastRemoteObject.
+* UnicastRemoteObject :
+
+#Reflection :
+"Reflection" is a language's ability to inspect and dynamically call classes, methods, attributes, etc. at runtime
+
+say you have an object of an unknown type in Java, and you would like to call a 'doSomething' method on it if one exists. Java's static typing system isn't really designed to support this unless the object conforms to a known interface, but using reflection, your code can look at the object and find out if it has a method called 'doSomething' and then call it if you want to
+
+One very common use case in Java is the usage with annotations. JUnit 4, for example, will use reflection to look through your classes for methods tagged with the @Test annotation, and will then call them when running the unit test
+
+Reflection allows instantiation of new objects, invocation of methods, and get/set operations on class variables dynamically at run time without having prior knowledge of its implementation.
+
+Dis Advantages:
+Since reflection allows code to perform operations that would be illegal in non-reflective code, such as accessing private fields and methods
+
+HashCode Contract:
+1.Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer
+2.If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result
+3.It is not required that if two objects are unequal according to the equals(java.lang.Object) method, then calling the hashCode method on each of the two objects must produce distinct integer results
+ 
+equals contract:It should be reflexive,symmetric,transitive,consistent 
+ 
+#Collection (including collections form concurrent API) :
+
+Look at the hierarchy.
+
+Collections Anatomy
+
+* iterator() and listIterator are methods present in List interface.
+
+ArrayList: This are simply array of objects.With initial size of 10.After addition of 10 elements size of array increases by 50% of its size and copies data from old array to new array.Removal of object is costly since that array needs to reshuffle.
+* ArrayList has iterator has well as listIterator.
+* ArrayList as three constructor : empty , initial capacity , collection.
+* ArrayList as method as ensureCapacity which increases the capacity of this ArrayList instance, if necessary, to ensure that it can hold at least the number of elements specified by the minimum capacity argument.
+* default size is 10 ,if exceeds increases by 50%
+* For iteration ArrayList is preferred to use and if there need to add/remove than LinkedList is preferred.
+
+Vector: same as array list but it has capacityIncrement.capacity increment is the amount by which the capacity of the vector is automatically incremented when its size becomes greater than its capacity.  If the capacity increment is less than or equal to zero, the capacity of the vector is doubled each time it needs to grow.
+* Vector has enumeration , iterator as well as listIterator.
+* Vector has four constructor  :empty, collection, capacity , capacity and ensure capacity 
+* default size is 10 ,if increases beyond that then array size increases to ensureCapacity or increases by 100%
+* enumeration in the vector is not fail-fast.The iterators returned by this class's iterator and listIterator methods are fail-fast
+
+Stack : It extends Vector and are synchronised.Like vectors it maintains elements in array.Vector has capacity increment parameter which can set using constructor where as in case of stack there is no such provision so size of stack get double once it size reaches the max size.default size is 10.
+On addition of elements elementCount and modCount is increased and element is added at array[elementCount++].
+On peek element at array[elementCount -1]is returned
+on poll, peek is called for getting element for returning and new array is created and elements from 0 - elementCount-1 position is copied to new array
+
+LinkedList:
+This list has a Node,a static inner class consist of element item,Node prev,Node next.
+When a element is added at first time.A node is added with null prev and next.Next time onwards Each node is added with pre as last added element,next as null and last Node’s next as current node.
+On list.get(index) operation it propagates from first element to last last element or last to first using node.next or node.prev,Thus a for loop.
+on list.remove(index) a node is removed by swiping references of its prev and next node.
+This list also has modCount.
+Addition and removal operation comes with ease.
+get operation has go through loop each time.And iteration is also complex,so for this purpose array list is suitable.
+Doubly-linked list implementation of the List and Deque interfaces. Implements all optional list operations, and permits all elements (including null).
+* Has two constructor :  empty , collections
+* Elements stored in the Linked list are different than ArrayList.Performance of LinkedList is better than ArrayList because ArrayList has to rearrange its element on removing of elements where LinkedList doesn’t provide such feature of indexing.
+
+HashMap :
+- How HashMap  works in Java :
+ - HashMap  works on principle of hashing, we have put() and get() method for storing and retrieving object form HashMap .
+ - When we pass key and value to put() to store on HashMap , it uses key object hashcode() method to find the hashcode and with help of hashcode it identifies bucket/index for storing key value pair. While retrieving it uses key object hashcode to reach to that bucket and applies equals method to find out correct key value pair if multiple key value pair exist and return value object associated with that key. 
+ - What will happen if two different keys have same hashcode?
+ - They will be stored in same bucket to the next node of linked list. And keys equals () method will be used to - identify correct key value pair in HashMap while retrieving the key .
+
+HashMap consist of an Array of Entry objects.Entry is an static inner class in HashMap which consist of int hash,object key,object value,Entry next
+When an element needs to be added based on hash value of key it finds the right bucket/index in array and creates Entry object in it .
+When two key have same hash but are not equal,then it will find the same existing bucket and adds Entry object to next Entry object of existing Entry object
+when new key with same hash and equals is added in map then it replaces the value with old one.In this case modCount is notChanges since map is not changed structurally.
+HashMap has modCount as global variable which indicates number of times map hash changes structurally.
+HashMap has size as global variable.
+HashMap has entrySet which is set of Entry objects
+Docs -
+
+The HashMap class is roughly equivalent to Hashtable, except that it is not synchronised and permits nulls
+An instance of HashMap has two parameters that affect its performance: initial capacity and load factor.It's very important not to set the initial capacity too high (or the load factor too low) if iteration performance is important.
+the initial capacity is simply the capacity at the time the hash table is created. The load factor is a measure of how full the hash table is allowed to get before its capacity is automatically increased(to twice the size)-Rehashing.
+* HashMap has 4 constructor may take empty , collections , int initialCapcity , int initialCapcity  and float loadFactor as parameter.
+* By default initial is 16 and loadFactor is 0.75
+* HashMap permits null
+* This implementation provides constant-time performance for the basic operations (get and put), assuming the hash function disperses the elements properly among the buckets
+* The iterators returned by all of this class's "collection view methods" are fail-fast:
+* - Similar to other collection classes like ArrayList,  Java HashMap re-size itself after crossing threshold level decided by the load factor by creating a new bucket array of size twice of previous size of HashMap , and then start putting every old element into that new bucket array. This process is called rehashing
+
+
+LinkedHashMap: This implementation is used for maintaining insertion order.Its implementation is similar to HashMap. Except that each Entry has before and after to form double linked implementation.
+* LinkedHashMap has 5 constructor may take 
+empty , 
+collections ,
+int initialCapcity ,
+int initialCapcity  and float loadFactor as parameter, 
+int initialCapcity , float loadFactor , boolean accessOrder as parameter.
+* This implementation  permits null elements.
+*  permits null elements. Like HashMap, it provides constant-time performance for the basic operations (add, contains and remove), assuming the hash function disperses elements properly among the buckets
+* Performance is likely to be just slightly below that of HashMap, due to the added expense of maintaining the linked list, with one exception: Iteration over the collection-views of a LinkedHashMap requires time proportional to the size of the map, regardless of its capacity. Iteration over a HashMap is likely to be more expensive, requiring time proportional to its capacity.
+* A linked hash map has two parameters that affect its performance: initial capacity and load factor
+* The iterators returned by the iterator method of the collections returned by all of this class's collection view methods are fail-fast: 
+
+Hashtable : internal structure is same as HashMap.Can not insert null keys and values.
+* This implementation does not allow null.
+* Hashtable has 4 constructor may take empty , collections , int initialCapcity , int initialCapcity  and float loadFactor as parameter.
+* An instance of Hashtable has two parameters that affect its performance: initial capacity and load factor.
+* The iterators returned by the iterator method of the collections returned by all of this class's "collection view methods" are fail-fast:
+* Enumeration in hashtable is not fail-fast.
+
+HashSet :This class implements the Set interface, backed by a hash table (actually a HashMap instance).
+* Internal structure of HashSet is same as HashMap with only difference is that dummy value is stored for value variable.
+* HashSet has 4 constructor may take empty , collections , int initialCapcity , int initialCapcity  and float loadFactor as parameter.
+* The iterators returned by this class's iterator method are fail-fast: 
+* This class offers constant time performance for the basic operations (add, remove, contains and size), assuming the hash function disperses the elements properly among the buckets. Iterating over this set requires time proportional to the sum of the HashSet instance's size (the number of elements) plus the "capacity" of the backing HashMap instance (the number of buckets). Thus, it's very important not to set the initial capacity too high (or the load factor too low) if iteration performance is important.
+* HashSet is faster in searching elements than TreeSet.
+
+TreeMap :
+* It is costlier than LinkedHashMap and HashMap.
+* The dataStructure used in this is red black tree.This implementation also has size and modCount.All the elements are stored in Entry object.Entry is an static inner class consist of key ,value ,boolean colour , Entry left ,Entry right.
+* The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time, depending on which constructor is used
+* This implementation has 4 constructors : empty , comparator , Map , sortedMap
+* This implementation provides guaranteed log(n) time cost for the containsKey, get, put and remove operations
+* The iterators returned by the iterator method of the collections returned by all of this class's "collection view methods" are fail-fast:
+* Throws nullPointer on null insertion.
+
+TreeSet : TreeSet eternally used treeMap with dummy object as value.TreeSet sorts objects as per the comparable implementation.You can also pass comparator to constructor to different type of sorting.
+* This implementation has 4 constructors : empty , comparator , Collection , sortedSet
+* This implementation provides guaranteed log(n) time cost for the basic operations (add, remove and contains).
+* The iterators returned by this class's iterator method are fail-fast:
+* Throws nullPointer on null insertion.
+
+ * Iterator fail-fast property checks for any modification in the structure of the underlying collection every time we try to get the next element. If there are any modifications found, it throws ConcurrentModificationException. All the implementations of Iterator in Collection classes are fail-fast by design except the concurrent collection classes like ConcurrentHashMap and CopyOnWriteArrayList.
+ * Iterator fail-safe property work with the clone of underlying collection, hence it’s not affected by any modification in the collection. By design, all the collection classes in java.util package are fail-fast whereas collection classes in java.util.concurrent are fail-safe.
+Fail-fast iterators throw ConcurrentModificationException whereas fail-safe iterator never throws ConcurrentModificationException.
+    
+ * enumerations are older than iteration and present in vectors and hashtable.Iteration are more flexible and provides manipulation of data.
+ 
+ Difference between hashtable ,hashMap and concurrentHashMap:
+ * HashTable loses performance when size increases because its iterator locks the map where as concurrentHashMap locks only small portion of it.
+ * HashMap allows one null key and any number of null values, while Hashtable do not allow null keys and null values in the HashTable object.
+ * HashTable is the only class other than vector which uses enumerator to iterate the values of HashTable object.
+ * The Enumerations returned by Hashtable is not fail-fast.Note that the fail-fast behavior of an iterator cannot be guaranteed  
+ * Hashtable is a subclass of Dictionary class which is now obsolete in Jdk 1.7 ,so ,it is not used any more. It is better off externally synchronizing a HashMap or using a ConcurrentMap implementation (e.g ConcurrentHashMap).HashMap is the subclass of the AbstractMap class. Although Hashtable and HashMap has different super classes but they both are implementations of the "Map"  abstract data type.
+ * Difference between Hashtable and ConcurrentHashMap , both can be used in multi threaded environment but once the size of Hashtable becomes considerable large performance degrade because for iteration it has to be locked for longer duration.
+ * Since ConcurrentHashMap introduced concept of segmentation , how large it becomes only certain part of it get locked to provide thread safety so many other readers can still access map without waiting for iteration to complete.
+ 
+ * The ConcurrentHashMap uses very sophisticated techniques to reduce the need for synchronization and allow parallel read access by multiple threads without synchronization and, more importantly, provides an Iterator that requires no synchronization and even allows the Map to be modified during interation (though it makes no guarantees whether or not elements that were inserted during iteration will be returned).
+ 
+ * ConcurrentHashMap offer all the features of Hashtable with a performance almost as good as a HashMap. ConcurrentHashMapís accomplish this by a very simple mechanism. Instead of a map wide lock, the collection maintains a list of 16 locks by default, each of which is used to guard (or lock on) a single bucket of the map. This effectively means that 16 threads can modify the collection at a single time (as long as theyíre all working on different buckets). Infact there is no operation performed by this collection that locks the entire map. The concurrency level of the collection, the number of threads that can modify it at the same time without blocking, can be increased. However a higher number means more overhead of maintaining this list of locks.
+ https://web.archive.org/web/20140604083201/http://www.codercorp.com/blog/java/why-concurrenthashmap-is-better-than-hashtable-and-just-as-good-hashmap.html
+ 
+ * ConcurrentHashMap do not allow null keys or null values while HashMap allows null keys.
+ * Iterator in the ConcurrentHashMap is fail-safe while the enumerator for the Hashtable is not and throw ConcurrentModificationException if any other Thread modifies the map structurally by adding or removing any element except Iterator's own remove() method. But this is not a guaranteed behaviour and will be done by JVM on best effort.
+ * Enumeration is twice as fast as Iterator and uses very less memory. Enumeration is very basic and fits to basic needs. But Iterator is much safer as compared to Enumeration because it always denies other threads to modify the collection object which is being iterated by it.
+ 
+* Iterator duplicate functionality of Enumeration with one addition of remove() method and both provide navigation functionally on objects of Collection.Another difference is that Iterator is more safe than Enumeration and doesn't allow another thread to modify collection object during iteration except remove() method and throws ConcurrentModificaitonException. 
+* ListIterator does provide an add operation, as it does guarantee the order of the iteration.
+* We can use Iterator to traverse Set and List collections whereas ListIterator can be used with ArrayList and LinkedList only.
+Iterator can traverse in forward direction only whereas ListIterator can be used to traverse in both the directions.
+ListIterator inherits from Iterator interface and comes with extra functionalities like adding an element, replacing an element, getting index position for previous and next elements.
+* We can create a read-only collection using Collections.unmodifiableCollection(Collection c) method before passing it as argument, this will make sure that any operation to change the collection will throw UnsupportedOperationException
+* In order to avoid ConcurrentModification Exception while adding element in List when a list is been iterated we can use CopyOnWriteArrayList collection whose iterator is fail-safe.But it may have performance hit because This is a thread-safe variant of java.util.ArrayList in which all mutative operations (add, set, and so on) are implemented by making a fresh copy of the underlying array.
+
+* Interface RandomAccess:Marker interface used by List implementations to indicate that they support fast (generally constant time) random access. The primary purpose of this interface is to allow generic algorithms to alter their behavior to provide good performance when applied to either random or sequential access lists.
+All Known Implementing Classes:
+ArrayList, AttributeList, CopyOnWriteArrayList, RoleList, RoleUnresolvedList, Stack, Vector
+
+* CopyOnWriteArrayList is a concurrent Collection class introduced in Java 5 Concurrency API along with its popular cousin ConcurrentHashMap in Java. CopyOnWriteArrayList implements List interface like ArrayList, Vector and LinkedList but its a thread-safe collection and it achieves its thread-safety in a slightly different way than Vector or other thread-safe collection class. As name suggest CopyOnWriteArrayList creates copy of underlying ArrayList with every mutation operation e.g. add or set. Normally CopyOnWriteArrayList is very expensive because it involves costly Array copy with every write operation but its very efficient if you have a List where Iteration outnumber mutation e.g. you mostly need to iterate the ArrayList and don't modify it too often. Iterator of CopyOnWriteArrayList is fail-safe and doesn't throw ConcurrentModificationException even if underlying CopyOnWriteArrayList is modified once Iteration begins because Iterator is operating on separate copy of ArrayList. Consequently all the updates made on CopyOnWriteArrayList is not available to Iterator.
+
+* you can use CopyOnWriteArraySet to store object at start-up of application and let multiple application thread access them during application life time. If an new condition or object comes up during that time, it can also be added into this Set, with incurring cost of creating a new array. One of the most important thing to know about CopyOnWriteArraySet is that it is backed by CopyOnWriteArrayList, which means it also share all basic properties of CopyOnWriteArrayList. Another important thing to remember is that Iterators of this collection class doesn't support remove() operation, trying to remove an element while iterating will result in UnSupportedOperationException. This is done to ensure speed during traversal, traversing this set implementation using Iterator is fast and cannot encounter interference from other threads. Iterators actually rely on unchanging snapshots of the array at the time the iterators were constructed. In short, use CopyOnWriteArraySet if set is small enough to copy on add, set or remove, and main purpose is to read data with occasional updates.
+
+There are two ways to synchronise List.
+1.Collections.synchronizeList(list);
+2.using CopyOnWriteArrayList
+
+* ConcurrentHashMap: A synchronized version of HashTable and allows one null key and value
+* ConcurrentSkipListMap<K,V> : A synchronized version of TreeMap
+* ConcurrentSkipListSet<E> : A synchronized version of TreeSet
+* CopyOnWriteArrayList<E> : A thread-safe variant of ArrayList in which all mutative operations (add, set, and so on) are implemented by making a fresh copy of the underlying array.This is ordinarily too costly, but may be more efficient than alternatives when traversal operations vastly outnumber mutations, and is useful when you cannot or don't want to synchronize traversals, yet need to preclude interference among concurrent threads.
+* CopyOnWriteArraySet<E> :A Set that uses an internal CopyOnWriteArrayList for all of its operations.Traversal via iterators is fast and cannot encounter interference from other threads. Iterators rely on unchanging snapshots of the array at the time the iterators were constructed.
+
+* Queue :
+A collection designed for holding elements prior to processing. Besides basic Collection operations, queues provide additional insertion, extraction, and inspection operations. Each of these methods exists in two forms: one throws an exception if the operation fails, the other returns a special value (either null or false, depending on the operation).
+Queues typically, but do not necessarily, order elements in a FIFO (first-in-first-out) manner. Among the exceptions are priority queues.
+Popular known sub interfaces : Deque,BlockingQueue ,BlockingDeque
+Popular known implementing class :LinkedList,PriorityQueue ,ArrayBlockingQueue,LinkedBlockingQueue
+
+* PriorityQueue : 
+An unbounded priority queue based on a priority heap. The elements of the priority queue are ordered according to their natural ordering, or by a Comparator provided at queue construction time, depending on which constructor is used. A priority queue does not permit null elements. A priority queue relying on natural ordering also does not permit insertion of non-comparable objects (doing so may result in ClassCastException).
+A priority queue is unbounded, but has an internal capacity governing the size of an array used to store the elements on the queue. It is always at least as large as the queue size. As elements are added to a priority queue, its capacity grows automatically.
+
+* ConcurrentLinkedQueue<E> :
+An unbounded thread-safe queue based on linked nodes. This queue orders elements FIFO (first-in-first-out). The head of the queue is that element that has been on the queue the longest time. The tail of the queue is that element that has been on the queue the shortest time. New elements are inserted at the tail of the queue, and the queue retrieval operations obtain elements at the head of the queue. A ConcurrentLinkedQueue is an appropriate choice when many threads will share access to a common collection. Like most other concurrent collection implementations, this class does not permit the use of null elements.
+
+* Interface BlockingQueue :
+A Queue that additionally supports operations that wait for the queue to become non-empty when retrieving an element, and wait for space to become available in the queue when storing an element.
+BlockingQueue methods come in four forms, with different ways of handling operations that cannot be satisfied immediately, but may be satisfied at some point in the future: one throws an exception, the second returns a special value (either null or false, depending on the operation), the third blocks the current thread indefinitely until the operation can succeed, and the fourth blocks for only a given maximum time limit before giving up
+
+* ArrayBlockingQueue<E> :
+extends AbstractQueue<E>
+implements BlockingQueue<E>, Serializable
+A bounded blocking queue backed by an array. This queue orders elements FIFO (first-in-first-out). The head of the queue is that element that has been on the queue the longest time. The tail of the queue is that element that has been on the queue the shortest time. New elements are inserted at the tail of the queue, and the queue retrieval operations obtain elements at the head of the queue.
+This is a classic "bounded buffer", in which a fixed-sized array holds elements inserted by producers and extracted by consumers. Once created, the capacity cannot be changed. Attempts to put an element into a full queue will result in the operation blocking; attempts to take an element from an empty queue will similarly block.
+The constructor of this collection takes capacity as mandatory parameter.
+
+* LinkedBlockingQueue<E> :
+An optionally-bounded blocking queue based on linked nodes. This queue orders elements FIFO (first-in-first-out). The head of the queue is that element that has been on the queue the longest time. The tail of the queue is that element that has been on the queue the shortest time. New elements are inserted at the tail of the queue, and the queue retrieval operations obtain elements at the head of the queue. Linked queues typically have higher throughput than array-based queues but less predictable performance in most concurrent applications.
+The optional capacity bound constructor argument serves as a way to prevent excessive queue expansion. The capacity, if unspecified, is equal to Integer.MAX_VALUE. Linked nodes are dynamically created upon each insertion unless this would bring the queue above capacity.
+
+* PriorityBlockingQueue<E> : An unbounded blocking queue that uses the same ordering rules as class PriorityQueue and supplies blocking retrieval operations. While this queue is logically unbounded, attempted additions may fail due to resource exhaustion (causing OutOfMemoryError). This class does not permit null elements. A priority queue relying on natural ordering also does not permit insertion of non-comparable objects (doing so results in ClassCastException).
+
+* SynchronousQueue<E> :
+A blocking queue in which each insert operation must wait for a corresponding remove operation by another thread, and vice versa. A synchronous queue does not have any internal capacity, not even a capacity of one. You cannot peek at a synchronous queue because an element is only present when you try to remove it; you cannot insert an element (using any method) unless another thread is trying to remove it; you cannot iterate as there is nothing to iterate. The head of the queue is the element that the first queued inserting thread is trying to add to the queue; if there is no such queued thread then no element is available for removal and poll() will return null. For purposes of other Collection methods (for example contains), a SynchronousQueue acts as an empty collection. This queue does not permit null elements.
+Synchronous queues are similar to rendezvous channels used in CSP and Ada. They are well suited for handoff designs, in which an object running in one thread must sync up with an object running in another thread in order to hand it some information, event, or task.
+
+* DelayQueue<E extends Delayed> :not understood
+An unbounded blocking queue of Delayed elements, in which an element can only be taken when its delay has expired. The head of the queue is that Delayed element whose delay expired furthest in the past. If no delay has expired there is no head and poll will return null. Expiration occurs when an element's getDelay(TimeUnit.NANOSECONDS) method returns a value less than or equal to zero. Even though unexpired elements cannot be removed using take or poll, they are otherwise treated as normal elements. For example, the size method returns the count of both expired and unexpired elements. This queue does not permit null elements.
+
+* Interface TransferQueue :not understood
+A BlockingQueue in which producers may wait for consumers to receive elements. A TransferQueue may be useful for example in message passing applications in which producers sometimes (using method transfer(E)) await receipt of elements by consumers invoking take or poll, while at other times enqueue elements (via method put) without waiting for receipt. Non-blocking and time-out versions of tryTransfer are also available. A TransferQueue may also be queried, via hasWaitingConsumer(), whether there are any threads waiting for items, which is a converse analogy to a peek operation.
+Like other blocking queues, a TransferQueue may be capacity bounded. If so, an attempted transfer operation may initially block waiting for available space, and/or subsequently block waiting for reception by a consumer. Note that in a queue with zero capacity, such as SynchronousQueue, put and transfer are effectively synonymous.
+
+* LinkedTransferQueue<E> :not understood
+An unbounded TransferQueue based on linked nodes. This queue orders elements FIFO (first-in-first-out) with respect to any given producer. The head of the queue is that element that has been on the queue the longest time for some producer. The tail of the queue is that element that has been on the queue the shortest time for some producer.
+Beware that, unlike in most collections, the size method is NOT a constant-time operation. Because of the asynchronous nature of these queues, determining the current number of elements requires a traversal of the elements, and so may report inaccurate results if this collection is modified during traversal. Additionally, the bulk operations addAll, removeAll, retainAll, containsAll, equals, and toArray are not guaranteed to be performed atomically. For example, an iterator operating concurrently with an addAll operation might view only some of the added elements.
+
+* Deque are similar to queue with an additional feature of adding and removing from both ends.
+popular known sub interfaces : BlockingDeque
+popular known implementing class : LinkedList , ArrayDeque, LinkedBlockingDeque
+
+* ConcurrentLinkedDeque<E> :
+An unbounded concurrent deque based on linked nodes. Concurrent insertion, removal, and access operations execute safely across multiple threads. A ConcurrentLinkedDeque is an appropriate choice when many threads will share access to a common collection. Like most other concurrent collection implementations, this class does not permit the use of null elements
+Iterators are weakly consistent, returning elements reflecting the state of the deque at some point at or since the creation of the iterator. They do not throw ConcurrentModificationException, and may proceed concurrently with other operations.
+
+* Interface BlockingDeque :
+A Deque that additionally supports blocking operations that wait for the deque to become non-empty when retrieving an element, and wait for space to become available in the deque when storing an element.
+BlockingDeque methods come in four forms, with different ways of handling operations that cannot be satisfied immediately, but may be satisfied at some point in the future: one throws an exception, the second returns a special value (either null or false, depending on the operation), the third blocks the current thread indefinitely until the operation can succeed, and the fourth blocks for only a given maximum time limit before giving up
+
+* LinkedBlockingDeque<E> :
+An optionally-bounded blocking deque based on linked nodes.
+The optional capacity bound constructor argument serves as a way to prevent excessive expansion. The capacity, if unspecified, is equal to Integer.MAX_VALUE. Linked nodes are dynamically created upon each insertion unless this would bring the deque above capacity.
+Most operations run in constant time (ignoring time spent blocking). Exceptions include remove, removeFirstOccurrence, removeLastOccurrence, contains, iterator.remove(), and the bulk operations, all of which run in linear time.
+
+
+----------
+
+
+
+

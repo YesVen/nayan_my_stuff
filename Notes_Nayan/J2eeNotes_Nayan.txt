@@ -1,0 +1,245 @@
+A servlet is a small Java program that runs within a Web server. Servlets receive and respond to requests from Web clients, usually across HTTP, 
+
+Interface Servlet :
+Abstract class GenericServlet :
+ServletConfig :
+ServletContext :
+Abstract HTTPServlet :
+ServletRequest/ServletRespose
+ServletRequestWrapper/ServletResposeWrapper.
+HTTPServletRequest/HTTPServletRespose
+HTTPServletRequestWrapper/HTTPServletResposeWrapper.
+
+- Http is a stateless protocol.it never holds the status of the previous protocol.
+- There are various method in http protocol to serve the http request like GET,POST,PUT,TRACE,DELETE,HEAD,OPTIONS
+- Servlets are handled by Web container.instruction for web container are written in web.xml
+-  There are three ways to create Servlets :
+   - implementing Interface Servlets (which contains methods like : init ,service,destroy,getServletConfig,getServletInfo)
+   - extending abstract GenricServlets which implements Servlets , ServletConfig and Serializable (and contains methods like : init ,service,destroy, getServletConfig, getServletInfo,getServeltContext, getServletName,getInitParameterNames, getInitParameter)
+   Note : getServletContext is the method in ServletConfig Interface
+   - extending abstract class HttpServlets which extends : GenericServlet
+     and also provides methods related to Http protocol
+
+	 - LifeCycle of servlet are :
+
+	 -servlet instance is created at the time of the first request or at StartUp depending upon the configuration in web.xml (loadAtStartUp tag)(eagerly or lazily)
+	 
+  - servlet is loaded : The classloader is responsible to load the servlet class. The servlet class is loaded when the first request for the servlet is received by the web container.
+  - servlet instance is created : The web container creates the instance of a servlet after loading the servlet class. The servlet instance is created only once in the servlet life cycle.
+  - servlet init method is called : The web container calls the init method only once after creating the servlet instance. The init method is used to initialize the servlet.
+  - servlet service method is called : The web container calls the service method each time when request for the servlet is received. If servlet is not initialized, it follows the first three steps as described above then calls the service method. If servlet is initialized, it calls the service method. Notice that servlet is initialized only once
+  - servlet destroy method is called :The web container calls the destroy method before removing the servlet instance from the service. It gives the servlet an opportunity to clean up any resource for example memory, thread etc.  
+  
+- Mapping for the Servlet in web.xml :
+<web-app>
+  <servlet> 
+  <servlet name>  </servlet name>
+  <servlet class>  </servlet class>
+  
+  <init-param> 
+   <param-name> name </param-name>
+   <param-value> value </param-value>
+  </init-param>
+
+  </servlet>
+  
+  <servlet-mapping> 
+  <servlet name>  </servlet name>
+  <url-pattern>  </url-pattern>
+  </servlet-mapping>
+
+ <context-param> 
+    <param-name> name </param-name>
+    <param-value> value </param-value>
+ </context-param>
+
+<welcome -file-list> it contains the info the welcome jsp with path from the webroot </welcome -file-list>
+
+</web-app>
+
+- There are two service methods in HttpServlet. one public and other protected.
+  public method is called by the webContainer and protected is called internally by the public method.public method takes ServletRequest and ServletResponse as parameter where are protected method takes HTTPServletRequest and HTTPServletRespose as parameter.Thus public method converts normal request/response to HTTP wrapper 
+
+- ServletConfig interface is used to configure servlet related parameter.its scope is limited to servlet.
+  The object of servletConfig is created by the web container for each servlet
+  Servlet contains method getServletConfig(defined in Servlet) which return config object.methods in the config object are getParameter,getParameterNames,getServletContext.
+  parameter needs to configure in the web.xml file (see above)
+
+- ServletContext : the object of context is created by the webContainer at the time of deployment for entire web app.common to all Servlets.it is used as an inter communication between all Servlets.
+  GenricServlet(Since it implements Servlet config) and ServletConfig has methods getServletContext.
+  getInitParameter and getInitParameterNames is used to get param values from web.xml file and get/set attribute is used for interCommunication.
+- Advantage of the config and context is that it is configured in the web.xml which becomes easy to maintain
+
+- Attributes can be set/get in the servlet by following ways :
+  HttpServletRequest ,Session ,ServletContext
+
+  - There is only one init(ServletConfig ServletConfig) in Servlet but in Generic Servlet there are two version :
+  
+* public void init(ServletConfig config)
+          throws ServletException
+Called by the servlet container to indicate to a servlet that the servlet is being placed into service. See Servlet#init.
+This implementation stores the ServletConfig object it receives from the servlet container for later use. When overriding this form of the method, call super.init(config).
+
+* public void init()
+          throws ServletException
+A convenience method which can be overridden so that there's no need to call super.init(config).
+Instead of overriding init(ServletConfig), simply override this method and it will be called by GenericServlet.init(ServletConfig config). The ServletConfig object can still be retrieved via getServletConfig().
+
+- we can initiate servlet by calling its constructor rather than init() but we wont get ServletConfig object in that case.So technically yo can't
+
+* If you override init(ServletConfig config),it becomes necessary to call super.init(config) from that method of servlet because Servlet class extends abstract GenricServlet class which uses this config object in their methods,thus when we use methods of that super class we will get its functionality. e.g of such methods are getInitParameter(); getInitParameterNames();
+
+* We can call destroy any time from any where within the servlet.It doesn't mean that it will get destroyed.
+
+* load-on-startup tells the servlet container to load the specified resource at server startup. The number that you see tells the order of startup if there are more than one load-on-startup tag.
+<load-on-startup>1</load-on-startup>
+<load-on-startup>2</load-on-startup>
+will cause the resource with load on startup 1 to be loaded first. This is to control the sequence of loading if there is a dependency. Look at the servlet specification that explains the load sequence.
+if you don't specify load-on-startup then container will load a particular servlet when it feels necessary most likely when first request for that servlet will come, this may lead to longer response time for that query if Servlet is making database connections or performing ldap authentication
+<load-on-startup> is 0 or negative integer than Servlet will be loaded when Container feels to load them.
+<load-on-startup> guarantees loading, initialization and call to init() method of servlet by web container.
+If there is no <load-on-startup> element for any servlet than they will be loaded when web container decides to load them.
+
+* We can refresh servlet On client side by using Meta http refresh and server side we can use server push.
+<meta http-equiv="refresh" content="value">
+
+* There are two different ways of making a servlet thread 
+safe namely
+1.By implementing SingleThreadModel.
+By implementing a SingleThreadModel it will be possible to 
+create a Thread safe servlet.There can only be one user at 
+a given point of time.
+2.Synchornize the part of sensitive code.
+We can allow a single user at a given point of time by 
+making that part of the code which is sensitive as 
+synchronized. 
+
+- ServletRequest Interface is used to provide client info to server like contentType,contentlenght,parameter names and values,
+  header info etc.
+- It also contains getRequestDispatcher method which returns RequestDispatcher interface object which is used to dispatch the request to another servlet ,html or jsp.It 
+has two method forward and include.
+- sendRedirect in the ServletResponse is to use to reDirect to another servlet,html,jsp or relative url.
+
+RequestDispatcher :
+* Defines an object that receives requests from the client and sends them to any resource (such as a servlet, HTML file, or JSP file) on the server. The servlet container creates the RequestDispatcher object, which is used as a wrapper around a server resource located at a particular path or given by a particular name.It has two method forward and include.
+
+* There are two ways to get RequestDispatcher object i.e from Request and another from Context.
+
+* The difference between ServletRequest.getRequestDispatcher(String path) and ServletContext.getRequestDispatcher(String path) :
+request.getRequestDispatcher(“url”) means the dispatch is relative to the current HTTP request..
+Example code:
+RequestDispatcher reqDispObj = request.getRequestDispatcher("/home.jsp");
+
+getServletContext().getRequestDispatcher(“url”) means the dispatch is relative to the root of the ServletContext.
+Example code:
+RequestDispatcher reqDispObj = getServletContext().getRequestDispatcher("/ContextRoot/home.jsp");
+
+servletcontext.RequestDispatcher() it locates the resource relative to the context path
+servletrequest.RequestDispatcher(): it locates the resource relative to the request path
+
+* If we have to forward the request to a resource in another application, we can use ServletResponse sendRedirect() method and provide complete URL of another servlet. This sends the response to client with response code as 302 to forward the request to another URL. If we have to send some data also, we can use cookies that will be part of the servlet response and sent in the request to another servlet.
+
+* difference between RequestDispatcher.forward and ServletResponse.sendRedirect 
+RequestDispatcher forward() is used to forward the same request to another resource whereas ServletResponse sendRedirect() is a two step process. In sendRedirect(), web application returns the response to client with status code 302 (redirect) with URL to send the request. The request sent is a completely new request.
+forward() is handled internally by the container whereas sednRedirect() is handled by browser.
+We should use forward() when accessing resources in the same application because it’s faster than sendRedirect() method that required an extra network call.
+In forward() browser is unaware of the actual processing resource and the URL in address bar remains same whereas in sendRedirect() URL in address bar change to the forwarded resource.
+forward() can’t be used to invoke a servlet in another context, we can only use sendRedirect() in this case.
+
+* PrintWriter is a character-stream class whereas ServletOutputStream is a byte-stream class. We can use PrintWriter to write character based information such as character array and String to the response whereas we can use ServletOutputStream to write byte array data to the response.
+We can use ServletResponse getWriter() to get the PrintWriter instance whereas we can use ServletResponse getOutputStream() method to get the ServletOutputStream object reference.
+We can’t get instances of both PrintWriter and ServletOutputStream in a single servlet method, if we invoke both the methods; getWriter() and getOutputStream() on response; we will get java.lang.IllegalStateException at runtime with message as other method has already been called for this response.
+
+* Servlet Life Cycle consists of three methods:init , service and destroy
+
+* Since containers from web servers like Tomcat and Jetty uses Java Reflection for creating instance of Servlet, presence of no argument constructor is must. So, by any chance if you provide a parametric constructor and forget to write a no argument constructor, web container will not be able to create instance of your Servlet, since there is no default constructor
+
+There are four ways of session management :
+1.Cookies
+2.HiddenParameters
+3.URLRewriting
+4.HTTPSession
+
+* Limit of data that can be sent through doGet request method is 2k.
+
+  *******************************************************************************************************************
+
+
+  JSP :
+
+- jsp is used to create dynamic web pages for web based applications
+
+- Life cycle of jsp :
+  - Translate the jsp into servlet
+  - Compile the servlet.
+  - Load the servlet in the web container.
+  - Intantiate the servlet by creating its object.
+  - Initiate the servlet by calling its jspInit() method.
+  - Start the servlet on request by calling _jspService() method.
+  - jspDestroy() method which is called on shutDown of server or undeploying the project.
+
+  - The key to understanding the low-level functionality of JSP is to understand the simple life cycle they follow.
+	A JSP life cycle can be defined as the entire process from its creation till the destruction which is similar to a servlet life cycle with an additional step which is required to compile a JSP into servlet.
+	The following are the paths followed by a JSP
+	Compilation
+	Initialization
+	Execution
+	
+	- JSP Compilation:
+	When a browser asks for a JSP, the JSP engine first checks to see whether it needs to compile the page. If the page has never been compiled, or if the JSP has been modified since it was last compiled, the JSP engine compiles the page.
+	- JSP Initialization:
+	When a container loads a JSP it invokes the jspInit() method before servicing any requests. If you need to perform JSP-specific initialization, override the jspInit() method:
+	
+public void jspInit(){
+  // Initialization code...
+}
+Typically initialization is performed only once and as with the servlet init method, you generally initialize database connections, open files, and create lookup tables in the jspInit method.
+
+The compilation process involves three steps:
+
+Parsing the JSP.
+
+Turning the JSP into a servlet.
+
+Compiling the servlet.
+- And then Execution and Clean up is similar to Servlet.
+  
+- jsp scriptlet tag :
+  - It is used to write the java code in the jsp.The code written in the scriptlet tag goes into -jspService method
+  - It is written as <%  %>
+- jsp expression tag :
+  - It is used to write the variable or method directly to the print stream.
+- jsp declaration tag <! >:
+  - It is used decrale variable or method outside the _jspService() method.
+- jsp directive tags <@ >:
+  - This tag tell the web container who this jsp should get translate.There are three type of directives page, include, taglib
+
+  * page directives : It contains following attributes like import, extends, isErrorPage, errorPage,language, contentType, isThreadSafe, autoFlush
+  * include directive : It is used to include another jsp or html
+  * taglib directive : it is using customised yag libraries.
+
+- There are few implicit object created by web container which are avaliable in jsp like out,request,response,session,config,application,pageContext,page,exception.
+- In JSP, pageContext is an implicit object of type PageContext class.The pageContext object can be used to set,get or remove attribute from one of the following scopes:
+page
+request
+session
+application
+In JSP, page scope is the default scope
+- This object stores references to the request and response objects for each request. The application, config, session, and out objects are derived by accessing attributes of this object.
+The pageContext object also contains information about the directives issued to the JSP page, including the buffering information, the errorPageURL, and page scope.
+The PageContext class defines several fields, including PAGE_SCOPE, REQUEST_SCOPE, SESSION_SCOPE, and APPLICATION_SCOPE, which identify the four scopes
+This is the only object that is common in both JSP implicit objects and in JSP EL implicit objects.
+
+-This object is an actual reference to the instance of the page. It can be thought of as an object that represents the entire JSP page.
+The page object is really a direct synonym for the this object.
+
+- we can’t use jsp implicit objects because JSP implicit objects are local to service method and added by JSP Container while translating JSP page to servlet source code. JSP Declarations code goes outside the service method and used to create class level variables and methods and hence can’t use JSP implicit objects.
+
+- JSP exception implicit object is not available in normal JSP pages and it’s used in JSP error pages only to catch the exception thrown by the JSP pages and provide useful message to the client.
+
+- There are other action tags in jsp like <jsp: useBean>, include, forward ,setProperty, getProperty
+
+- The difference between JSP include directive and include action is that in include directive the content to other resource is added to the generated servlet code at the time of translation whereas with include action it happens at runtime.
+Another difference is that in JSP include action, we can pass params to be used in the included resource with jsp:param action element but in JSP include directive we can’t pass any params.
+When included resource is static such as header, footer, image files then we should use include directive for faster performance but if the included resource is dynamic and requires some parameters for processing then we should use include action tag.
+

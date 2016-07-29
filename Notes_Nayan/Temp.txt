@@ -1,0 +1,118 @@
+Links need to look and also  internal links:
+http://www.java2novice.com/java_interview_questions/static-methods-in-interface/
+http://javarevisited.blogspot.in/2011/09/difference-hashmap-vs-hashset-java.html
+http://javarevisited.blogspot.in/2011/07/java-multi-threading-interview.html	
+http://javarevisited.blogspot.in/2011/11/struts-interview-questions-answer-j2ee.html 
+http://javarevisited.blogspot.in/2012/01/google-interview-questions-answers-top.html
+http://javarevisited.blogspot.in/2011/11/collection-interview-questions-answers.html
+http://javarevisited.blogspot.in/2011/06/top-programming-interview-questions.html?showComment=1322371935231
+http://java67.blogspot.sg/2012/10/servlet-jsp-interview-questions-answer-faq-experience.html
+http://javarevisited.blogspot.sg/2011/09/servlet-interview-questions-answers.html
+http://javarevisited.blogspot.in/2011/10/jsp-interview-questions-answers-for.html
+http://javarevisited.blogspot.sg/2012/01/error-page-in-java-web-application.html
+http://javarevisited.blogspot.sg/2012/01/difference-between-page-include-and.html
+http://javarevisited.blogspot.sg/2012/08/what-is-jsessionid-in-j2ee-web.html
+
+All TIME :
+http://javarevisited.blogspot.in/2014/05/10-articles-every-programmer-must-read.html
+
+# h/ThreadPool
+- Thread pool is pool of already created worker thread ready to do the job.
+- A thread pool manages the pool of worker threads, it contains a queue that keeps tasks waiting to get executed.
+- A thread pool manages the collection of Runnable threads and worker threads and execute Runnable from the queue with worker threads.
+
+java.util.concurrent.c is the Utility/factory class that provide implementation of java.util.concurrent.Executor interface to create the thread pool in java.
+
+If only one thread is used to process client request, than it will subsequently limit how many client can access server concurrently. In order to support large number of clients, you may decide to use one thread per request paradigm, in which each request is processed by separate Thread, but this require Thread to be created, when request arrived.  Since creation of Thread is time consuming process, it delays request processing. It also limits number of clients based upon how many thread per JVM is allowed, which is obviously a limited number. Thread pool solves this problem for you, It creates Thread and manage them. Instead of creating Thread and discarding them once task is done, thread-pool reuses threads in form of worker thread. Since Thread are usually created and pooled when application starts, your server can immediately start request processing, which can further improve server’s response time.
+
+Disadvantage of one thread per task approach
+- The overhead of creating a new thread for each request is significant.
+- Server that processing requests can spend more time and consume more system resources in creating and destroying threads than it would processing actual client requests.
+- Creating too many threads in one JVM can cause the system to run out of memory or thrash due to excessive memory consumption.
+
+Benefits of Thread Pool in Java
+- Thread Pool offers several benefit to Java application, biggest of them is separating submission of task to execution of task ,which result if more loose coupled and flexible design than tightly coupled create and execute pattern.
+1) Use of Thread Pool reduces response time by avoiding thread creation during request or task processing.
+2) Use of Thread Pool allows you to change your execution policy as you need. you can go from single thread to multiple thread by just replacing ExecutorService implementation.
+3) Thread Pool in Java application increases stability of system by creating a configured number of threads decided based on system load and available resource.
+4) Thread Pool frees application developer from thread management stuff and allows to focus on business logic.
+5) Another implicit advantage of using a pool is the capability of sizing your resource usage:
+
+- Core Interface are of ThreadPool are Executor and ExecutorService.
+- java.util.concurrent.c is the Utility/factory class that provide implementation of java.util.concurrent.Executor interface to create the thread pool in java.
+- AbstractExecutorService, ForkJoinPool, ScheduledThreadPoolExecutor, ThreadPoolExecutor are the classes implementing Executor.
+
+#Executor :
+void execute(Runnable command)
+
+An object that executes submitted Runnable tasks. This interface provides a way of decoupling task submission from the mechanics of how each task will be run, including details of thread use, scheduling, etc. An Executor is normally used instead of explicitly creating threads. For example, rather than invoking new Thread(new(RunnableTask())).start() for each of a set of tasks, you might use:
+ Executor executor = anExecutor;
+ executor.execute(new RunnableTask1());
+ executor.execute(new RunnableTask2());
+
+ *ExecutorService :
+public interface ExecutorService
+extends Executor
+An Executor that provides methods to manage termination and methods that can produce a Future for tracking progress of one or more asynchronous tasks.
+An ExecutorService can be shut down, which will cause it to reject new tasks. Two different methods are provided for shutting down an ExecutorService. The shutdown() method will allow previously submitted tasks to execute before terminating, while the shutdownNow() method prevents waiting tasks from starting and attempts to stop currently executing tasks. Upon termination, an executor has no tasks actively executing, no tasks awaiting execution, and no new tasks can be submitted. An unused ExecutorService should be shut down to allow reclamation of its resources.
+
+Method submit extends base method Executor.execute(java.lang.Runnable) by creating and returning a Future that can be used to cancel execution and/or wait for completion. Methods invokeAny and invokeAll perform the most commonly useful forms of bulk execution, executing a collection of tasks and then waiting for at least one, or all, to complete. (Class ExecutorCompletionService can be used to write customized variants of these methods.)
+
+The Executors class provides factory methods for the executor services provided in this package.
+
+ *AbstractExecutorService :
+ public abstract class AbstractExecutorService
+extends Object
+implements ExecutorService
+Provides default implementations of ExecutorService execution methods. This class implements the submit, invokeAny and invokeAll methods using a RunnableFuture returned by newTaskFor, which defaults to the FutureTask class provided in this package. For example, the implementation of submit(Runnable) creates an associated RunnableFuture that is executed and returned. Subclasses may override the newTaskFor methods to return RunnableFuture implementations other than FutureTask.
+
+ *ThreadPoolExecutor :
+public class ThreadPoolExecutor
+extends AbstractExecutorService
+
+public class ThreadPoolExecutor
+extends AbstractExecutorService
+An ExecutorService that executes each submitted task using one of possibly several pooled threads, normally configured using Executors factory methods.
+Thread pools address two different problems: they usually provide improved performance when executing large numbers of asynchronous tasks, due to reduced per-task invocation overhead, and they provide a means of bounding and managing the resources, including threads, consumed when executing a collection of tasks. Each ThreadPoolExecutor also maintains some basic statistics, such as the number of completed tasks.
+
+To be useful across a wide range of contexts, this class provides many adjustable parameters and extensibility hooks. However, programmers are urged to use the more convenient Executors factory methods Executors.newCachedThreadPool() (unbounded thread pool, with automatic thread reclamation), Executors.newFixedThreadPool(int) (fixed size thread pool) and Executors.newSingleThreadExecutor() (single background thread), that preconfigure settings for the most common usage scenarios. Otherwise, use the following guide when manually configuring and tuning this class:
+
+Core and maximum pool sizes
+A ThreadPoolExecutor will automatically adjust the pool size (see getPoolSize()) according to the bounds set by corePoolSize (see getCorePoolSize()) and maximumPoolSize (see getMaximumPoolSize()). When a new task is submitted in method execute(java.lang.Runnable), and fewer than corePoolSize threads are running, a new thread is created to handle the request, even if other worker threads are idle. If there are more than corePoolSize but less than maximumPoolSize threads running, a new thread will be created only if the queue is full. By setting corePoolSize and maximumPoolSize the same, you create a fixed-size thread pool. By setting maximumPoolSize to an essentially unbounded value such as Integer.MAX_VALUE, you allow the pool to accommodate an arbitrary number of concurrent tasks. Most typically, core and maximum pool sizes are set only upon construction, but they may also be changed dynamically using setCorePoolSize(int) and setMaximumPoolSize(int).
+On-demand construction
+By default, even core threads are initially created and started only when new tasks arrive, but this can be overridden dynamically using method prestartCoreThread() or prestartAllCoreThreads(). You probably want to prestart threads if you construct the pool with a non-empty queue.
+Creating new threads
+New threads are created using a ThreadFactory. If not otherwise specified, a Executors.defaultThreadFactory() is used, that creates threads to all be in the same ThreadGroup and with the same NORM_PRIORITY priority and non-daemon status. By supplying a different ThreadFactory, you can alter the thread's name, thread group, priority, daemon status, etc. If a ThreadFactory fails to create a thread when asked by returning null from newThread, the executor will continue, but might not be able to execute any tasks. Threads should possess the "modifyThread" RuntimePermission. If worker threads or other threads using the pool do not possess this permission, service may be degraded: configuration changes may not take effect in a timely manner, and a shutdown pool may remain in a state in which termination is possible but not completed.
+Keep-alive times
+If the pool currently has more than corePoolSize threads, excess threads will be terminated if they have been idle for more than the keepAliveTime (see getKeepAliveTime(java.util.concurrent.TimeUnit)). This provides a means of reducing resource consumption when the pool is not being actively used. If the pool becomes more active later, new threads will be constructed. This parameter can also be changed dynamically using method setKeepAliveTime(long, java.util.concurrent.TimeUnit). Using a value of Long.MAX_VALUE TimeUnit.NANOSECONDS effectively disables idle threads from ever terminating prior to shut down. By default, the keep-alive policy applies only when there are more than corePoolSizeThreads. But method allowCoreThreadTimeOut(boolean) can be used to apply this time-out policy to core threads as well, so long as the keepAliveTime value is non-zero.
+
+Queuing
+Any BlockingQueue may be used to transfer and hold submitted tasks. The use of this queue interacts with pool sizing:
+If fewer than corePoolSize threads are running, the Executor always prefers adding a new thread rather than queuing.
+If corePoolSize or more threads are running, the Executor always prefers queuing a request rather than adding a new thread.
+If a request cannot be queued, a new thread is created unless this would exceed maximumPoolSize, in which case, the task will be rejected.
+
+There are three general strategies for queuing:
+
+Direct handoffs. A good default choice for a work queue is a SynchronousQueue that hands off tasks to threads without otherwise holding them. Here, an attempt to queue a task will fail if no threads are immediately available to run it, so a new thread will be constructed. This policy avoids lockups when handling sets of requests that might have internal dependencies. Direct handoffs generally require unbounded maximumPoolSizes to avoid rejection of new submitted tasks. This in turn admits the possibility of unbounded thread growth when commands continue to arrive on average faster than they can be processed.
+
+Unbounded queues. Using an unbounded queue (for example a LinkedBlockingQueue without a predefined capacity) will cause new tasks to wait in the queue when all corePoolSize threads are busy. Thus, no more than corePoolSize threads will ever be created. (And the value of the maximumPoolSize therefore doesn't have any effect.) This may be appropriate when each task is completely independent of others, so tasks cannot affect each others execution; for example, in a web page server. While this style of queuing can be useful in smoothing out transient bursts of requests, it admits the possibility of unbounded work queue growth when commands continue to arrive on average faster than they can be processed.
+
+Bounded queues. A bounded queue (for example, an ArrayBlockingQueue) helps prevent resource exhaustion when used with finite maximumPoolSizes, but can be more difficult to tune and control. Queue sizes and maximum pool sizes may be traded off for each other: Using large queues and small pools minimizes CPU usage, OS resources, and context-switching overhead, but can lead to artificially low throughput. If tasks frequently block (for example if they are I/O bound), a system may be able to schedule time for more threads than you otherwise allow. Use of small queues generally requires larger pool sizes, which keeps CPUs busier but may encounter unacceptable scheduling overhead, which also decreases throughput.
+
+Rejected tasks
+New tasks submitted in method execute(java.lang.Runnable) will be rejected when the Executor has been shut down, and also when the Executor uses finite bounds for both maximum threads and work queue capacity, and is saturated. In either case, the execute method invokes the RejectedExecutionHandler.rejectedExecution(java.lang.Runnable, java.util.concurrent.ThreadPoolExecutor) method of its RejectedExecutionHandler.
+
+Hook methods
+This class provides protected overridable beforeExecute(java.lang.Thread, java.lang.Runnable) and afterExecute(java.lang.Runnable, java.lang.Throwable) methods that are called before and after execution of each task. These can be used to manipulate the execution environment; for example, reinitializing ThreadLocals, gathering statistics, or adding log entries. Additionally, method terminated() can be overridden to perform any special processing that needs to be done once the Executor has fully terminated.
+If hook or callback methods throw exceptions, internal worker threads may in turn fail and abruptly terminate.
+
+Queue maintenance
+Method getQueue() allows access to the work queue for purposes of monitoring and debugging. Use of this method for any other purpose is strongly discouraged. Two supplied methods, remove(java.lang.Runnable) and purge() are available to assist in storage reclamation when large numbers of queued tasks become cancelled.
+Finalization
+A pool that is no longer referenced in a program AND has no remaining threads will be shutdown automatically. If you would like to ensure that unreferenced pools are reclaimed even if users forget to call shutdown(), then you must arrange that unused threads eventually die, by setting appropriate keep-alive times, using a lower bound of zero core threads and/or setting allowCoreThreadTimeOut(boolean).
+
+
+
+
+

@@ -1,0 +1,443 @@
+Spring 
+
+********************************************************************
+modules in spring :
+ core spring module ,
+ AOP module ,
+ MVC module ,
+ Spring  Data Access & Integration(JDBC,ORM,JMS,Transaction) ,
+ Spring RMI ,
+ Spring Boot
+ 
+What is Spring :
+* Spring is an open source framework based on concept called dependency injection which helps in loose coupling. 
+* Dependency injection means injecting the dependency of other class in another where is creation and managing of that object is done by spring where you just invoke it or wire it and use it.
+* Dependency injection in spring is achieved in spring using IOC (Inversion of controller) container.
+* IOC is a factory of bean and task performed by IOC are : instantiate,configure,assemble
+ Two types of IOC : BeanFactory ,ApplicationContext
+ configure beans : singleton , prototype
+* The IoC container gets informations regarding beans from the XML file or using annotations. The main tasks performed by IoC container are:
+to instantiate the application class
+to configure the object (singleton , prototype)
+to assemble/inject the dependencies between the objects
+
+differnce between IOC and DI:
+- In short, IoC is a much broader term that includes, but is not limited to, DI
+- The term Inversion of Control (IoC) originally meant any sort of programming style where an overall framework or run-time controlled the program flow
+- Before DI had a name, people started to refer to frameworks that manage Dependencies as Inversion of Control Containers, and soon, the meaning of IoC gradually drifted towards that particular meaning: Inversion of Control over Dependencies.
+- Inversion of Control (IoC) means that objects do not create other objects on which they rely to do their work. Instead, they get the objects that they need from an outside source (for example, an xml configuration file).
+- Dependency Injection (DI) means that this is done without the object intervention, usually by a framework component that passes constructor parameters and set properties.
+
+IOC(Inversion Of Controller): Giving control to the container to get instance of object is called Inversion of Control., means instead of you are creating object using new operator, let the container do that for you.
+
+DI(Dependency Injection): Way of injecting properties to an object is called Dependency injection.
+- We have three types of Dependency injection
+    1)  Constructor Injection
+    2)  Setter/Getter Injection
+    3)  Interface Injection
+
+ 
+You need to add spring dependency libraries.
+There are two types of IoC containers. They are:
+BeanFactory
+ApplicationContext
+
+Difference between BeanFactory and the ApplicationContext
+
+The org.springframework.beans.factory.BeanFactory and the org.springframework.context.ApplicationContext interfaces acts as the IoC container. The ApplicationContext interface is built on top of the BeanFactory interface. It adds some extra functionality than BeanFactory such as simple integration with Springs AOP, message resource handling (for I18N), event propagation, application layer specific context (e.g. WebApplicationContext) for web application. So it is better to use ApplicationContext than BeanFactory.
+
+Using BeanFactory
+
+The XmlBeanFactory is the implementation class for the BeanFactory interface. To use the BeanFactory, we need to create the instance of XmlBeanFactory class as given below:
+
+Resource resource=new ClassPathResource("applicationContext.xml");  
+BeanFactory factory=new XmlBeanFactory(resource);  
+The constructor of XmlBeanFactory class receives the Resource object so we need to pass the resource object to create the object of BeanFactory.
+
+Using ApplicationContext
+
+The ClassPathXmlApplicationContext class is the implementation class of ApplicationContext interface. We need to instantiate the ClassPathXmlApplicationContext class to use the ApplicationContext as given below:
+
+ApplicationContext context =   
+    new ClassPathXmlApplicationContext("applicationContext.xml");  
+The constructor of ClassPathXmlApplicationContext class receives string, so we can pass the name of the xml file to create the instance of ApplicationContext.
+
+Here applicationContext.xml is spring configuration file.
+
+Setting up Spring requires adding spring libraries
+
+One way of getting bean is by configuring beans in spring.xml and placing it in a scr folder and using BeanFactory i.e XMLBeanFactory which takes an actual file resource as input
+
+Attributes of Bean tag.xml
+
+name / id:
+This attribute specifies the bean unique identifier. In XML based configuration meta data, you use the id and/or name attributes to specify the bean identifier.
+
+class:
+This attribute is mandatory and specify the bean class to be used to create the bean. You should specify fully qualified class name. Include package name.
+
+scope:
+This attribute specifies the scope of the objects created from a particular bean definition. The scope values can be prototype, singleton, request, session, and global session.
+
+constructor-arg:
+This is used to inject the dependencies through bean constructor.
+
+properties:
+This attribute is used to inject the dependencies through setter method.
+
+autowiring mode:
+This is used to inject the dependencies.
+
+Dependency check:
+4 dependency checking modes are supported:
+none – No dependency checking.
+simple – If any properties of primitive type (int, long,double…) and collection types (map, list..) have not been set, UnsatisfiedDependencyException will be thrown.
+objects – If any properties of object type have not been set, UnsatisfiedDependencyException will be thrown.
+all – If any properties of any type have not been set, an UnsatisfiedDependencyException
+will be thrown.
+P.S The default mode is none
+
+lazy-init (lazy-initialization mode):
+A lazy-initialized bean tells the IoC container to create a bean instance when it is first requested, rather than at startup.
+
+init-method (initialization method):
+A callback to be called just after all necessary properties on the bean have been set by the container. This is part of bean lifecycle.
+
+destroy-method (destruction method):
+A callback to be used when the container containing the bean is destroyed. This is part of bean lifecycle.
+
+By using the parent attribute of bean, we can specify the inheritance relation between the beans. In such case, parent bean values will be inherited to the current bean.
+abstract="true":If you want to make this base bean as a template and not allow others to instantiate it, you can add an ‘abstract‘ attribute in the <bean> element.
+bean tag has parent variable where you can define parent bean and you can get all the properties of parent bean
+A bean can also be defined as abstract
+
+<beans id, class , name>
+<property name , value  ></property> (this is setter method hence it is called setterInjection)
+instead of value tag you can have ref arg
+you can have bean inside a property tag
+you can have idref tag referring to a bean inside a property tag
+you can have list tag referring to a list of beans inside a property tag using <List> or <map> tag
+<constructor-arg type , index > tag can used for setting property value using constructor injection.you can have n numbers of tags for invoking n number constructor.it has type and index argument for avoiding confusion to jvm
+you can also refer any bean in the application using alias using <ref bean> tag
+</beans>
+
+There are three types of Dependency Injection :
+1.Constructor Injection : We can inject the dependency by constructor. The <constructor-arg> subelement of <bean> is used for constructor injection. we can inject primitive and String-based values ,Dependent object (contained object) ,Collection values (using list tag ,set tag and map tag) etc.
+
+2.Setter Injection : We can inject the dependency by setter method also. The <property> sub element of <bean> is used for setter injection.  we  can inject primitive and String-based values ,Dependent object (contained object) ,Collection values etc.
+
+3. Interface Injection: In a bean if you have a property as reference type refering to a Interface type,in that case spring will look for bean implementing that interface
+
+There are many key differences between constructor injection and setter injection :
+Partial dependency: can be injected using setter injection but it is not possible by constructor. Suppose there are 3 properties in a class, having 3 arg constructor and setters methods. In such case, if you want to pass information for only one property, it is possible by setter method only.
+Overriding: Setter injection overrides the constructor injection. If we use both constructor and setter injection, IOC container will use the setter injection.
+Changes: We can easily change the value by setter injection. It doesn't create a new bean instance always like constructor. So setter injection is flexible than constructor injection
+
+Autowiring feature of spring framework enables you to inject the object dependency implicitly. It internally uses setter or constructor injection.
+Autowiring can't be used to inject primitive,wrappers and string values. It works with reference only.
+
+by writing autoWiring="byName" all the member variables are looked as beans defined in xml by the same name
+by writing autoWiring="bytype" all the member variables are looked as beans defined in xml by the same type.it works if there are no confusion for xml validator
+by writing autoWiring="byConstructor" all the parameters passed to constructor are looked as beans defined in xml by the same type.it works if there constructor has different type parameter and those are defined in the  xml as beans
+by writing autoWiring="byAutoDetect"
+By default autowire is off
+(cons : for a huge App it becomes difficult to track was going behind)
+
+As per the default behaviour of bean factory it creates beans on start-up and hands over that bean on call for it. i.e lazy-init=false
+
+two basic scopes of beans :
+singleton : once per spring container
+prototype : new object of every get bean or for every references.
+
+you can mark above scopes in the bean tag
+
+Others :
+Web-aware context bean scopes
+request
+session
+global session
+
+Annotation Based Configuration :
+Starting from Spring 2.5 it became possible to configure the dependency injection using annotations. So instead of using XML to describe a bean wiring, you can move the bean configuration into the component class itself by using annotations on the relevant class, method, or field declaration.
+Annotation injection is performed before XML injection, thus the latter configuration will override the former for properties wired through both approaches.
+Annotation wiring is not turned on in the Spring container by default. So, before we can use annotation-based wiring, we will need to enable it in our Spring configuration file using   <context:annotation-config/>
+
+@Required : The @Required annotation applies to bean property setter methods and it indicates that the affected bean property must be populated in XML configuration file at configuration time otherwise the container throws a BeanInitializationException exception
+
+@ autowire : The @Autowired annotation provides more fine-grained control over, where and how autowiring should be accomplished. The @Autowired annotation can be used to autowire bean on the setter method just like @Required annotation, constructor, a property or methods with arbitrary names and/or multiple arguments.
+on setter method :
+You can use @Autowired annotation on setter methods to get rid of the <property> element in XML configuration file. When Spring finds an @Autowired annotation used with setter methods, it tries to perform byType autowiring on the method.
+on property:
+You can use @Autowired annotation on properties to get rid of the setter methods. When you will pass values of autowired properties using <property> Spring will automatically assign those properties with the passed values or references.
+on constructor:
+You can apply @Autowired to constructors as well. A constructor @Autowired annotation indicates that the constructor should be autowired when creating the bean, even if no <constructor-arg> elements are used while configuring the bean in XML file
+By default, the @Autowired annotation implies the dependency is required similar to @Required annotation, however, you can turn off the default behaviour by using (required=false) option with @Autowired.
+
+@qualifier :
+There may be a situation when you create more than one bean of the same type and want to wire only one of them with a property, in such case you can use @Qualifier annotation along with @Autowired to remove the confusion by specifying which exact bean will be wired
+
+@qualifier can be used with @component(like giving an alias name) and as well as with @autowired(to autowire to those components have that qualifier)
+@autowire can be used on setter-method,property,constructor and on method(all the arguments passed will be autowired) as well
+
+@Configuration & @Bean Annotations:
+It is an alternative way of creating IOC container other than xml bases configuration.If you want to create a bean of class from external jar,this way could serve the purpose of creating bean.
+Annotating a class with the @Configuration indicates that the class can be used by the Spring IoC container as a source of bean definitions. The @Bean annotation tells Spring that a method annotated with @Bean will return an object that should be registered as a bean in the Spring application context
+
+JSR-20 annotation :This is equivalent to autowire,inject annotation.Java specification request that specifies standard annotation that would apply across different technology or different platform
+@resource(name="") this can be added to setter method that defines the name of the bean.if name is not given then it will look for same name
+
+@postconstruct : after bean is initialized
+@predestroy : before bean is destroyed
+
+@component : this annotation cab be used to suffices the necessity of writing bean tag.The biggest disadvantage of writing this annotation is that you can not write different bean of same class or you can not have different behaviour of same bean. we need to add context : <component-scan basePackage=""> in order for context to identity class as bean.
+
+
+
+Stereotype annotation : in all the enterprise application you will have beans related to service,model,view 
+@Service : it gives additional info as service
+@repositoty : it gives additional info as data object
+@controller : it gives additional info as controller object
+
+Dependency Injection with Factory Method in Spring:
+Spring framework provides facility to inject bean using factory method. To do so, we can use two attributes of bean element.
+factory-method: represents the factory method that will be invoked to inject the bean.
+factory-bean: represents the reference of the bean by which factory method will be invoked. It is used if factory method is non-static.
+
+for a bean by implements ApplicationContextAware interface we can get applicationcontext object at runtime
+for a bean by implements BeanNameAware interface it can be used to set bean name.BeanNameAware makes the object aware of its bean name
+During bootstrapping, Spring will examine each bean to determine if it implements any of the xxxAware interfaces. When one is found, it invokes the interface method, providing the piece of information that is being asked for. In the example above, Spring calls MyBean#setBeanFactory providing its BeanFactory.
+Of course, in many situations, it is not entirely necessary to use these interfaces. For example, the ApplicationContextAware interface can be circumvented by simply @Autowiring an ApplicationContext into a bean.
+
+you can use AbstractApplicationContext and register hookUp by context.registerShutDownHook after which spring will call destroy life-cycle method of all the beans.
+
+A bean can implement InitializingBean interface and define init methods
+A bean can implement DisposableBean interface and define destroy methods
+Or you can add init-method  and destroy-method variable to the bean tag.
+you can also define globally by defining at beans tag
+
+you can write a class by implementing beanPostProcessor and write method which will be called before initialization and after initialization for all the beans in the application
+you can write a class by implementing beanFactoryPostProcessor and write method which will be called before initialization and after initialization for all the factory in the application
+You also need to config a bean for achieving beanPostProcessor,beanFactoryPostProcessor in the xml file
+
+you can write place holder instead of writing hard coded values in the spring.xml and spring replaces them from the properties files by defining bean called  propertyPlaceHolderConfigurer which has location tag.
+
+This is essential tag for writing annotation in the spring
+<context:annotation-config > this is sufficient for all different annotation tag used in the app
+
+support for messaging internationalization:
+you need to add a <bean id="messagesource" class="ResourecBundledMessageSouce">
+with <property name="basenames">
+<list>
+<values>all the property files present in the classpath</values>
+you can invoke it by using context.getMessage.
+to invoke it in the bean you write an object of messagesource inside bean and autowire it to the bean present in the xml. or can also implement interface and get Applicationcontext.
+This feature also handles passing string at runtime and internationalization using locale.
+
+Event Handling :Any event handling consist of three core elements Event , Event listener and Event publisher
+you can write own listener class by implementing applicationListner and overriding method which gives object of event itself
+you can write own event class by implementing ApplicationEvent
+For publishing event you need to ApplicationEventPublisher and use its publishEvent method which takes event as argument.you will get ApplicationEventPublisher using ApplicationEventPublisherAware interface and use its method
+Following are the some of the standard events :
+ContextStartedEvent
+This event is published when the ApplicationContext is started using the start() method on the ConfigurableApplicationContext interface. You can poll your database or you can re/start any stopped application after receiving this event.
+ContextStoppedEvent
+This event is published when the ApplicationContext is stopped using the stop() method on the ConfigurableApplicationContext interface. You can do required housekeep work after receiving this event.
+ContextClosedEvent
+This event is published when the ApplicationContext is closed using the close() method on the ConfigurableApplicationContext interface. A closed context reaches its end of life; it cannot be refreshed or restarted.
+
+********************************************************************************
+
+AOP :
+
+For AOP :too many relationship to the cross-cutting object
+code is required to write in all the methods
+cannot be all code at once(code can be centralised)
+
+Applicable :
+Loggin
+Tranasction
+security
+
+Aspect Oriented Programming (AOP) compliments OOPs in the sense that it also provides modularity. But the key unit of modularity is aspect than class.
+AOP breaks the program logic into distinct parts (called concerns). It is used to increase modularity by cross-cutting concerns.
+
+A cross-cutting concern is a concern that can affect the whole application and should be centralized in one location in code as possible, such as transaction management, authentication, logging, security etc.
+It provides the pluggable way to dynamically add the additional concern before, after or around the actual logic
+An additional jar called aspectJ is required for AOP
+
+Aspect	:A module which has a set of APIs providing cross-cutting requirements. For example, a logging module would be called AOP aspect for logging. An application can have any number of aspects depending on the requirement.
+
+You may register aspect classes as regular beans in your Spring XML configuration, or autodetect them through classpath scanning - just like any other Spring-managed bean. However, note that the @Aspect annotation is not sufficient for autodetection in the classpath: For that purpose, you need to add a separate @Component annotation (or alternatively a custom stereotype annotation that qualifies, as per the rules of Spring’s component scanner).
+
+Join point :This represents a point in your application where you can plug-in AOP aspect. You can also say, it is the actual place in the application where an action will be taken using Spring AOP framework.
+
+Advice :	This is the actual action to be taken either before or after the method execution. This is actual piece of code that is invoked during program execution by Spring AOP framework.
+
+Pointcut :	This is a set of one or more joinpoints where an advice should be executed. You can specify pointcuts using expressions or patterns as we will see in our AOP examples.
+the method serving as the pointcut signature must have a void return type.
+
+Introduction :	An introduction allows you to add new methods or attributes to existing classes.
+Target object :	The object being advised by one or more aspects, this object will always be a proxy object. Also referred to as the advised object.
+
+Weaving	: Weaving is the process of linking aspects with other application types or objects to create an advised object. This can be done at compile time, load time, or at runtime.
+
+We need to add following tag in xml file <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+Bean definition needs to be there in the xml for all the aspects
+what we do to achieve AOP is to write Aspect /concerns using @Aspect annotation and add it in the xml as a bean and write methods to it with proper annotation.
+@before(*execute(method signature) && etc *):it tells that aspect  to run this method for method which satisfies the method signature.
+you can also add class name with package structure for writing specific to one class
+you can use * for wild card search before and after method name
+you can use (..) for any number(zero or more) and any type of parameter wild card search
+you can use (*) for any number(one or more) and any type of parameter wild card search
+you can use () for zero number of parameter wild card search
+
+pointcut is an expression language of AOP that matches join points.pointcut are the annotation which can be used to the method in the aspect and that can be refereed anywhere in the aspect for different methods
+
+we can use within() in the pointcut for join points of all the methods inside the circle
+while using execute you write method name inside it
+while using within you write class name inside it
+
+@pointcut(args()) : this is pointcut for join points for all the methods that takes defined arguments
+
+jointpoint is an argument that spring passes to an method at runtime for particular aspect which contains info about the method
+getTarget method of jointpoint returns the  object of a class which triggers this aspect
+
+@before(*args(name)*)
+public testMethos (String name) :
+this above statement makes spring to pass the same argument to the method of aspect which his triggered this
+
+@after : it similar to @before but only different is that it runs after the method gets executed
+@afterReturning : after successful completion of method 	
+@afterReturning(pointcut(*etc*) ,returning = "returningString") : by this you will get return args as parameter in the advise methods
+@afterThorwing : it is executed when there is an exception
+@afterReturning(pointcut(*etc*) ,throwing = "ex") : by this you will get return exception as parameter in the advise methods
+* this advises are run only method execution caused by user coding and not when method is executed by spring
+
+@around(*etc*) : by this you can add advise code around the method that trigger this advise	
+
+@before and @after advise methods have jointpoint as argument.
+@around has proceedJoinPoint as argument
+@afterReturn and @afterThrow has jointpoint as first argument and returned Object or thrown object as second argument respectively.
+
+JointPoint and ProceedJointPoint object as method to get method signature,method argument,target object itself along with proceed method in ProceedJointPoint.
+
+PointExpresionLanguage : All parts except the returning type pattern (ret-type-pattern in the snippet above), name pattern, and parameters pattern are optional. The returning type pattern determines what the return type of the method must be in order for a join point to be matched. Most frequently you will use * as the returning type pattern, which matches any return type. A fully-qualified type name will match only when the method returns the given type. The name pattern matches the method name. You can use the * wildcard as all or part of a name pattern. The parameters pattern is slightly more complex: () matches a method that takes no parameters, whereas (..) matches any number of parameters (zero or more). The pattern (*) matches a method taking one parameter of any type, (*,String) matches a method taking two parameters, the first can be of any type, the second must be a String
+
+any join point (method execution only in Spring AOP) where the proxy implements the AccountService interface:
+this(com.xyz.service.AccountService)
+
+any join point (method execution only in Spring AOP) where the target object implements the AccountService interface:
+target(com.xyz.service.AccountService)
+
+any join point (method execution only in Spring AOP) which takes a single parameter, and where the argument passed at runtime is Serializable:
+args(java.io.Serializable)
+
+Advices can take args, target and annotation as parameter but they need to declare in point cut expression
+
+in xml <aop:aspect> tag is used to define aspect instead of annotation
+
+AOP proxy: an object created by the AOP framework in order to implement the aspect contracts (advise method executions and so on). In the Spring Framework, an AOP proxy will be a JDK dynamic proxy or a CGLIB proxy.(need to look into detail)
+
+AOP Proxies
+
+Spring AOP defaults to using standard JDK dynamic proxies for AOP proxies. This enables any interface (or set of interfaces) to be proxied.
+
+Spring AOP can also use CGLIB proxies. This is necessary to proxy classes, rather than interfaces. CGLIB is used by default if a business object does not implement an interface. As it is good practice to program to interfaces rather than classes, business classes normally will implement one or more business interfaces. It is possible to force the use of CGLIB, in those (hopefully rare) cases where you need to advise a method that is not declared on an interface, or where you need to pass a proxied object to a method as a concrete type.
+
+Proxying mechanisms:
+Spring AOP uses either JDK dynamic proxies or CGLIB to create the proxy for a given target object. (JDK dynamic proxies are preferred whenever you have a choice).
+
+If the target object to be proxied implements at least one interface then a JDK dynamic proxy will be used. All of the interfaces implemented by the target type will be proxied. If the target object does not implement any interfaces then a CGLIB proxy will be created.
+
+If you want to force the use of CGLIB proxying (for example, to proxy every method defined for the target object, not just those implemented by its interfaces) you can do so. However, there are some issues to consider:
+
+final methods cannot be advised, as they cannot be overridden.
+As of Spring 3.2, it is no longer necessary to add CGLIB to your project classpath, as CGLIB classes are repackaged under org.springframework and included directly in the spring-core JAR. This means that CGLIB-based proxy support just works in the same way that JDK dynamic proxies always have.
+The constructor of your proxied object will be called twice. This is a natural consequence of the CGLIB proxy model whereby a subclass is generated for each proxied object. For each proxied instance, two objects are created: the actual proxied object and an instance of the subclass that implements the advice. This behavior is not exhibited when using JDK proxies. Usually, calling the constructor of the proxied type twice, is not an issue, as there are usually only assignments taking place and no real logic is implemented in the constructor.
+To force the use of CGLIB proxies set the value of the proxy-target-class attribute of the <aop:config> element to true:
+
+The key thing to understand in proxy is that the client code has a reference to the proxy. This means that method calls on that object reference will be calls on the proxy, and as such the proxy will be able to delegate to all of the interceptors (advice) that are relevant to that particular method call. However, once the call has finally reached the target object, any method calls that it may make on itself, are going to be invoked against the this reference, and not the proxy. This has important implications. It means that self-invocation is not going to result in the advice associated with a method invocation getting a chance to execute.
+
+work around :((Pojo) AopContext.currentProxy()).bar();
+
+***********************************************************************************************************
+
+we use Spring 3.1 for Web Services Support, Maven for  dependency resolution & build, Tomcat for our test server and SoapUI to build sample SOAP messages for testing our service
+
+DispatcherServlet :
+
+The Dispatcher servlet is the bit that "knows" to call that method when a browser requests the page, and to combine its results with the matching JSP file to make an html document.
+
+How it accomplishes this varies widely with configuration and Spring version.
+
+There's also no reason the end result has to be web pages. It can do the same thing to locate RMI end points, handle SOAP requests, anything that can come into a servlet.
+
+MessageDispatcherServlet:
+
+Servlet for simplified dispatching of Web service messages.
+
+This servlet is a convenient alternative to the standard Spring-MVC DispatcherServlet with separate WebServiceMessageReceiverHandlerAdapter, MessageDispatcher, and WsdlDefinitionHandlerAdapter instances.
+
+This servlet automatically detects EndpointAdapters, EndpointMappings, and EndpointExceptionResolvers by type.
+
+This servlet also automatically detects any WsdlDefinition defined in its application context. This WSDL is exposed under the bean name: for example, a WsdlDefinition bean named 'echo' will be exposed as echo.wsdl in this servlet's context: http://localhost:8080/spring-ws/echo.wsdl. When the transformWsdlLocations init-param is set to true in this servlet's configuration in web.xml, all location attributes in the WSDL definitions will reflect the URL of the incoming request.
+
+
+@EndPoint annnotation
+This annotation serves as a specialization of @Component, allowing for implementation classes to be autodetected through classpath scanning. Instances of this class are typically picked up by an AbstractAnnotationMethodEndpointMapping implementation, such as SoapActionAnnotationMethodEndpointMapping.
+
+
+@PayloadRoot
+Marks an endpoint method as the handler for an incoming request. The annotation values 
+signify the the request payload root element that is handled by the method
+
+ @PayloadRoot(localPart = "AccountDetailsRequest", namespace = TARGET_NAMESPACE) 
+This is the namespace we defined in our XSD type definitions earlier. We use this in the endpoint class for mapping request to specific methods for processing.
+
+@PayloadRoot indicates that this method will process service requests with the XML root element matching that defined by the localPart attribute. In the example above our method will process incoming requests of type AccountDetailsRequest with 
+
+@ResponsePayload
+Annotation which indicates that a method return value should be bound to the response payload. Supported for annotated endpoint methods.
+
+@ResponsePayload indicates the type to be returned in the SOAP response. In this example the AccountDetailsResponse object will be converted to XML and returned to the client application as a SOAP response. @RequestPayload Xxx tells Spring to convert incoming requests of type Xxx, from XML to Java and the pass that object as a parameter to this endpoint method..
+
+<context:component-scan base-package="com.blog.samples.services" />  
+Component scanning scans the defined package (com.blog.sample.services) for Spring managed components to load into the bean factory.
+
+ <sws:annotation-driven />  
+Enables Spring Web Services annotation support so that annotations like @PayloadRoot can be used to configure the service endpoint.
+
+Use of DefaultWsdlXxx enables automated WSDL generation. Spring uses the schema definitions listed in the schemaCollection property, as well as the portType, serviceName and locationUri to generate a WSDL file the first time it is requested. Although this is a powerful feature it should be used with caution in production as the WSDL generation process can be quite slow. An approach I've used in the past is to copy the generated WSDL from your browser to your project and expose it using Springs static WSDL support with <static-wsdl>. 
+
+DispatcherServlet and springIOC container
+A spring web-app will define a Spring Dispatcher Servlet in its config, the apache tomcat container will initialise this servlet, the dispatcher servlet in turn initialises the application context. There is no direct interaction between the tomcat container and the Spring IOC container
+
+Spring apps declare a DispatcherServlet as part of the application configuration. The DipatcherServlet is a child class of HttpServlet and hence represents the servlet for the container. The DispatcherServlet also creates a WebApplicationContext. Spring maintains an IOC container for each WebApplicationContext (there can be multiple servlets in an app). There can also be a root ApplicationContext, which is created by the ContextLoaderListener. The root ApplicationContext is a parent of all WebApplicationContext(s) in a web app. The IOC container of ApplicationContext is available to all WebApplicationContext(s).
+
+The ServletContext remains the single mode of interaction for all web containers.
+
+————
+
+Contract Last vs Contract First :
+There are two fundamental approaches to building web services, Contract Last and Contract First.
+The Contract Last approach involves taking existing code and generating a service contract directly from that code in order to expose it as a SOAP interface. There are a variety of Java frameworks out there (Axis2, XFire etc) that provide this Java2WSDL tooling, to quickly generate the server side proxies, marshallers and Servlet classes required to expose a SOAP service.
+The Contract First approach involves defining the Service contract before implementing the service. This means describing the service parameters and return types using XSD's (XML Schema Definitions), then using those XSD's to construct a WSDL (web service definition language) to provides a public facing contract or description of the service. Only after the service contract has been clearly defined, is the service implementation actually written.
+This post will describe a Contract First service, as this is the preferred approach for various reasons, some of which are explained in this article.
+
+Object to XML Mapping : 
+
+A fundamental part of web services is the conversion of SOAP messages from XML to Java objects and vice versa. This is a non trivial task if you were to set out to do it yourself so we'll make use of the JAXB framework to take car of this for us. I've been working with JAXB for a few years now and find it to be a powerful and flexible framework, and a huge improvement on older OXM frameworks like Castor.
+In order to use our XSD defined types in the application we need to generate Java classes from those types. We do this as part of the Maven build process by using the jaxb-maven-plugin in our POM. The plugin is configured to parse a set of XSD's and run JAXB's class generator to create Java classes for each of the defined types. For brevity only part of the Maven POM definition is shown below. The entire  POM definition can be found with the source code that accompanies this tutorial.
+
+Creating the Service Endpoint : 
+
+A service endpoint is the component that deals with processing web service requests and responses. In the background a Spring Servlet intercepts incoming SOAP requests for a defined URL and routes them to an endpoint for processing. Below we're going to define that endpoint.
+————————————————
+
+IOC/DI
+AOP
+Spring DAO
+Spring jdbc
+spring j2ee
+spring MVC
+

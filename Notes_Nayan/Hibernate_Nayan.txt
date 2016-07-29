@@ -1,0 +1,283 @@
+* About Hibernate :
+- Developed by Gavin king as an alternative to ejb style entity bean.
+- It is lightweight ,open source, ORM tool to interact with database.
+- The ORM internally uses JDBC API for interaction with database.
+
+* Advantages of Hibernate : 
+- Open Source, light weight.
+- Hibernate is DB dependent but HQL is DB independent i.e we write quires in HQL with object oriented which in turn converts into DB specific using Dialect.
+- Fast performance since cache is used.
+- simplifies complex queries.
+- provides automatic creation and updating of tables using hbm2ddl
+
+* Configuration/Implementing Hibernate 
+- All the credentials need to feed into Hibernate.cfg.xml (consisting of driver,url,username,password,dialect and connection pool details along with mapping configuration of persistence objects) and Configuration class whose configure method returns SessionFactory.
+- create a persistence class (with no args constructor,non final class,and a getter-setters for its variable) which implements serialization
+The Serializable is required in POJOs if those are intended to be used in Distributed Systems and Systems which use caching and flushing into files and reading back.
+Mostly JPA implementations do run in Distributed manner and Use caching, thus this POJO is required to implement Serializable.
+- create persistence class .hbm.xml file consisting of class,id generator,properties tag.hbm.xml file can also be avoided using @annotations.
+
+Elements of Hibernate Architecture:
+- SessionFactory : It is an interface which hold session and has methods to get session.It holds data for second level cache.It is ThreadSafe.The SessionFactory is heavyweight object so usually it is created during once at the application start up and kept for later use. You would need one SessionFactory object per database using a separate configuration file. So if you are using multiple databases then you would have to create multiple SessionFactory objects.
+
+- Session: It is an interface between application and DB ,It provides an object which is wrapped around JDBC object. The main function of the Session is to offer create, read and delete operations for instances of mapped entity classes.It holds data for first level caching which is mandatory.It provides Transaction,Query,Criteria and provides methods to communicate to DB like insert,update,delete.It is not ThreadSafe.Session is the primary interface for the persistence service. A session obtains a database connection lazily (i.e. only when required)
+
+-Transaction : Allows the application to define units of work that can be either be committed or roll back after that unit of work.A transaction is associated with a Session and is usually instantiated by a call to Session.beginTransaction(). A single session might span multiple transactions since the notion of a session (a conversation between the application and the data store) is of coarser granularity than the notion of a transaction. However, it is intended that there be at most one uncommitted Transaction associated with a particular Session at any time.
+
+- Connection Provider: A strategy for obtaining JDBC connections.Implementers might also implement connection pooling. The ConnectionProvider interface is not intended to be exposed to the application. Instead it is used internally by Hibernate to obtain connections.
+
+- TransactionFactory : is an interface which writes the Contract for generating Hibernate Transaction instances.
+
+* There are many Id generator classes in hibernate:
+- assigned -It is by default where application is responsible for generating one.
+- increment - provides incremented value.
+- sequence - uses sql sequence if not present then creates one.
+- hilo - uses high/low algorithm to find the value of one.
+- native - uses any of the above for depending upon the DB vendor
+- Also we can also create an own id generator class by creating a class which implements IdentifierGenerator Interface.
+
+* Inheritance Mapping :
+There are three types of mapping inheritance in hibernate:
+- Table per class
+- Table per subclass
+- Table per Hierarchy.
+
+* We can have list of Bag,Set,List,Map in hbm.xml i.e we have list/set of references which can be stored in database as separate table. List and Map have indexing (another extra column).We use one-to-many mapping for reference objects.
+
+- Set: A Set is a java collection that does not contain any duplicate element.Parent class will have set of child objects.child class will have association with parent class.Parent table will have nothing but child table will have foreign key referring to primary key of parent table and parent class mapping will have key tag of child class
+In parent class mapping file :
+	<set name="certificates" cascade="all">
+         <key column="employee_id"/>
+         <one-to-many class="Certificate"/>
+        </set>
+child class.hbm.xml can have many-to-one/one-to-one tag and child class can have reference of parent class
+If child class wants to have reference to parent then following mapping is required in child mapping file :
+<many-to-one name="parentBO" column="columnName" class="" />
+
+-SortedSet: A Set is a java collection that does not contain any duplicate element.Parent class will have set of child objects.child class will have association with parent class.Parent table will have nothing but child table will have foreign key referring to primary key of parent table and parent class mapping will have key tag of child class.Records in the child will be sorted automatically if the child class implements comparable or you can pass comparator class name for comparing.
+In parent class mapping file :	
+	<set name="certificates" cascade="all" sort="MyClass">
+         <key column="employee_id"/>
+         <one-to-many class="Certificate"/>
+        </set>
+child class.hbm.xml can have one-to-one tag and child class can have reference of parent class
+
+-List: List is a java collection that stores elements in sequence and allow duplicate elements. The user of this interface has precise control over where in the list each element is inserted. The user can access elements by their integer index, and search for elements in the list.Parent class will have List of child objects.child class will have association with parent class.Parent table will have nothing but child table will have foreign key referring to primary key of parent table and parent class mapping will have key tag of child class and index tag.
+In parent class mapping file :
+	 <list name="certificates" cascade="all">
+         <key column="employee_id"/>
+         <list-index column="idx"/>
+         <one-to-many class="Certificate"/>
+      </list>
+child class.hbm.xml can have one-to-one tag and child class can have reference of parent class
+
+-Bag :A Bag is a java collection that stores elements without caring about the sequencing but allow duplicate elements in the list. A bag is a random grouping of the objects in the list.configuration is similar to Set expect parent class with have collection object instead of list or set.
+In parent class mapping file :
+	<bag name="certificates" cascade="all">
+         <key column="employee_id"/>
+         <one-to-many class="Certificate"/>
+       </bag>
+child class.hbm.xml can have one-to-one tag and child class can have reference of parent class
+
+-Map : A Map is a java collection that stores elements in key-value pairs and does not allow duplicate elements in the list. Index tag acts as key for map.The Map interface provides three collection views, which allow a map's contents to be viewed as a set of keys, collection of values, or set of key-value mappings.Configuration is similar to List.
+In parent class mapping file :
+	<map name="certificates" cascade="all">
+         <key column="employee_id"/>
+         <index column="certificate_type" type="string"/>
+         <one-to-many class="Certificate"/>
+       </map>
+child class.hbm.xml can have one-to-one tag and child class can have reference of parent class
+
+Mapping :
+1. One-to-many mapping can be achieved as shown above
+
+2. many-to-one mapping: e.g would be many employees having one address.In that employee can have many-to-one tag without set.In this case Employee table will have foreign key.Mapping will be present in just employee class like this:
+	<many-to-one name="address" column="address" class="Address" not-null="true"/>
+
+3. one-to-one association is similar to many-to-one association with a difference that the column will be set as unique. For example an address object can be associated with a single employee object 
+	<many-to-one name="address" column="address" unique="true" class="Address" not-null="true"/>
+
+4. many-to-many : e.g could be employee have set of certificated and 1 one certificate can belong to many employee.This is how the configuration will look like
+	
+       <set name="certificates" cascade="save-update" table="EMP_CERT">
+         <key column="employee_id"/>
+         <many-to-many column="certificate_id" class="Certificate"/>
+       </set>
+
+
+* Lazy: It is an attribute which can be applied to set tag which say that when ever parent object is called is will not any fetch child,it just returns proxies and when we access child then it hits the DB.
+
+* cascade : It is an attribute which can be applied to one-to-many having values like save-update,delete,all,delete-orphan which says that when defined activity performs on parent it cascades that activity to child.
+- The cascade=delete-orphan is declared in ‘stockDailyRecords’ to enable the delete orphan cascade effect. When you save or update the Stock, it will remove those stockDailyRecords which already mark as removed. i.e when you perform remove operation on child using parent object and update parent then it will remove child.
+-In short, delete-orphan allow parent table to delete few records (delete orphan) in its child table
+
+* Inverse: The ìinverseî keyword is always declared in one-to-many and many-to-many relationship (many-to-one doesnít has inverse keyword), it means which side is responsible to take care of the relationship
+- In Hibernate, only the ìrelationship ownerî should maintain the relationship, and the ìinverseî keyword is created to defines which side is the owner to maintain the relationship. However the ìinverseî keyword itself is not verbose enough, I would suggest change the keyword to ìrelationship_ownerì
+- you can apply it SET tag.If set of child has inverse = true then child class is considered as relationship owner.if inverse is flase then parent class is considered owner and respective owner will be responsible to update the foreign key
+
+* Criteria : The Hibernate Session interface provides createCriteria() method which can be used to create a Criteria object that returns instances of the persistence object's class when your application executes a criteria query.e.g:
+Criteria cr = session.createCriteria(Employee.class);
+List results = cr.list();
+
+You can use add() method available for Criteria object to add restriction whose methods returns criteria.e.g:
+Criteria cr = session.createCriteria(Employee.class);
+// To get records having salary more than 2000
+cr.add(Restrictions.gt("salary", 2000));
+other methods in Restrictions are lt ,eq,like,ilike ,between,isNull,isNotNull,isEmpty,isNotEmpty
+
+you can also add OR ,AND to Restriction eg: Restriction.or(restriction1,restriction2) which returns logicalExpresion. logicalExpresion can be added to criteria.
+
+Pagination using Criteria:Following is the example which you can extend to fetch 10 rows at a time:
+Criteria cr = session.createCriteria(Employee.class);
+cr.setFirstResult(1); //This method takes an integer that represents the first row in your result set, starting with row 0.
+cr.setMaxResults(10); //This method tells Hibernate to retrieve a fixed number maxResults of objects.
+List results = cr.list();
+
+Similarly pagination can also be achieved using query.setFirstRow(int rorNum) and setMaxRows(int rows).
+
+At oracle level it is achieved using rowNum
+
+Sorting the Results:
+crit.addOrder(Order.desc("salary"));
+crit.addOrder(Order.asc("salary"));
+
+Projections & Aggregations:
+cr.setProjection(Projections.rowCount());
+cr.setProjection(Projections.max("salary")); //similarly max ,min,avg,sum
+
+* NamedQuery : It is used to define a query like a prepared statement when can executed just by name declared by that query in the hbm.xml
+
+* caching in hibernate : It can be achieved by two ways a) First level caching which is achieved by sessions in hibernate.Sessions in the hibernate are responsible for holding the data for caching.It is by default feature of hibernate and is not global through out the application. Second level caching is achieved using session factory which can be used as global caching.It is achieved through third party vendor.
+
+* There are three states of object in hibernate :
+- Transient state : when a object is created and not attached to DB or session is called transient state.Transient state to persistent state is possible using save,update,saveOrUpdate;
+- Persistence state : when a object is attached to session and represents a row in DB is called persistent class.Persistence state can be converted into transient by delete method.Object obtained from get,load are always persistent.
+- Detached : A object which was in session and currently out of session scope is called detached state.Detached state can be converted into persistence state by update,lock,saveOrupdate.
+
+- In short : transient: never persistent, currently not associated with any Session
+persistent: associated with a unique Session
+detached: previously persistent, currently not associated with any Session
+
+* Hibernate decides between detached and transient object by :
+- Hibernate uses the version property, if there is one. 
+- If not uses the identifier value. No identifier value means a new object. This does work only for Hibernate managed surrogate keys. Does not work for natural keys and assigned (i.e. not managed by Hibernate) surrogate keys.
+
+* Methods from Session interface: :
+
+- getSession :Starts a new Session with the given entity mode in effect. This secondary Session inherits the connection, transaction, and other context information from the primary Session. It doesn't need to be flushed or closed by the developer.
+
+- Clear: completely clear the session.
+
+- contains: Checks if that object is associated with the session.
+
+- flush: Force this session to flush. Must be called at the end of a unit of work, before committing the transaction and closing the session (depending on flush-mode, Transaction.commit() calls this method).Flushing is the process of synchronizing the underlying persistent store with persistence state held in memory.
+-get/setFlushMode: sets/gets flush mode.
+Flushing Concept:
+Hibernate tries to defer the Persistence Context flushing up until the last possible moment.
+Flush mode
+Auto : The Session is sometimes flushed before query execution.
+COMMIT : The Session is only flushed prior to a transaction commit.
+ALWAYS :The Session is always flushed before query execution.
+MANUAL :The Session can only be manually flushed.
+- close : End the session by releasing the JDBC connection and cleaning up. It is not strictly necessary to close the session but you must at least disconnect().
+
+- isDirty : Does this session contain any changes which must be synchronized with the database? In other words, would any DML operations be executed if we flushed this session?
+
+- get : Return the persistent instance of the given entity class for the given identifier, or null if there is no such persistent instance. (If the instance, or a proxy for the instance, is already associated with the session, return that instance or proxy.)
+
+- Load :Return the persistent instance of the given entity class with the given identifier, assuming that the instance exists.You should not use this method to determine if an instance exists (use get() instead). Use this only to retrieve an instance that you assume exists, where non-existence would be an actual error.load() just returns a proxy by default and database wonít be hit until the proxy is first invoked.It will always return a ìproxyî (Hibernate term) without hitting the database. In Hibernate, proxy is an object with the given identifier value, its properties are not initialized yet, it just look like a temporary fake object.
+
+- save : Persist the given transient instance, first assigning a generated identifier. (Or using the current value of the identifier property if the assigned generator is used.) This operation cascades to associated instances if the association is mapped with cascade="save-update".hibernate doesnít save the object into persistance context.So no dirty checking. 
+We should avoid save outside transaction boundary, otherwise mapped entities will not be saved causing data inconsistency. Itís very normal to forget flushing the session because it doesnít throw any exception or warnings.
+Hibernate save method returns the generated id immediately, this is possible because primary object is saved as soon as save method is invoked.
+If there are other objects mapped from the primary object, they gets saved at the time of committing transaction or when we flush the session.
+For objects that are in persistent state, save updates the data through update query. Notice that it happens when transaction is committed. If there are no changes in the object, there wont be any query fired.
+Hibernate save load entity object to persistent context, if you will update the object properties after the save call but before the transaction is committed, it will be saved into database.
+
+- Persist : Hibernate persist is similar to save (with transaction) and it adds the entity object to the persistent context, so any further changes are tracked. If the object properties are changed before the transaction is committed or session is flushed, it will also be saved into database.
+Second difference is that we can use persist() method only within the boundary of a transaction, so itís safe and takes care of any cascaded objects.
+
+- saveOrUpdate : Either save(Object) or update(Object) the given instance, depending upon resolution of the unsaved-value checks (see the manual for discussion of unsaved-value checking).
+This operation cascades to associated instances if the association is mapped with cascade="save-update".
+Hibernate saveOrUpdate results into insert or update queries based on the provided data. If the data is present in the database, update query is executed.
+ We can use saveOrUpdate() without transaction also, but again you will face the issues with mapped objects not getting saved if session is not flushed.
+One important difference between save and saveOrUpdate is that it adds the entity object to persistent context and track any further changes. Any further changes are saved at the time of committing transaction, like persist.
+
+- update : Update and merge is used on detached objects.Update the persistent instance with the identifier of the given detached instance. If there is a persistent instance with the same identifier, an exception is thrown. This operation cascades to associated instances if the association is mapped with cascade="save-update".Use update() if you are sure that the session does not contain an already persistent instance with the same identifier, and merge() if you want to merge your modifications at any time without consideration of the state of the session.
+
+- merge : Copy the state of the given object onto the persistent object with the same identifier. If there is no persistent instance currently associated with the session, it will be loaded. Return the persistent instance. If the given instance is unsaved, save a copy of and return it as a newly persistent instance. The given instance does not become associated with the session. This operation cascades to associated instances if the association is mapped with cascade="merge".
+Hibernate merge can be used to update existing values, however this method create a copy from the passed entity object and return it. The returned object is part of persistent context and tracked for any changes, passed object is not tracked. This is the major difference with merge() from all other methods.
+
+- Lock : Obtain the specified lock level upon the given object. This may be used to perform a version check (LockMode.READ), to upgrade to a pessimistic lock (LockMode.UPGRADE), or to simply reassociate a transient instance with a session (LockMode.NONE). This operation cascades to associated instances if the association is mapped with cascade="lock". Use session.lock() only if you are absolutely sure that the detached object is in sync with your detached object or if it does not matter because you will be overwriting all the columns that would have changed later on within the same transaction. 
+
+- Delete : Remove a persistent instance from the datastore. The argument may be an instance associated with the receiving Session or a transient instance with an identifier associated with existing persistent state. This operation cascades to associated instances if the association is mapped with cascade="delete".
+
+- beginTransaction : Begin a unit of work and return the associated Transaction object. If a new underlying transaction is required, begin the transaction. Otherwise continue the new work in the context of the existing underlying transaction. The class of the returned Transaction object is determined by the property hibernate.transaction_factory.
+
+* Methods from SessionFactory :
+- getSession : JDBC connection(s will be obtained from the configured ConnectionProvider as needed to perform requested work.
+
+- getCurrentSession : it return current session.I no session is available in that case whether it should return new or null depends upon the configuration.
+
+- close : Destroy this SessionFactory and release all resources (caches, connection pools, etc).
+It is the responsibility of the application to ensure that there are no open sessions before calling this method as the impact on those sessions is indeterminate.
+
+***
+* General considerations or best practices for defining your Hibernate persistent classes? 
+- You must have a default no-argument constructor for your persistent classes and there should be getXXX() (i.e accessors/getter) and setXXX( i.e. mutator/setter) methods for all your persistable instance variables. 
+- You should implement the equals() and hashCode() methods based on your business key and it is important not to use the id field in your equals() and hashCode() definition if the id field is a surrogate key (i.e. Hibernate managed identifier). This is because the Hibernate only generates and sets the field when saving the object. 
+- It is recommended to implement the Serializable interface. This is potentially useful if you want to migrate around a multi-processor cluster. 
+- The persistent class should not be final because if it is final then lazy loading cannot be used by creating proxy objects. 
+
+
+* There are following main rules of persistent classes, however, none of these rules are hard requirements.
+All Java classes that will be persisted need a default constructor.
+All classes should contain an ID in order to allow easy identification of your objects within Hibernate and the database. This property maps to the primary key column of a database table.
+All attributes that will be persisted should be declared private and have getXXX and setXXX methods defined in the JavaBean style.
+A central feature of Hibernate, proxies, depends upon the persistent class being either non-final, or the implementation of an interface that declares all public methods.
+POJO should implement Serializable. As a best practice, to work with clustered application server environment, any object kept in Servlet HttpSession should be Serializable. POJO is this kind of object.
+
+* General flow of Hibernate communication with RDBMS?
+The general flow of Hibernate communication with RDBMS is :
+Load the Hibernate configuration file and create configuration object. It will automatically load all hbm mapping files
+Create session factory from configuration object
+Get one session from this session factory
+Create HQL Query
+Execute query to get list containing Java objects
+
+* Hibernate Query Language (HQL) :
+Hibernate offers a query language that embodies a very powerful and flexible mechanism to query, store, update, and retrieve objects from a database. This language, the Hibernate query Language (HQL), is an object-oriented extension to SQL.
+
+* By mapping the property with access="field" in Hibernate meta data. This forces hibernate to bypass the setter method and access the instance variable directly while initializing a newly loaded object.
+Field access which means that it maps the instance variables (fields) to columns in the database and Property access which means that is uses the getters to determine the property names that will be mapped to the db
+
+* Mark the class as mutable="false" (Default is true). This specifies that instances of the class are (not) mutable. Immutable classes, may not be updated or deleted by the application.
+
+* Attribute in class mapping:
+dynamic-update (defaults to false): Specifies that UPDATE SQL should be generated at runtime and contain only those columns whose values have changed
+dynamic-insert (defaults to false): Specifies that INSERT SQL should be generated at runtime and contain only the columns whose values are not null.
+
+* Fetching strategies in hibernate :
+By default, the JPA @ManyToOne and @OneToOne annotations are fetched EAGERly, while the @OneToMany and @ManyToMany relationships are considered LAZY. 
+There are four types of fetching strategies : fetch="select" , fetch="join" , batch-size"n" fetch="select" , fetch ="subselect"
+1. fetch ="select" :
+This acts as lazy loading.i.e for every parent when trying to access child it will hit database to fetch childs.For iterating n parent records to access it child there will n+1 sql queries fired by hibernate.1 for fetching all parents and each sql query for its child.
+2. fetch ="join" : 
+It is opposite to select and fetches eagerly all the childs along with parent.so always there will only be 1 sql query generated by hibernate.
+3. batch=size="n" fetch ="select" : 
+Batch size doestn't define number of records in the child collection but it defines number of child collections to fetch along with parent. for e.g : if batch-size=10 and you have 20 parent records with respective child records, then there hibernate will generate only three sql queries for it.1 for fetching all the parent.1 for fetching first 10 child collections and another query for fetching another 10 child collections
+4. fetch="subselect" : 
+while fetching n records for parent,hibernate will generate 1 sql query for parent and another select query for childs with inner query of parent.
+
+* First Level cache :The first-level cache is the Session cache and is a mandatory cache through which all requests must pass. The Session object keeps an object under its own power before committing it to the database.If you issue multiple updates to an object, Hibernate tries to delay doing the update as long as possible to reduce the number of update SQL statements issued. If you close the session, all the objects being cached are lost and either persisted or updated in the database.
+
+*Second level cache : It is an optional cache and first-level cache will always be consulted before any attempt is made to locate an object in the second-level cache. The second-level cache can be configured on a per-class and per-collection basis and mainly responsible for caching objects across sessions.Any third-party cache can be used with Hibernate. An org.hibernate.cache.CacheProvider interface is provided, which must be implemented to provide Hibernate with a handle to the cache implementation.e.g: EHChache ,Jboss cache.
+cache provider needs to be configured in configuration properties and need to specify in persistance class hbm.xml file using cache tag.There are four types of strategies avalable to access the 2nd level caching. read-only.read-write,nonstrict-read-write,transactional.
+
+*  Query cache: To use the query cache, you must first activate it using the hibernate.cache.use_query_cache="true" property in the configuration file. By setting this property to true, you make Hibernate create the necessary caches in memory to hold the query and identifier sets.Next, to use the query cache, you use the setCacheable(Boolean) method of the Query class.
+
+* In jdbc all exceptions are checked exceptions, so we must write code in try, catch and throws, but in hibernate we only have Un-checked exceptions, so no need to write try, catch, or no need to write throws.  Actually in hibernate we have the translator which converts checked to Un-checked
+
+* Hibernate Batch Processing : It is used to insert or update records in bulk.To use the batch processing feature, first set hibernate.jdbc.batch_size as batch size to a number  in configuration file and then write a logic to flush and clear session after specific number of iteration.
+
+* Interceptor Interface  : It provides methods which can be called at different stages to perform some required tasks. These methods are callbacks from the session to the application, allowing the application to inspect and/or manipulate properties of a persistent object before it is saved, updated, deleted or loaded.while creating session object we have to use user created Interceptor class as an argument.Interceptor class is created implementing Interceptor or extending EmptyInterceptor.

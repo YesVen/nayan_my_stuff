@@ -1,0 +1,111 @@
+http://java67.blogspot.sg/2012/09/top-10-java-design-pattern-interview-question-answer.html
+
+http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries
+
+There are two types of Design patterns.
+1. java design patterns
+2. j2ee design patterns
+
+1. java design pattern:
+a) creational patterns: 
+
+* Singleton design pattern : 
+- Singleton is use for global configuration.It limits the creation of object to one.The Singleton class maintains 
+a static reference to the lone singleton instance and returns that reference from the static getInstance() method every time its instance is called.
+define a class that has only one instance and provides a global point of access to it.
+You can create instance of singleton by either eager initialisation or by lazy initialisation.
+The constructor should be private,Should have factory method to get instance and instance can be created by two ways:
+a.eager initialisation can be done at start up while class loading by initializing at global level
+b.lazy initialisation can be done at first request this method needs to thread safe.Thus we need to make this method synchronous.since making method as synchronous would be costly we can add synchronous block by adding double null check before creating the object.
+Java Runtime class is an example of singleton class in java.
+Still singleton object can be created using Cloning , Reflection and De serialization which can be avoided by:
+a. Implement clone method and throw exception
+b. Since private constructor cab be invoked using reflection we avoid this by throwing exception in constructor.
+c. for avoiding object creation while deserialisation,we can write readResolve method which will be called while deserialisation and return the existing singleton object.
+We can also use the volatile keyword to the instance variable declaration.
+private volatile static SingletonExample singletonInstance;
+The volatile keyword helps as concurrency control tool in a multi-threaded environment and provides the latest update in a most accurate manner.
+
+The big difference between a singleton and a bunch of static methods is that singletons can implement interfaces (or derive from useful base classes, although that's less common IME), so you can pass around the singleton as if it were "just another" implementation.
+A singleton allows access to a single created instance - that instance (or rather, a reference to that instance) can be passed as a parameter to other methods, and treated as a normal object.
+
+* Factory Pattern:Define an interface or abstract class for creating an object but let the subclasses decide which class to instantiate.
+Its a common design pattern where you input to factory object and corresponding object is created by factory class.
+
+* Abstract Factory Pattern says that just define an interface or abstract class for creating families of related (or dependent) objects but without specifying their concrete sub-classes.That means Abstract Factory lets a class returns a factory of classes. So, this is the reason that Abstract Factory Pattern is one level higher than the Factory Pattern.
+
+
+* Builder pattern:Builder pattern builds a complex object using simple objects and using a step by step approach. This type of design pattern comes under creational pattern as this pattern provides one of the best ways to create an object.
+A Builder class builds the final object step by step. This builder is independent of other objects.
+Example could be meal builder for fastFood chain which consist of different object.
+
+b) Structural pattern:
+
+* An Adapter Pattern : says that just "converts the interface of a class into another interface that a client wants".
+In other words, to provide the interface according to client requirement while using the services of a class with a different interface.
+The Adapter Pattern is also known as Wrapper.Adapter pattern works as a bridge between two incompatible interfaces
+There are the following specifications for the adapter pattern:
+Target Interface: This is the desired interface class which will be used by the clients.
+Adapter class: This class is a wrapper class which implements the desired target interface and modifies the specific request available from the Adaptee class.
+Adaptee class: This is the class which is used by the Adapter class to reuse the existing functionality and modify them for desired use.
+Client: This class will interact with the Adapter class
+Basically you are utilizing adapter class with help of adaptee class to implement the behaviour of Target Interface. i.e Adapter class extends Adaptee class and implements Target Interface.
+A real life example could be a case of card reader which acts as an adapter between memory card and a laptop. You plug-in the memory card into card reader and card reader into the laptop so that memory card can be read via laptop.
+
+* Bridge Pattern :Bridge is used when we need to decouple an abstraction from its implementation so that the two can vary independently. 
+The Bridge Pattern is also known as Handle or Body.
+Advantage of Bridge Pattern :
+It enables the separation of implementation from the interface.
+It improves the extensibility.
+It allows the hiding of implementation details from the client.
+In bridge pattern you can write ManagerClass that uses implementation class and provides more improvised version of implementation.
+
+* Proxy pattern :
+Simply, proxy means an object representing another object.
+According to GoF, a Proxy Pattern "provides the control for accessing the original object".
+So, we can perform many operations like hiding the information of original object, on demand loading etc.
+Proxy pattern is also known as Surrogate or Place holder.
+
+* Facade pattern :
+A Facade Pattern says that just "just provide a unified and simplified interface to a set of interfaces in a subsystem, therefore it hides the complexities of the subsystem from the client".
+In other words, Facade Pattern describes a higher-level interface that makes the sub-system easier to use.
+Practically, every Abstract Factory is a type of Facade.
+Facade pattern hides the complexities of the system and provides an interface to the client using which the client can access the system. This type of design pattern comes under structural pattern as this pattern adds an interface to existing system to hide its complexities.
+This pattern involves a single class which provides simplified methods required by client and delegates calls to methods of existing system classes.
+
+* Decorator pattern :
+A Decorator Pattern says that just "attach a flexible additional responsibilities to an object dynamically".
+In other words, The Decorator Pattern uses composition instead of inheritance to extend the functionality of an object at runtime.
+The Decorator Pattern is also known as Wrapper.
+Decorator pattern allows a user to add new functionality to an existing object without altering its structure. This pattern creates a decorator class which wraps the original class and provides additional functionality keeping class methods signature intact.
+Decorator pattern is most used design pattern.In java collection framework we have many decorator classes like AbstractList,AbstractSet,AbstractMap.
+
+* Filter pattern :
+Filter pattern or Criteria pattern is a design pattern that enables developers to filter a set of objects using different criteria and chaining them in a decoupled way through logical operations. This type of design pattern comes under structural pattern as this pattern combines multiple criteria to obtain single criteria.
+
+* Composite pattern :
+ is used where we need to treat a group of objects in similar way as a single object. Composite pattern composes objects in term of a tree structure to represent part as well as whole hierarchy. This type of design pattern comes under structural pattern as this pattern creates a tree structure of group of objects.
+ An Employee class with list other employee objects as subordinates is considered as composite actor class.
+This pattern creates a class that contains group of its own objects. This class provides ways to modify its group of same objects.
+
+* Flyweight pattern :
+ is primarily used to reduce the number of objects created and to decrease memory footprint and increase performance. This type of design pattern comes under structural pattern as this pattern provides ways to decrease object count thus improving the object structure of application.
+Flyweight pattern tries to reuse already existing similar kind objects by storing them and creates new object when no matching object is found
+
+Behaviour pattern:
+* Iterator pattern:This pattern is used to get a way to access the elements of a collection object in sequential manner without any need to know its underlying representation.
+Iterator pattern falls under behavioural pattern category. According to GoF, Iterator Pattern is used "to access the elements of an aggregate object sequentially without exposing its underlying implementation".
+The Iterator pattern is also known as Cursor.
+In collection framework, we are now using Iterator that is preferred over Enumeration.
+
+* Command pattern :
+A Command Pattern says that "encapsulate a request under an object as a command and pass it to invoker object. Invoker object looks for the appropriate object which can handle this command and pass the command to the corresponding object and that object executes the command".
+It is also known as Action or Transaction.* As the name suggests, the chain of responsibility pattern creates a chain of receiver objects for a request. This pattern decouples sender and receiver of a request based on type of request. This pattern comes under behavioral patterns.
+
+In this 
+, normally each receiver contains reference to another receiver. If one object cannot handle the request then it passes the same to the next receiver and so on.
+
+* chain of responsibility : 
+As the name suggests, the chain of responsibility pattern creates a chain of receiver objects for a request. This pattern decouples sender and receiver of a request based on type of request. This pattern comes under behavioral patterns.
+In this pattern, normally each receiver contains reference to another receiver. If one object cannot handle the request then it passes the same to the next receiver and so on.
+ 

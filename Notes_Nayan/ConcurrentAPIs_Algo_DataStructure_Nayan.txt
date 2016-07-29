@@ -1,0 +1,67 @@
+http://javarevisited.blogspot.de/2012/03/10-object-oriented-design-principles.html
+
+weakReference , softReference and PhantomReference
+
+http://java67.blogspot.in/2012/09/top-10-java-design-pattern-interview-question-answer.html
+http://javarevisited.blogspot.in/2011/07/java-multi-threading-interview.html
+http://tutorials.jenkov.com/java-util-concurrent/lock.html
+ConcurrentApi:
+
+Locks:Lock is your tool to guard shared resource which can be anything e.g. database, File system, a Prime number Generator or a Message processor.
+They come in two types : ReenterantLock and ReenterantReadWriteLock which consist of ReadLock and WriteLock.
+ReentrantLock is mutual exclusive lock, similar to implicit locking provided by synchronized keyword in Java, with extended feature like fairness, which can be used to provide lock to longest waiting thread. Lock is acquired by lock() method and held by Thread until a call to unlock() method. Fairness  parameter is provided while creating instance of ReentrantLock in constructor. ReentrantLock provides same visibility and ordering guarantee, provided by implicitly locking, which means, unlock() happens before another thread get lock()
+
+Difference between Reenterant and synchronized:
+1) The significant difference between ReentrantLock and synchronized keyword is fairness. synchronized keyword doesn't support fairness. Any thread can acquire lock once released, no preference can be specified, on the other hand you can make ReentrantLock fair by specifying fairness property, while creating instance of ReentrantLock. Fairness property provides lock to longest waiting thread, in case of contention.
+2) Second difference between synchronized and Reentrant lock is tryLock() method. ReentrantLock provides convenient tryLock() method, which acquires lock only if its available or not held by any other thread. This reduce blocking of thread waiting for lock in Java application
+3) One more worth noting difference between ReentrantLock and synchronized keyword in Java is, ability to interrupt Thread while waiting for Lock. In case of synchronized keyword, a thread can be blocked waiting for lock, for an indefinite period of time and there was no way to control that. ReentrantLock provides a method called lockInterruptibly(), which can be used to interrupt thread when it is waiting for lock. Similarly tryLock() with timeout can be used to timeout if lock is not available in certain time period.
+
+public void lockInterruptibly() throws InterruptedException :
+Acquires the lock unless the current thread is interrupted.
+Acquires the lock if it is not held by another thread and returns immediately, setting the lock hold count to one.
+
+If the current thread already holds this lock then the hold count is incremented by one and the method returns immediately.
+If the lock is held by another thread then the current thread becomes disabled for thread scheduling purposes and lies dormant until one of two things happens:
+The lock is acquired by the current thread; or
+Some other thread interrupts the current thread.
+
+4) ReentrantLock also provides convenient method to get List of all threads waiting for lock.
+IMP methods :
+getQueuedThreads().
+tryLock()
+tryLock(long timeout, TimeUnit unit)
+
+ReadWriteLock provides ReadLock and WriteLock interface.
+Whenever you do writeLock obj.lock() then all the lock readLocks will be locked. vice versa for readLock.
+Interfaces
+
+CountDOwnLatch :CountDownLatch in Java is a kind of synchronizer similar to wait and notify which allows one Thread  to wait for one or more Threads before starts processing.CountDownLatch works in latch principle,  main thread will wait until Gate is open. One thread waits for n number of threads specified while creating CountDownLatch in Java. Any thread, usually main thread of application,  which calls CountDownLatch.await() will wait until count reaches zero or its interrupted by another Thread. All other thread are required to do count down by calling CountDownLatch.countDown() once they are completed or ready to the job. as soon as count reaches zero, Thread awaiting starts running. One of the disadvantage of CountDownLatch is that its not reusable once count reaches to zero you can not use CountDownLatch any more, but don't worry Java concurrency API has another concurrent utility called CyclicBarrier for such requirements.
+ 
+CyclicBarrier : It is allows multiple threads to wait for each other (barrier) before proceeding.CyclicBarrier is a natural requirement for concurrent program because it can be used to perform final part of task once individual tasks  are completed. All threads which wait for each other to reach barrier are called parties, CyclicBarrier is initialized with number of parties to be wait and threads wait for each other by calling CyclicBarrier.await() method which is a blocking method in Java and  blocks until all Thread or parties call await(). In general calling await() is shout out that Thread is waiting on barrier. await() is a blocking call but can be timed out or Interrupted by other thread.
+once count reaches zero while you can reuse CyclicBarrier by calling reset() method which resets Barrier to its initial State. 
+
+If you look at 
+ it also the does the same thing but there is a different you can not reuse CountDownLatch once count reaches zero while you can reuse CyclicBarrier by calling reset() method which resets Barrier to its initial State. What it implies that CountDownLatch is good for one time event like application start-up time and CyclicBarrier can be used to in case of recurrent event e.g. concurrently calculating solution of big problem etc. 
+
+Semaphore :
+A counting semaphore. Conceptually, a semaphore maintains a set of permits. Each acquire() blocks if necessary until a permit is available, and then takes it. Each release() adds a permit, potentially releasing a blocking acquirer. However, no actual permit objects are used; the Semaphore just keeps a count of the number available and acts accordingly.
+Semaphores are often used to restrict the number of threads than can access some (physical or logical) resource. For example, here is a class that uses a semaphore to control access to a pool of items:
+A semaphore initialized to one, and which is used such that it only has at most one permit available, can serve as a mutual exclusion lock. This is more commonly known as a binary semaphore, because it only has two states: one permit available, or zero permits available 
+ 
+BlockingQueue : It is an interface which provides solution to the consumer-producer problem with wait and notify mechanism.
+Producer Consumer Design pattern is a classic concurrency or threading pattern which reduces coupling between
+Producer and Consumer by separating Identification of work with Execution of Work. In producer consumer design pattern a shared queue is used to control the flow and this separation allows you to code producer and consumer separately. It also addresses the issue of different timing require to produce item or consuming item. by using producer consumer pattern both Producer and Consumer Thread can work with different speed.
+BlockingQueue provides this control implicitly by introducing blocking methods put() and take(). Now you don't require to use wait and notify to communicate between Producer and Consumer. BlockingQueue put() method will block if Queue is full in case of Bounded Queue and take() will block if Queue is empty.
+
+Busy Spining :
+Busy spinning/waiting is normally a bad idea from a performance standpoint. In most cases, it is preferable to sleep and wait for a signal when you are ready to run, than to do spinning. Take the scenario where there are two threads, and thread 1 is waiting for thread 2 to set a variable (say, it waits until var == true. Then, it would busy spin by just doing
+
+while (var == false)
+    ;
+In this case, you will take up a lot of time that thread 2 can potentially be running, because when you wake up you are just executing the loop mindlessly. So, in a scenario where you are waiting for something like this to happen, it is better to let thread 2 have all control by putting yourself to sleep and having it wake you up when it is done.
+BUT, in rare cases where the time you need to wait is very short, it is actually faster to spinlock. This is because of the time it takes to perform the signalng functions; spinning is preferable if the time used spinning is less than the time it would take to perform the signaling. So, in that way it may be beneficial and could actually improve performance, but this is definitely not the most frequent case.
+
+Busy-waiting or spinning is a technique in which a process repeatedly checks to see if a condition is true instead of calling wait or sleep method and releasing CPU.
+1.It is mainly useful in multicore processor where condition is going to be true quite quickly i.e. in millisecond or micro second
+2.Advantage of not releasing CPU is that, all cached data and instruction are remained unaffected, which may be lost, had this thread is suspended on one core and brought back to another thread
+
