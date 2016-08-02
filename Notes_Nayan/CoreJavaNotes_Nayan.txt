@@ -193,6 +193,8 @@ public int compareTo() methods takes existing class object type.for this we need
 * comparator interface used to compare used defined class in a way comparator wants.we can define multiple comparators and pass for sorting which ever one we require.It has one method called compare.
 public int compare()
 * compareTo method of String class compares two string object and returns int where zero is returned if objects are equal and +int if greater and -int if the smaller.
+* Internally Collections.sort uses quickSort for primitive values and for refernce objects it uses MergeSort
+
 
 #Strings :
 * When you create String object by new operator jvm creates two objects one for the object and other for storing it in String pool
@@ -452,14 +454,15 @@ How to make class immutable :
 
 
 #Volatile :
- On declaring the variable as volatile it tells JVM that this variable need not to be cached and the value for the 
- variable is always fetched from main memory.JVM performs write operation first before read on volatile methods.
- updation on valatile variables is more accurate in volatile mtds
- consistance error will be reduced in multi threading environment using volatile methods.
- * volatile keyword in Java is only application to variable and using volatile keyword with class and method is illegal.
- * volatile keyword in Java guarantees that value of volatile variable will always be read from main memory and not from Thread's local cache.
-* In Java reads and writes are atomic for all variables declared using Java volatile keyword (including long and double variables).
-* Reads and writes are atomic for reference variables are for most primitive variables (all types except long and double) even without use of volatile keyword in Java.
+* On declaring the variable as volatile it tells JVM that this variable need not to be cached and the value for the variable is always fetched from main memory and written into main memory.JVM performs write operation first before read on volatile variables.
+* volatile keyword in Java is only application to variable and using volatile keyword with class and method is illegal.
+* The Java volatile keyword guarantees visibility of changes to variables across threads.
+* With non-volatile variables there are no guarantees about when the Java Virtual Machine (JVM) reads data from main memory into CPU caches, or writes data from CPU caches to main memory. This can cause several problems,sychroniization will allow to access your data sequentially but the other will get the updated value is not guaranteed with non volatile variables.Declaring a variable volatile thus guarantees the visibility for other threads of writes to that variable
+* If Thread A writes to a volatile variable and Thread B subsequently reads the same volatile variable, then all variables visible to Thread A before writing the volatile variable, will also be visible to Thread B after it has read the volatile variable. 
+* The reading and writing instructions of volatile variables cannot be reordered by the JVM (the JVM may reorder instructions for performance reasons as long as the JVM detects no change in program behaviour from the reordering). Instructions before and after can be reordered, but the volatile read or write cannot be mixed with these instructions. Whatever instructions follow a read or write of a volatile variable are guaranteed to happen after the read or write.
+* If two threads are both reading and writing to a shared variable, then using the volatile keyword for that is not enough. You need to use a synchronized in that case to guarantee that the reading and writing of the variable is atomic
+* Only one thread reads and writes the value of a volatile variable and other threads only read the variable, then the reading threads are guaranteed to see the latest value written to the volatile variable. Without making the variable volatile, this would not be guaranteed.
+
 
 #Enums :
 * Enum can implement interface in Java. Since enum is a type, similar to class and interface, it can implement interface. This gives a lot of flexibility to use Enum as specialized implementation in some cases.
