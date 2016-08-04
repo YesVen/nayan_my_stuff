@@ -1,0 +1,14 @@
+package com.nayan.looselyCouple;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages="com.nayan.losselyCouple")
+public class AppConfig {
+
+	public static void main(String[] args) {
+
+	}
+
+}

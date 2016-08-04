@@ -1,0 +1,5 @@
+package com.nayan.looselyCouple;
+
+public interface OutputGenerator {
+
+}

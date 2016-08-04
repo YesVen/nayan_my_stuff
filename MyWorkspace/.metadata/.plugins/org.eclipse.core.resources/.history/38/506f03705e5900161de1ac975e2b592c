@@ -1,0 +1,11 @@
+package com.nayan.looselyCouple;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class OutputGeneratorHelper {
+
+	public void generateOutput(String type){
+		
+	}
+}

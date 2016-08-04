@@ -1,0 +1,11 @@
+package com.nayan.looselyCouple;
+
+public class JasonGenerator implements OutputGenerator{
+
+	public void generateOutput() {
+		System.out.println("generating jsaon output");
+	}
+
+	
+	
+}

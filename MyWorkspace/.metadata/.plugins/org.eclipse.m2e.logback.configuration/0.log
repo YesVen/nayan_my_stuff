@@ -243,3 +243,215 @@
 2016-08-02 15:13:19,812 [Worker-929] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
 2016-08-02 15:13:19,813 [Worker-929] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2016-08-02 15:13:19,813 [Worker-929] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 14:51:27,303 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:51:27,319 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 14:51:27,350 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:51:27,350 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 14:51:50,906 [Worker-1819] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:51:50,906 [Worker-1819] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 14:51:50,906 [Worker-1819] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:51:50,906 [Worker-1819] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 14:52:15,386 [Worker-1814] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:52:15,386 [Worker-1814] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 14:52:15,417 [Worker-1814] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:52:15,417 [Worker-1814] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 14:52:31,235 [Worker-1818] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:52:31,235 [Worker-1818] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 14:52:31,235 [Worker-1818] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:52:31,235 [Worker-1818] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 14:52:42,145 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:52:42,145 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 14:52:42,145 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:52:42,145 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 14:53:21,005 [Worker-1816] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:53:21,005 [Worker-1816] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 14:53:21,005 [Worker-1816] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:53:21,005 [Worker-1816] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 14:53:47,572 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:53:47,572 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 14:53:47,572 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:53:47,572 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 14:53:50,708 [Worker-1814] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:53:50,708 [Worker-1814] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 14:53:50,708 [Worker-1814] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:53:50,708 [Worker-1814] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 14:54:35,495 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:54:35,495 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 14:54:35,495 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:54:35,495 [Worker-1820] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 14:54:49,174 [Worker-1815] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:54:49,174 [Worker-1815] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 14:54:49,174 [Worker-1815] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:54:49,174 [Worker-1815] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 14:55:14,070 [Worker-1814] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:55:14,070 [Worker-1814] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 14:55:14,070 [Worker-1814] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:55:14,070 [Worker-1814] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 14:55:16,676 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:55:16,676 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 14:55:16,676 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:55:16,676 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 14:55:18,704 [Worker-1818] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:55:18,704 [Worker-1818] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 14:55:18,704 [Worker-1818] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 14:55:18,704 [Worker-1818] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:05:39,011 [Worker-1817] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:05:39,011 [Worker-1817] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:05:39,011 [Worker-1817] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:05:39,011 [Worker-1817] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:06:04,751 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:06:04,751 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:06:04,751 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:06:04,751 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:06:20,006 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:06:20,006 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:06:20,006 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:06:20,006 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:06:40,442 [Worker-1826] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:06:40,442 [Worker-1826] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:06:40,442 [Worker-1826] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:06:40,442 [Worker-1826] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:06:46,842 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:06:46,842 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:06:46,842 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:06:46,842 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:07:23,224 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:07:23,224 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:07:23,224 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:07:23,224 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:07:44,330 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:07:44,330 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:07:44,330 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:07:44,330 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:08:09,104 [Worker-1817] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:08:09,120 [Worker-1817] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:08:09,120 [Worker-1817] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:08:09,120 [Worker-1817] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:08:10,481 [Worker-1828] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:08:10,481 [Worker-1828] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:08:10,481 [Worker-1828] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:08:10,481 [Worker-1828] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:08:11,636 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:08:11,636 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:08:11,636 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:08:11,636 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:08:36,465 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:08:36,465 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:08:36,465 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:08:36,465 [Worker-1806] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:08:37,932 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:08:37,932 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:08:37,932 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:08:37,932 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:09:07,799 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:09:07,799 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:09:07,799 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:09:07,799 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:09:29,764 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:09:29,779 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:09:29,795 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:09:29,795 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:09:36,998 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:09:36,998 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:09:36,998 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:09:36,998 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:10:52,130 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:10:52,130 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:10:52,130 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:10:52,130 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:11:22,371 [Worker-1828] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:11:22,371 [Worker-1828] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:11:22,371 [Worker-1828] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:11:22,371 [Worker-1828] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:11:26,569 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:11:26,569 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:11:26,569 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:11:26,569 [Worker-1827] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:11:37,788 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:11:37,788 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:11:37,788 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:11:37,788 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:11:49,663 [Worker-1828] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:11:49,663 [Worker-1828] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:11:49,663 [Worker-1828] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:11:49,663 [Worker-1828] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 15:12:02,006 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:12:02,021 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 15:12:02,021 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 15:12:02,021 [Worker-1825] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:30:05,982 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:30:05,982 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:30:05,982 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:30:05,982 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:30:07,998 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:30:07,998 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:30:07,998 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:30:07,998 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:30:46,376 [Worker-1916] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:30:46,376 [Worker-1916] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:30:46,376 [Worker-1916] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:30:46,376 [Worker-1916] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:31:23,460 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:31:23,460 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:31:23,460 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:31:23,460 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:31:42,020 [Worker-1915] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:31:42,020 [Worker-1915] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:31:42,020 [Worker-1915] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:31:42,020 [Worker-1915] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:32:02,594 [Worker-1914] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:32:02,594 [Worker-1914] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:32:02,610 [Worker-1914] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:32:02,610 [Worker-1914] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:32:49,584 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:32:49,584 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:32:49,584 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:32:49,584 [Worker-1913] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:40:50,357 [Worker-1912] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:40:50,357 [Worker-1912] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:40:50,373 [Worker-1912] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:40:50,373 [Worker-1912] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:41:28,594 [Worker-1912] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:41:28,594 [Worker-1912] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:41:28,594 [Worker-1912] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:41:28,594 [Worker-1912] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:41:35,162 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:41:35,162 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:41:35,162 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:41:35,162 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:41:43,338 [Worker-1922] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:41:43,338 [Worker-1922] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:41:43,338 [Worker-1922] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:41:43,338 [Worker-1922] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:42:43,611 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:42:43,611 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:42:43,611 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:42:43,611 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:43:29,745 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:43:29,745 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:43:29,745 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:43:29,745 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:44:08,157 [Worker-1912] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:44:08,157 [Worker-1912] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:44:08,157 [Worker-1912] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:44:08,157 [Worker-1912] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:44:45,431 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:44:45,431 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:44:45,431 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:44:45,431 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:44:47,039 [Worker-1925] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:44:47,039 [Worker-1925] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:44:47,071 [Worker-1925] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:44:47,071 [Worker-1925] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:45:45,746 [Worker-1925] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:45:45,746 [Worker-1925] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:45:45,746 [Worker-1925] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:45:45,746 [Worker-1925] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:46:12,321 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:46:12,321 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:46:12,321 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:46:12,321 [Worker-1920] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
+2016-08-03 18:46:20,310 [Worker-1925] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:46:20,310 [Worker-1925] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-08-03 18:46:20,310 [Worker-1925] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-03 18:46:20,310 [Worker-1925] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIT\MyWorkspace\SpringStuff\src\test\resources
