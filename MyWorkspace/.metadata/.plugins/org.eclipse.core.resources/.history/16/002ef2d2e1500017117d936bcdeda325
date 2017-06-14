@@ -1,0 +1,45 @@
+package sorting;
+
+import java.util.Arrays;
+
+/**
+ * Best case: O(n)
+ * Average case: O(n^2)
+ *  
+ * */
+public class QuickSort {
+
+	public static void sort(int [] unsorted, int start, int end) {
+		
+		if (start == end)
+			return;
+		
+		int pivot = unsorted[start];
+		int pivotIndex = start;
+		for (int i = start; i < end; i++) {
+			int k = i;
+			if (unsorted[k] < pivot) {
+				int val = unsorted[k];
+				while (k > start) {
+					unsorted[k] = unsorted[k-1];
+					k--;
+				}
+				unsorted[start] = val;
+				pivotIndex++;
+			}
+		}
+		System.out.println("Sorted Array: " + Arrays.toString(unsorted));
+		sort(unsorted, 0, pivotIndex);
+		sort(unsorted, pivotIndex + 1, end);
+	}
+	
+	public static void main(String a[]) {
+		
+		int unsortedArray[] = {5,2,4,9,7,3,8,1,6};
+		System.out.println("Unsorted Array: " + Arrays.toString(unsortedArray));
+		
+		QuickSort.sort(unsortedArray, 0, unsortedArray.length);
+		System.out.println("Sorted Array: " + Arrays.toString(unsortedArray));
+		
+	}
+}

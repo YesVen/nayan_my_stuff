@@ -1,0 +1,14 @@
+package nonStatic;
+
+public class Outer {
+
+	private String text = "test";
+	
+	private class inner {
+		private String text = "test2";
+		
+		private String printText () {
+			return Outer.this.text+text;
+		}
+	}
+}

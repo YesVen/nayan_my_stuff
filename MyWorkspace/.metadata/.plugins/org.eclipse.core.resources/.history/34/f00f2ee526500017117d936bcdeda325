@@ -1,0 +1,8 @@
+package sorting;
+
+public class SelectingSort {
+
+	public void sort(int [] unsorted) {
+		
+	}
+}

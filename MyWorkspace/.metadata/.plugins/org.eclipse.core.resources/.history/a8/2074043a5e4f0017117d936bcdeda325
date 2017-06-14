@@ -1,0 +1,24 @@
+package nestedClass.nonStatic;
+
+import nestedClass.nonStatic.Outer;
+import nestedClass.nonStatic.Outer.Inner;
+
+public class Outer {
+
+	private String text = "test";
+	
+	private class Inner {
+		private String text = "test2";
+		
+		private String printText () {
+			return Outer.this.text+text;
+		}
+	}
+	
+	public static void main (String a[]) {
+		
+		Outer.Inner inner = new Outer().new Inner();
+		System.out.println(inner.printText());
+		
+	}
+}

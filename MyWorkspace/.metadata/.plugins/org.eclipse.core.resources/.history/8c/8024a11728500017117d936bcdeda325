@@ -1,0 +1,27 @@
+package sorting;
+
+/**
+ * In this sorting algorithm we iterate n-1 times and in each iteration we find the min value 
+ * and replace it with 1th position
+ *  
+ * */
+public class SelectionSort {
+
+	public static void sort(int [] unsorted) {
+		
+		for (int i = 0; i < unsorted.length - 2; i++) {
+			int minVal = unsorted[i];
+			int minValPos = i;
+			for (int j = 0; j < unsorted.length - 1; j++) {
+				
+			}
+		}
+	}
+	
+	public static void main(String a[]) {
+		
+		int unsortedArray[] = {4,2,5,9,7,3,6,1,8};
+		SelectionSort.sort(unsortedArray);
+		
+	}
+}

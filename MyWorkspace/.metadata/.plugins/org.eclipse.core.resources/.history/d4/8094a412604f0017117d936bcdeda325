@@ -1,0 +1,27 @@
+package nestedClass.staticInner;
+
+
+public class Outer {
+
+	private static String text = "test";
+	
+	private static class Inner {
+		private String text = "test2";
+		
+		private String printText () {
+			return Outer.text+delimeter()+text;
+		}
+		
+		private static String delimeter() {
+			return " ";
+		}
+	}
+	
+	public static void main (String a[]) {
+		
+		Outer.Inner inner = new Outer.Inner();
+		System.out.println(inner.printText());
+		System.out.println(Outer.Inner.delimeter());
+		
+	}
+}

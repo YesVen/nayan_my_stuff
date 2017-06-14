@@ -1,0 +1,25 @@
+package sorting;
+
+import java.util.Arrays;
+
+/**
+ * Best case: O(n)
+ * Average case: O(n^2)
+ *  
+ * */
+public class QuickSort {
+
+	public static void sort(int [] unsorted) {
+		
+	}
+	
+	public static void main(String a[]) {
+		
+		int unsortedArray[] = {4,2,5,9,7,3,6,1,8};
+		System.out.println("Unsorted Array: " + Arrays.toString(unsortedArray));
+		
+		QuickSort.sort(unsortedArray);
+		System.out.println("Sorted Array: " + Arrays.toString(unsortedArray));
+		
+	}
+}

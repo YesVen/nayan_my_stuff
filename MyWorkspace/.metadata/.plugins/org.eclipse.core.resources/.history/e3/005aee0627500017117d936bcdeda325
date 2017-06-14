@@ -1,0 +1,12 @@
+package sorting;
+
+public class SelectingSort {
+
+	public static void sort(int [] unsorted) {
+		
+	}
+	
+	public static void main(String a[]) {
+		SelectingS
+	}
+}

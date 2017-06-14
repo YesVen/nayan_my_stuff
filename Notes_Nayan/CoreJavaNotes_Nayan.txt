@@ -1,6 +1,18 @@
-test
+#Types of variables in java:pros and cons of this variables.
+http://javarevisited.blogspot.in/2012/01/tomcat-javalangoutofmemoryerror-permgen.html
+http://javarevisited.blogspot.in/2011/09/javalangoutofmemoryerror-permgen-space.html
+http://www.java67.com/2012/09/top-10-tricky-java-interview-questions-answers.html
+http://javarevisited.blogspot.in/2011/07/java-multi-threading-interview.html
+for practising programs:
+http://javarevisited.blogspot.in/2012/10/10-java-string-interview-question-answers-top.html#axzz4jrgYR3JX
+http://javaconceptoftheday.com/java-string-interview-questions-and-answers/
+
+Sorting algorithms:
+https://www.youtube.com/playlist?list=PL2_aWCzGMAwKedT2KfDMB9YA5DgASZb3U
+
+
 Topics Covered :
-#Strings #Static #Overriding #InstanceInitializerBlock #Final #Abstract#Interface #Casting #Basics #Threads #GarbageCollector #Syncronisation #Collection #WrapperClass #Interface #Immutable #Volatile #WebServer #Enums and 
+#Strings #Static #Types of variables in java #Overriding #InstanceInitializerBlock #Final #Abstract#Interface #Casting #Basics #Threads #GarbageCollector #Syncronisation #Collection #WrapperClass #Interface #Immutable #Volatile #WebServer #Enums and 
 # comparableAndComparator #Exception #Serialization #RMI #Java Memory Model
 ApplciationServer 
 ___________________
@@ -42,18 +54,16 @@ Map<list<String>> map = new HashMap<>();
 4) can use underscore '_' in the numeric literals
 5) catching multiple exception in catch block
 6)Binary Literals with prefix "0b"	
-7)More Precise Re throwing of Exception
+7)More Precise Re throwing of Exception:the compiler will look at a method and figure out what the most specific exception is that might get thrown, as opposed to simply looking at the Exception which is the most general. The Java 7 compiler will then allow you to list the specialized exceptions that might get thrown from the method
 
 java 8 features:
+NEED TO ADD DATA
 
 * Class can not be private,protected
-* If you make Class and its data member as final then then that class can be called as immutable.
-  because : Since it is final you can not change its variable and can not create its subclass.
-* A file can have n number of main methods. but it will execute the only of those class whose file name is equal to class name... else NOMAINMTDFOUNF exception.
+* A file can have n number of main methods. but it will execute the only of those class whose file name is equal to class name... else NOMAINMTDFOUND exception.
 * A file can contain only 1 public class.because JVM looks for public class for its execution at first place.
 
 * static keyword is like any other keyword a simple keyword which can be applied to Java method , nested class or member variable inside a class. static variable in Java belong to whole Class than individual Object. Which means if Class A has a static int variable counter and A has two instance a1 and a2 both will have a static variable counter whose value would be always same except race conditions. Remember class is a blueprint while objects are real instances. So a static variable no matter whether its int, char or String will always hold same value for all instances of that class. In other words there is only one copy of static variable will be present in Java Heap memory, which can be accessed or altered by any object. When we make a method static means that method belongs to class and you can call it without creating any instance of that class. Mostly utility methods are declared as static method, so that program can call them directly by using class name and not to wait for object to be ready.
-
 
 * order of execution try catch block :
 	a. try gets executed and finally is executed if there is no exception in try.
@@ -68,6 +78,7 @@ java 8 features:
 * In a try catch block you cannot write checked exception in catch block if your try block does not throws that checked exception.because checked Exception are always thrown by throw keyword,only then you can catch it or add throws to method signature.
  where as unchecked Exception can be generated at run time,so you can add any number of unchecked exception in catch block weather try block throws those exceptions or not.
 
+* Nested Classes:The purpose of a nested class is to clearly group the nested class with its surrounding class, signaling that these two classes are to be used together. Or perhaps that the nested class is only to be used from inside its enclosing (owning) class.
 * There are 4 types of nested class : memberLocal Class,Anonymous inner class,local inner class and static inner class.
 * Be it a static inner class or non static you will have create insatnce of inner class
 * Member inner class can be make private, protected or public. its just like any other member of class.
@@ -83,7 +94,11 @@ java 8 features:
 	- Non static Nested class : is implicitly associated with the enclosing instance of the containing class, this means that it is possible to invoke methods and access variables of the enclosing instance. One common use of a non static nested class is to define an Adapter class.
 	- Static Nested Class : can't access enclosing class instance and invoke methods on it, so should be used when the nested class doesn't require access to an instance of the enclosing class . A common use of static nested class is to implement a components of the outer object.
 	- Can not write static methods in non static inner class.
-The outer class can call even the private methods of the inner class.ViceVersa	
+The outer class can call even the private methods of the inner class.ViceVersa
+* Inner Class Shadowing: If a Java inner class declares fields or methods with the same names as field or methods in its enclosing class, the inner fields or methods are said to shadow over the outer fields or methods.Java makes it possible though, for the Inner class to refer to the field of the Outer class. To do so it has to prefix the field reference with the outer class name + .this. + field name
+* Local Inner class:Local classes in Java are like inner classes (non-static nested classes) that are defined inside a method or scope block ({ ... }) inside a method.Local classes can only be accessed from inside the method or scope block in which they are defined.Local classes can access members (fields and methods) of its enclosing class just like regular inner classes.Local classes can also access local variables inside the same method or scope block, provided these variables are declared final.From Java 8 local classes can also access local variables and parameters of the method the local class is declared in. The parameter will have to be declared final or be effectually final. Effectually final means that the variable is never changed after it is initialized. Method parameters are often effectually final.Local classes can also be declared inside static methods. In that case the local class only has access to the static parts of the enclosing class. Local classes cannot contain all kinds of static declarations (constants are allowed - variables declared static final), because local classes are non-static in nature - even if declared inside a static method.
+* One common use of a static member class is as a public helper class, useful only in conjunction with its outer class. For example, consider an enum describing the operations supported by a calculator. The Operation enum should be a public static member class of the Calculator class. Clients of Calculator could then refer to operations using names like Calculator.Operation.PLUS and Calculator.Operation.MINUS.
+* One common use of a nonstatic member class is to define an Adapter that allows an instance of the outer class to be viewed as an instance of some unrelated class. For example, implementations of the  Map interface typically use nonstatic member classes to implement their collection views, which are returned by Map’s keySet, entrySet, and values methods. Similarly, implementations of the collection interfaces, such as Set and List, typically use nonstatic member classes to implement their iterators 	
 
 * Object class is stored in the java.lang package. This package is by far the most used package which jvm imports by default irrespective of whether we write or not the import command.
 * Examples of other packages mostly used are : lang,utils,io,awt,swings,crypto,sql,reflect
@@ -91,10 +106,9 @@ The outer class can call even the private methods of the inner class.ViceVersa
 * Blank final variable can only be initialised in constructor if it is non-static. If it is static blank final variable, it can be initialized only in the static block.
 * The static import feature of Java 5 facilitate the java programmer to access any static member of a class directly. There is no need to qualify it by the class name.
 
-
 * Abstraction : showing only relevant data.It deals with the outside view of the object.
 * Abstraction lets you focus on what the object does instead of how it does it
-* Abstraction: Is a way of providing generalisation and hence a common way to work with objects of vast diversity.
+* Abstraction: Data abstraction simply means generalizing something to hide the complex logic that goes underneath.
 e.g: Basic example of abstraction would be an Interface/abstract class(abstract methods) which shows only relevant data related to its own identity rather that its implementation class and it is the way to write more generalise code related to that entity.
 
 * Encapsulation is binding or wrapping the data to protect it from external interface.
@@ -110,7 +124,7 @@ Another example whould be class where in we encapsulate the properties and behav
 Is-A relation is called inheritance.
 Has-A relation is called composition were two different objects are heavily dependent on each other.
 A relationship where a parent object own set/list of child objects is called aggregation
-* Both Composition and Aggregation are form of association between two objects, but there is subtle difference between composition and aggregation.Composition is more stronger than Aggregation.In Short, relationship between two objects is referred as association, and an association is known as composition when one object owns other, while an association is known as aggregation when one object uses other object.
+* Both Composition and Aggregation are form of association between two objects, but there is subtle difference between composition and aggregation.Composition is more stronger than Aggregation.In Short, relationship between two objects is referred as association, and an association is known as composition when one object owns other, while an association is known as aggregation when one object uses other objects.
 
 * Classpath is the path in which JVM searches for class libraries at the time of compiling the Java Application. By setting the CLASSPATH environment variable, JVM invokes the Java API and related classes, supported library files needed for compiling java program. Instead of placing all the applications in the library directory, the applications can be saved in different directories and set the classpath for compiling them.
 
@@ -140,23 +154,22 @@ The loadClass method in class ClassLoader.
 but no definition for the class with the specified name could be found.
 
 NoClassDefFoundError:
-Thrown if the Java Virtual Machine or a ClassLoaderinstance tries to load in the definition of a class (as part of a normal method call or as part of creating a new instance using the new expression) and no definition of the class could be found.
+* Thrown if the Java Virtual Machine or a ClassLoaderinstance tries to load in the definition of a class (as part of a normal method call or as part of creating a new instance using the new expression) and no definition of the class could be found.n short, NoClassDefFoundError will come if a class was present during compile time but not available in java classpath during runtime.
+for e.g:
+* The class is not available in Java Classpath.
+* You might be running your program using jar command and class was not defined in manifest file's ClassPath attribute
 
-The searched-for class definition existed when the currently executing class was compiled, but the definition can no longer be found.
+*The searched-for class definition existed when the currently executing class was compiled, but the definition can no longer be found.So, it appears that the NoClassDefFoundError occurs when the source was successfully compiled, but at runtime, the required class files were not found. This may be something that can happen in the distribution or production of JAR files, where not all the required class files were included.
+* As for ClassNotFoundException, it appears that it may stem from trying to make reflective calls to classes at runtime, but the classes the program is trying to call is does not exist.
 
-So, it appears that the NoClassDefFoundError occurs when the source was successfully compiled, but at runtime, the required class files were not found. This may be something that can happen in the distribution or production of JAR files, where not all the required class files were included.
-
-As for ClassNotFoundException, it appears that it may stem from trying to make reflective calls to classes at runtime, but the classes the program is trying to call is does not exist.
-
-The difference between the two is that one is an Error and the other is an Exception. With NoClassDefFoundError is an Error and it arises from the Java Virtual Machine having problems finding a class it expected to find. A program that was expected to work at compile-time can't run because of class files not being found, or is not the same as was produced or encountered at compile-time. This is a pretty critical error, as the program cannot be initiated by the JVM.
+* The difference between the two is that one is an Error and the other is an Exception. With NoClassDefFoundError is an Error and it arises from the Java Virtual Machine having problems finding a class it expected to find. A program that was expected to work at compile-time can't run because of class files not being found, or is not the same as was produced or encountered at compile-time. This is a pretty critical error, as the program cannot be initiated by the JVM.
 
 On the other hand, the ClassNotFoundException is an Exception, so it is somewhat expected, and is something that is recoverable. Using reflection is can be error-prone (as there is some expectations that things may not go as expected. There is no compile-time check to see that all the required classes exist, so any problems with finding the desired classes will appear at runtime.
 
-Types of variables in java:
+#Types of variables in java:
 Local variables:Local variables are created when the method, constructor or block is entered and the variable will be destroyed once it exits the method, constructor or block.
 Instance variable:Instance variables are created when an object is created with the use of the keyword 'new' and destroyed when the object is destroyed
 class/static variables:Static variables are created when the program starts and destroyed when the program stops.
-
 
 #Java Memory Model:
 * The Java memory model used internally in the JVM divides memory between thread stacks and the heap. 
@@ -206,6 +219,12 @@ public int compare()
 * Strings are backed up by character Array and represented in UTF-16 format. By the way this behaviour can cause memory leak in String because same character array is shared between source String and SubString which can prevent source String from being garbage collected
 * Java uses concept of string literal because of memory efficient since String are widely used.
 * Excessive modification to String object will result into wastage of memory since String are immutable every time new reference will be utilised.
+String object created by new() operator is by default not added in String pool as opposed to String literal. The intern method allows putting a String object into a pool
+* One special thing about string objects is that you can create string objects without using new operator i.e using string literals. This is not possible with other derived types (except wrapper classes). One more special thing about strings is that you can concatenate two string objects using ‘+’. This is the relaxation java gives to string objects as they will be used most of the time while coding
+* String, StringBuffer and StringBuilder all are final classes.
+
+#AutoBoxing:
+* Integer = 1 is always autoboxed using Integer.valueOf() and caches object ranges from -128 to 127.
 
 #Static :
 * Access to the static methods and variables are always resolved using their compile time type information only.

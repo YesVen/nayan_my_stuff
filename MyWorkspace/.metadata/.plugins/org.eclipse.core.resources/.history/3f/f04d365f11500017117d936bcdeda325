@@ -1,0 +1,21 @@
+package autoBoxing;
+
+public class TestIntegerAutoboxing {
+
+	public void test() {
+		
+		int i1 = 1;
+		int i2 = 1;
+		System.out.println(i1 == i2);
+		
+		Integer i3 = 1;
+		int i4 = 1;
+		System.out.println(i3 == i4);
+		
+	}
+	
+	public static void main(String[] args) {
+
+	}
+
+}

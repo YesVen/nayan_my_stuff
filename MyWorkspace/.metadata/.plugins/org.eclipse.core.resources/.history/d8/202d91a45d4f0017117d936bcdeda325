@@ -1,0 +1,10 @@
+package nonStatic;
+
+public class Outer {
+
+	private String text = "test";
+	
+	private class inner {
+		private String text = "test2";
+	}
+}

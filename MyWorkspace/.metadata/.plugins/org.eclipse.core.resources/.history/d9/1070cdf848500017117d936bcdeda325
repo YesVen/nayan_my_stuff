@@ -1,0 +1,28 @@
+package sorting;
+
+import java.util.Arrays;
+
+/**
+ * In this Sort we spit the array into half recursively until single element in array is present.
+ * Then two arrays are merged
+ * Time Complexity:
+ * Best case: O(nlogn)
+ * worst/Averge case: O(n^2)
+ *  
+ * */
+public class MergeSort {
+
+	public static void sort(int [] unsorted) {
+		
+		System.out.println("Unsorted Array: " + Arrays.toString(unsorted));
+		
+		System.out.println("  Sorted Array: " + Arrays.toString(unsorted));
+	}
+	
+	public static void main(String a[]) {
+		
+		int unsortedArray[] = {4,2,5,9,7,3,6,1,8};
+		MergeSort.sort(unsortedArray);
+		
+	}
+}
