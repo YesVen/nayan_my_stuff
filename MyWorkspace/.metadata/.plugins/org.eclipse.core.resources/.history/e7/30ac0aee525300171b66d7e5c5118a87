@@ -1,0 +1,22 @@
+package cloning;
+
+public class TestShallowCloning {
+
+}
+
+class Person {
+	String name;
+	int age;
+	Address address;
+	Education education;
+	
+}
+
+class Address {
+	String city;
+	String street;
+}
+
+class Education {
+	
+}

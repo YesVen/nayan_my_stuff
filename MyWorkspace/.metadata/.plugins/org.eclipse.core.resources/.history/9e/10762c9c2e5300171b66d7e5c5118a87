@@ -1,0 +1,12 @@
+package com;
+
+
+public abstract class Test {
+	
+	final static int a =1;
+	final int b =2;
+	public static void main(String a[]) {
+		
+	}
+
+}

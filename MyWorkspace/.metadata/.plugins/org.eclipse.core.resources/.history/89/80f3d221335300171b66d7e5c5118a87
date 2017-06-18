@@ -1,0 +1,16 @@
+package serialization;
+
+import java.io.Serializable;
+
+public class TestSerialization {
+
+}
+
+
+class SuperCar implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	int maxSeed;
+	int maxAcceleratoin;
+	
+}

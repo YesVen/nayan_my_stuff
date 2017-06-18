@@ -1,0 +1,12 @@
+package com;
+
+
+public interface Test {
+	
+	static int a =1;
+	int b = 2;
+	public void main(String a[]) {
+		
+	}
+
+}

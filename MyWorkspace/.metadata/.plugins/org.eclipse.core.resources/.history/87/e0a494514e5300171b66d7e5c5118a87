@@ -1,0 +1,42 @@
+package serialization;
+
+import java.io.*;
+
+public class TestExternalization {
+
+	
+}
+
+class NewCar implements Externalizable {
+
+	int maxSpeed;
+	int maxAcceleratoin;
+	String engineCapacity = "";
+	
+	NewCar (int maxSpeed, int maxAcceleratoin, String engineCapacity) {
+		this.maxSpeed = maxSpeed;
+		this.maxAcceleratoin = maxAcceleratoin;
+		this.engineCapacity = engineCapacity;
+	}
+	
+	public String toString () {
+		return maxAcceleratoin + " -- " + maxSpeed + "--" + engineCapacity;
+	}
+	
+	
+	@Override
+	public void writeExternal(ObjectOutput out) throws IOException {
+		oo.writeInt(maxSpeed);
+		oo.writeInt(maxAcceleratoin);
+		oo.writeObject(engineCapacity);
+		
+	}
+
+	@Override
+	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+		this.maxSpeed = oi.readInt();
+		this.maxAcceleratoin = oi.readInt();
+		this.engineCapacity = (String)oi.readObject();
+		
+	}
+}

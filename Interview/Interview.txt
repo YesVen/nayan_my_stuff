@@ -1,0 +1,45 @@
+Java 8 :
+1. All feature : done
+2. Lamda : done
+3. Multi-threading
+4. Service Executor : done
+
+Spring :
+https://www.javacodegeeks.com/tutorials/java-tutorials/enterprise-java-tutorials/spring-tutorials/
+http://enos.itcollege.ee/~jpoial/allalaadimised/lugemist/Spring-Interview-Questions.pdf
+
+1. SPRING CLOUD --> architecture 
+2. SPRING BOOT --> done
+3. MICROSERVISES --> done
+4. REST --> done
+5. MVC --> done
+6. AOP --> done
+
+ORM : 
+1. Hibernate : done
+2. JPA : done
+3. JNDI : done
+
+Building Tool :
+1. MAVEN
+
+SOURCE CONTROL 
+1. GIT
+
+CONTINUES INTEGRATION 
+1. Jenkins 
+
+Unit testing 
+1. Junit : done
+
+UI :
+1. Angular 2
+2. CSS
+3. Type Script
+4. Bootstrap
+
+DATABASE :
+1. MYSQL
+2. ORACLE
+
+

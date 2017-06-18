@@ -1,0 +1,52 @@
+package immutability;
+
+public class ThreadSafeImmutability {
+	
+	ImmutableInt a = new ImmutableInt(5);
+	
+	Thread t1 = new Thread(new task1(a));
+	Thread t2 = new Thread(new task1(a));
+	Thread t3 = new Thread(new task1(a));
+	Thread t4 = new Thread(new task1(a));
+	Thread t5 = new Thread(new task1(a));
+	Thread t6 = new Thread(new task1(a));
+	Thread t7 = new Thread(new task1(a));
+	Thread t8 = new Thread(new task1(a));
+	Thread t9 = new Thread(new task1(a));
+	Thread t10 = new Thread(new task1(a));
+	Thread t11 = new Thread(new task1(a));
+	Thread t12 = new Thread(new task1(a));
+	
+	
+	
+}
+
+ class task1 implements Runnable {
+	 ImmutableInt a;
+	 public task1(ImmutableInt a) {
+		 this.a = a;
+	 }
+	 public void run () {
+		 a.add(5);
+		 System.out.println("value after adding " + a.getValue());
+	 }
+ }
+
+class ImmutableInt {
+	private int value = 0;
+	
+	public ImmutableInt(int i) {
+		this.value = i;	
+	}
+
+	public int getValue () {
+		return this.value;
+	}
+	
+	public ImmutableInt add (int newValue) {
+		return new ImmutableInt (this.value + newValue);
+	}
+	
+}
+
+

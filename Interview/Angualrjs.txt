@@ -1,0 +1,4 @@
+https://www.codementor.io/angularjs/tutorial/angularjs-interview-questions-sample-answers
+https://www.tutorialspoint.com/angularjs/angularjs_interview_questions.htm
+http://www.c-sharpcorner.com/article/top-50-angularjs-interview-questions-and-answers/
+http://career.guru99.com/top-25-angular-js-interview-questions/

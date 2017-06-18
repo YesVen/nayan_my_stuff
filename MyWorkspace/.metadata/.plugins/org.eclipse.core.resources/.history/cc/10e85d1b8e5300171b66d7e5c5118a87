@@ -1,0 +1,13 @@
+package stringCodingPractice;
+
+/*
+ * count the number of occurrences of each character in a string?
+ * */
+public class StringOccurance {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,105 @@
+
+1. jdbcTemplate = new JdbcTemplate(dataSource);
+   Employee employee = (Employee) jdbcTemplate.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper(Employee.class));
+
+2. List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
+
+
+3. dataSource --> sessionFactory --> transactionManager
+
+4. RowMapper
+
+@Repository
+public class ClientRepositoryImpl implements ClientRepository {
+    private JdbcTemplate template;
+    private RowMapper<Client> rowMapper = new ClientRowMapper();
+    private static final String SEARCH = "select * from clients where clientId = ?";
+    private static final String COLUMN_ID = "clientId";
+    private static final String COLUMN_NAME = "name";
+    
+    public ClientRepositoryImpl() {}
+    
+    public ClientRepositoryImpl(DataSource dataSource) {
+        this.template = new JdbcTemplate(dataSource);
+    }
+    
+    public Client getClient(int id) {
+        return template.queryForObject(SEARCH, rowMapper, id);
+    }
+    
+    private class ClientRowMapper implements RowMapper<Client> {
+        public Client mapRow(ResultSet rs, int i) throws SQLException {
+            Client client = new Client();
+            client.setClientId(rs.getInt(COLUMN_ID));
+            client.setName(rs.getString(COLUMN_NAME));
+            
+            return client;
+        }
+    }
+}
+
+5. Batch Update
+public void insertBatch1(final List<Employee> employees){
+
+	jdbcTemplate = new JdbcTemplate(dataSource);
+	  String sql = "INSERT INTO EMPLOYEE " +
+		"(ID, NAME, AGE) VALUES (?, ?, ?)";
+	 
+	  jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+	 
+		public void setValues(PreparedStatement ps, int i) throws SQLException {
+			Employee employee = employees.get(i);
+			ps.setLong(1, employee.getId());
+			ps.setString(2, employee.getName());
+			ps.setInt(3, employee.getAge() );
+		}
+	 
+		public int getBatchSize() {
+			return employees.size();
+		}
+	  });
+	}
+	
+6. JPA
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xsi:schemaLocation="
+      http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+      http://www.springframework.org/schema/tx 
+      http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+   <bean id="myEmf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+      <property name="packagesToScan" value="org.baeldung.persistence.model" />
+      <property name="jpaVendorAdapter">
+         <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+      </property>
+      <property name="jpaProperties">
+         <props>
+            <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+         </props>
+      </property>
+   </bean>
+
+   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+      <property name="url" value="jdbc:mysql://localhost:3306/spring_jpa" />
+      <property name="username" value="tutorialuser" />
+      <property name="password" value="tutorialmy5ql" />
+   </bean>
+
+   <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+      <property name="entityManagerFactory" ref="myEmf" />
+   </bean>
+   <tx:annotation-driven />
+
+   <bean id="persistenceExceptionTranslationPostProcessor" 
+      class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+</beans>
+
+	

@@ -1,0 +1,17 @@
+package com;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public interface Test {
+	
+	public static void main (String a[]) {
+		try {
+	        throw new FileNotFoundException("FileNotFoundException");
+	    } catch (FileNotFoundException  fnfo) {
+	        fnfo.printStackTrace();
+	    }
+ 
+	}
+	
+}

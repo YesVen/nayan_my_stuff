@@ -301,3 +301,26 @@
 2017-06-12 16:27:35,595 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Nayan\GIT\nayan_my_stuff\MyWorkspace\RestJersy\src\main\resources
 2017-06-12 16:27:35,598 [Worker-38] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2017-06-12 16:27:35,600 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Nayan\GIT\nayan_my_stuff\MyWorkspace\RestJersy\src\test\resources
+2017-06-14 15:27:52,431 [Worker-337] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-06-14 15:27:52,451 [Worker-337] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-06-14 15:27:52,468 [Worker-337] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-06-14 15:27:52,470 [Worker-337] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Nayan\GIT\nayan_my_stuff\MyWorkspace\RESTfulSpringJersy\src\test\resources
+2017-06-14 15:27:52,484 [Worker-337] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of RESTfulSpringJersy
+2017-06-14 15:27:52,485 [Worker-337] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for RESTfulSpringJersy
+2017-06-14 15:27:52,598 [Worker-337] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-06-14 15:27:52,927 [Worker-337] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-06-14 15:27:52,928 [Worker-337] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-06-14 15:27:52,931 [Worker-337] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-06-14 15:27:52,931 [Worker-337] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Nayan\GIT\nayan_my_stuff\MyWorkspace\SpringStuff\src\test\resources
+2017-06-17 12:38:35,382 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-06-17 12:38:35,394 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-06-17 12:38:35,403 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-06-17 12:38:35,406 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Nayan\GIT\nayan_my_stuff\MyWorkspace\RESTfulSpringJersy\src\test\resources
+2017-06-17 12:38:37,130 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-06-17 12:38:37,139 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Nayan\GIT\nayan_my_stuff\MyWorkspace\RestJersy\src\main\resources
+2017-06-17 12:38:37,144 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-06-17 12:38:37,146 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Nayan\GIT\nayan_my_stuff\MyWorkspace\RestJersy\src\test\resources
+2017-06-17 12:38:38,109 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-06-17 12:38:38,111 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-06-17 12:38:38,135 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-06-17 12:38:38,136 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Nayan\GIT\nayan_my_stuff\MyWorkspace\SpringStuff\src\test\resources

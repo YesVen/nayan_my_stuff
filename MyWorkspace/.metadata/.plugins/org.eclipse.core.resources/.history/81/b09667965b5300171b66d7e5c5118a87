@@ -1,0 +1,24 @@
+package immutability;
+
+public class ThreadSafeImmutability {
+	
+}
+
+class ImmutableInt {
+	private int value;
+	
+	public ImmutableInt(int i) {
+		this.value = value;	
+	}
+
+	public int getValue () {
+		return this.value;
+	}
+	
+	public ImmutableInt add (int newValue) {
+		return new ImmutableInt (this.value + newValue);
+	}
+	
+}
+
+

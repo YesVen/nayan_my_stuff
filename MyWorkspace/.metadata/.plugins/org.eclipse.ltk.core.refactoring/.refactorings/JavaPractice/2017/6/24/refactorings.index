@@ -1,3 +1,10 @@
 1497265157845	Rename resource 'NestedClass'
 1497265195086	Rename resource 'static'
 1497351426684	Rename resource 'SelectingSort.java'
+1497696339548	Rename compilation unit 'TestSerializingVolatilt.java'
+1497696498034	Rename type 'TestSerializingVolatile'
+1497706025731	Copy compilation unit
+1497706202683	Delete element
+1497708244614	Rename type 'ThreadSafeImmutability'
+1497714652565	Rename package 'StringCodingPractice'
+1497724626439	Rename type 'ReverseString'

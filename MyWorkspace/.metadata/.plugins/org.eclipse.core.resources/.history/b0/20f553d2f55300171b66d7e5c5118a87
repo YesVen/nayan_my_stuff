@@ -1,0 +1,20 @@
+package com;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public interface Test {
+	
+	public static void main (String a[]) {
+		
+		List<Integer> list = new ArrayList();
+		list.add(1);
+		
+		System.out.println("Done");
+	} 
+	
+	public static doSomething (List<Integer> list) {
+		
+	}
+	
+}

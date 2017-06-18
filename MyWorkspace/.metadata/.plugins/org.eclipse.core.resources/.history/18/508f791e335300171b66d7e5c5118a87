@@ -1,0 +1,15 @@
+package serialization;
+
+import java.io.Serializable;
+
+public class TestSerialization {
+
+}
+
+
+class SuperCar implements Serializable {
+
+	int maxSeed;
+	int maxAcceleratoin;
+	
+}

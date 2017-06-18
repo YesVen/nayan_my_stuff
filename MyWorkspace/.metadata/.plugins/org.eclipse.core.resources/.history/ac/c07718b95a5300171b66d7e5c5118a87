@@ -1,0 +1,17 @@
+package immutability;
+
+public class ThreadSafeImmutability {
+	
+}
+
+class ImmutableInt {
+	private int value;
+	
+	public void setInt (int value) {
+		this.value = value;	
+	}
+	
+	public int getValue () {
+		this.value;
+	}
+}

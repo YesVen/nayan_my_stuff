@@ -1,12 +1,10 @@
-#Types of variables in java:pros and cons of this variables.
-http://javarevisited.blogspot.in/2012/01/tomcat-javalangoutofmemoryerror-permgen.html
-http://javarevisited.blogspot.in/2011/09/javalangoutofmemoryerror-permgen-space.html
+features of java6 7 8 and difference between abstract and interface
+filo IO 
+Multi threading
+volatile , enums pending
+
 http://www.java67.com/2012/09/top-10-tricky-java-interview-questions-answers.html
 http://javarevisited.blogspot.in/2011/07/java-multi-threading-interview.html
-for practising programs:
-http://javarevisited.blogspot.in/2012/10/10-java-string-interview-question-answers-top.html#axzz4jrgYR3JX
-http://javaconceptoftheday.com/java-string-interview-questions-and-answers/
-
 Sorting algorithms:
 https://www.youtube.com/playlist?list=PL2_aWCzGMAwKedT2KfDMB9YA5DgASZb3U
 
@@ -37,24 +35,49 @@ JRE:Java Runtime Environment (JRE) The Java Runtime Environment (JRE) provides t
 JDK :Java Development Kit (JDK) The JDK is a superset of the JRE, and contains everything that is in the JRE, plus tools such as the compilers and debuggers necessary for developing applets and applications.
 
 
-* Top Java SE 6 Features
-No More Class.forName for JDBC Driver
-Java SE 6 does not require you to load the JDBC driver prior to creating a JDBC connection.
-JDBC 4.0 Annotations
+* Top Java SE 6 Features:
+1. collection Framework Enhancement: Added Deque.A linear collection that supports element insertion and removal at both ends. The name deque is short for "double ended queue".This interface defines methods to access the elements at both ends of the deque. Methods are provided to insert, remove, and examine the element. Each of these methods exists in two forms: one throws an exception if the operation fails, the other returns a special value (either null or false, depending on the operation)
+2. Java i.o Enhancement: New class” Console” is added and it contains methods to access a character-based console device. The readPassword()methods disable echoing thus they are suitable for retrieval of sensitive data such as passwords. The method System.console ()returns the unique console associated with the Java Virtual Machine.
+3. In JDBC 4.0, we no longer need to explicitly load JDBC drivers using Class.forName(). When the method getConnection is called, the DriverManager will attempt to locate a suitable driver from among the JDBC drivers that were loaded at initialization and those loaded explicitly using the same class loader as the current application	
+4. jdbc support for ROWID
+5. JDBC 4.0 Annotations
 JDBC annotations are a new way of building Data Access Objects (DAO)
 
 * Feature of java 7 :
-1) Type inference:
-Map<list<String>> map = new HashMap<>();
-2) we can use string in switch statement
+1) Diamond syntax:
+	Map<String, list<String>> map = new HashMap<>();
+2) we can use string in switch statement.
 3)try with resource i.e
 	try(open resource){
 	}
-	this open resource will get closed by jvm
-4) can use underscore '_' in the numeric literals
-5) catching multiple exception in catch block
-6)Binary Literals with prefix "0b"	
-7)More Precise Re throwing of Exception:the compiler will look at a method and figure out what the most specific exception is that might get thrown, as opposed to simply looking at the Exception which is the most general. The Java 7 compiler will then allow you to list the specialized exceptions that might get thrown from the method
+	this open resource will get closed by jvm.You can open multiple resources as top to bottom and jvm will be closing it from bottom to top.you can use try-with-resource feature to automatically close resources, which implements AutoClosable and Closeable interface e.g. Streams, Files, Socket handles, database connections etc. JDK 7 introduces a try-with-resources statement, which ensures that each of the resources in try(resources) is closed at the end of the statement by calling close() method of AutoClosable
+4) can use underscore '_' in the numeric literals:
+	public void testUnderscoresNumericLiterals() {
+        int oneMillion_ = 1_000_000;
+        int oneMillion = 1000000;
+        if (oneMillion_ == oneMillion){
+            System.out.println(true);
+        } else{
+            System.out.println(false);
+        }
+    }
+5) catching multiple exception in catch block.Note that we can group only un-related exceptions together. That means it’s illegal to group exceptions which have parent-child relationship.Since we group un related exception order of exception in the catch does not matter.
+6) Binary Literals with prefix "0b":
+	public void testBinaryIntegralLiterals(){
+        int binary = 0b1000; //2^3 = 8
+        if (binary == 8){
+            System.out.println(true);
+        } else{
+            System.out.println(false);
+        }
+}
+	
+7)More Precise Re throwing of Exception:the compiler will look at a method and figure out what the most specific exception is that might get thrown, as opposed to simply looking at the Exception which is the most general. The Java 7 compiler will then allow you to list the specialized exceptions that might get thrown from the method.
+
+8) G1 Garbage Collector:
+JDK 7 introduced a new Garbage Collector known as G1 Garbage Collection, which is short form of garbage first. G1 garbage collector performs clean-up where there is most garbage. To achieve this it split Java heap memory into multiple regions as opposed to 3 regions in the prior to Java 7 version (new, old and permgen space). It's said that G1 is quite predictable and provides greater through put for memory intensive applications.
+
+9) java.nio package
 
 java 8 features:
 NEED TO ADD DATA
@@ -234,7 +257,7 @@ No,static method cannot be overridden since overridden works at runtime where as
 #Overriding :
 * Few points related to method overriding : 
  - If your child class extends superclass, superclass constructor is called by default (is called constructor chaining) when you create the object of child class.
- - If you use runtime polymorphism i.e obj of subclass and reference of SuperClass,In that case methods of subclass will be executed because of overridden but instance variable if present of that object will have the value of parent class
+ - If you use runtime polymorphism i.e obj of subclass and reference of SuperClass,In that case methods of subclass will be executed because of overridden but instance variable if present of that object will have the value of referring class
    because : only methods are overridden and not the instance variables.Access to instanceVariables/staticVariable/static method will be resolved at compile time.
  - In case of AccessModifier overridden method should have broad-level or more easily accessible modifier.
    because it is the property of OOPS ,child class is a fully-fledged class of parents.Achieving polymorphism becomes tricky.
@@ -242,11 +265,8 @@ No,static method cannot be overridden since overridden works at runtime where as
    parent class - no exception,child class -no exception or uncheckedException
    parent class - exception ,child class -exception of same class or its subclass
    (this is because you cant achieve polymorphism. )
- - RunTimePolymorphism(dynamic binding) : A call to a override method decides at runtime by compiler so it is called RTP(This is not same with the static method because access to the
-   static method is resolved at the compile time).It is also called dynamic binding and static binding.
- - The difference between static and dynamic binding  is static binding is a compile time operation 
-   while dynamic binding is a runtime. one uses class Type and other uses Object to bind. static, private and final methods and
-   variables are resolved using static binding which makes there execution fast because no time is wasted to find correct method during runtime.
+ - RunTimePolymorphism(dynamic binding) : A call to a override method decides at runtime by compiler so it is called RTP(This is not same with the static method because access to the static method is resolved at the compile time).It is also called dynamic binding and static binding.
+ - The difference between static and dynamic binding  is static binding is a compile time operation while dynamic binding is a runtime. one uses class Type and other uses Object to bind. static, private and final methods and variables are resolved using static binding which makes there execution fast because no time is wasted to find correct method during runtime.
  - 1. You can not create objects for abstracts class and interface but you can refer to it at runtime.By this we can achive only parents class mtds.
 * co variant return type : it is possible to override method by changing the return type if subclass overrides any method whose return type is Non-Primitive but it changes its return type to subclass type
 * Overriding is an example of runtime polymorphism.overriding is also called dynamic binding,late binding.
@@ -294,7 +314,6 @@ Any guesses for why a special treatment is being given to 'String' here? Well...
 
 #Abstract#Interface :
 - Interface do not inhert from Object class.
-- If an interface has no direct superinterfaces, then the interface implicitly declares a public abstract member method m with signature s, return type r, and throws clause t corresponding to each public instance method m with signature s, return type r, and throws clause t declared in Object, unless a method with the same signature, same return type, and a compatible throws clause is explicitly declared by the interface.
 - Abstract Class not be instantiated ,but can have constructor of it own because Abstract class are inherited and when subclass object is created and its constructor will invoke super() and call the superclass constructor.
 - For Abstract/interface all its methods should get override, but if abstract class implements interface it may not need to override all its interface method
 - Interface can also have data member.Its data member are by default public static and final and its methods are by default are public and abstract
@@ -303,11 +322,6 @@ Any guesses for why a special treatment is being given to 'String' here? Well...
 - Abstract class are more efficient since you inherit most of the part where as in case of interface you implement complete methods of it thus increasing the load.
   
 
-Difference between interface and abstract :
-- interfaces can contains only abstract method where as abstract class can contain concrete methods as well.
-- a variable in interface is static and final. In abstract it is non final.
-- interface needs to be implemented and abstract class needs to be extended.
-
 #Casting :
 - UpCasting is safe.DownCasting is not safe.(because it checks the reference of that object at runtime before casting so scope of runtime error) best practice is to use Instance of operator when ever u use down-casting
 
@@ -315,11 +329,11 @@ Difference between interface and abstract :
 * All the exceptions in java are extended to Throwable class.
 * Exceptions are of three types: 
  - checkedException : are those exceptions which are directly extended to exception class,which are needed to be handled without which jvm wont compile the code.
- - unchecked exception are those exception which are extended to RuntimeException.This are hard to detect at runTime and thus can not be handled all the time.
+ - unchecked exception are those exception which are extended to RuntimeException.This are hard to detect at compile time and thus can not be handled.
  - Error: This class extends to Throwable.This something which are irrevocable.example outOfMemory, stackOverFlow, 
  virtualMachineError, AssertionError, NoClassDefFound.
  * Even if we write explicit throw for RuntimeException.We don't have to catch.
- * You can catch anything that is Throwable and even all Errors.But we catch only exception because it exception results due bad coding practices or for the cases which are not handled and thus needs to overcome,errors should be avoided instead of handled. By catching these things you are masking an underlying problem of high importance.
+ * You can catch anything that is Throwable and even all Errors.But we catch only exception because it results due bad coding practices or for the cases which are not handled and thus needs to overcome,errors should be avoided instead of handled. By catching these things you are masking an underlying problem of high importance.
  * However, sometimes you need to catch specific Errors.If you're writing framework-ish code (loading 3rd party classes), it might be wise to catch LinkageErrors (no class def found, unsatisfied link, incompatible class change). I've also seen some stupid 3rd-party code throwing subclasses of Errors, so you'll have to handle these either.
  *Finally block will always execute after catch or try or return from try block and even after catch throws exception. Only way we can avoid execution of finally is by system.exit or system shut-down.
  
@@ -406,6 +420,7 @@ And also wrapper class has non static methods convert in other primitive objects
 * When your serialization class is updated with some incompatible Java type changes to a Serializable class, you have to update your serialVersionUID.
 * There are chances in Client-server Environment.The client sends a Serializable class with default generated serialVersionUID (e.g 123L) to the server over socket, the server may generate a different serialVersionUID (e.g 124L) during deserialization process, and raises an unexpected InvalidClassExceptions.
 *** Java serialization process  only continues in object hierarchy till the class is Serializable i.e. implements Serializable interface in Java  and values of the instance variables inherited from super class will be initialized by calling constructor of Non-Serializable Super class during deserialization process. Once the constructor chaining will start.
+* In the below example if Car does not implement serialization and RacingCar does then it will throw ClassNotFound Exception while de-serializing if there is not default constructor
 * In Serialization an object ObjectOutputStream.writeObject (saveThisobject) is invoked and for reading object ObjectInputStream.readObject() is invoked but there is one more thing which Java Virtual Machine provides you is to define these two method in your class. If you define these two methods in your class then JVM will invoke these two methods instead of applying default serialization mechanism. You can customize behavior of object serialization and deserialization here by doing any kind of pre or post processing task.
 * In Serialization if parent class implements serialization and child class doent want to serializile then in order to avoid serialization in child class , we can declare all the variables as transient or we can override ObjectOutOutStream ,ObjectInputStream methods i.e writeObject(); and readObject; and can throw NonSerializableClass
 * Externalize is not an marker interface which is used to customize the serialization process.Two methods which needs to be overridden in order to achieve externalization.
@@ -433,7 +448,7 @@ shallow copy can be achieved by using .clone() mtd of object Class by implementi
 Deep copy can be achived by explicetly coyping data in the overriden clone() mtsd. And after implementing seriable interface it also does the same for the object which are transfered over th enetwork.
 
 * Cloneable is just an marker interface.For object cloning that object should implement Cloneable interface and override clone method.(clone method in object class is protected) 
-*java.lang.Object provides default implementation of clone() method in Java. It's declared as protected and native in Object class, so implemented in native code. Since it's convention to return clone() of object by calling super.clone() method, any cloning process eventually reaches to java.lang.Object clone() method. This method, first checks if corresponding object implements Cloneable interface, which is a marker interface. If that instance doesn't implements Cloneable then it throws CloneNotSupported in Java, a checked exception, which is always required to be handled while cloning an object. If object pass this check, than java.lang.Object's clone() method creates a shallow copy of object and returned it to the caller. Since Object class' clone() method creates copy by creating new instance, and then copying field-by-field, similar to assignment operator, it's fine for primitives and Immutable object, but not suited if your class contains some mutable data-structure e.g. Collection classes like ArrayList or arrays. In that case, both original object and copy of object will point to the same object in heap. You can prevent this by using technique known as deep cloning, on which each mutable field is cloned separately.
+* java.lang.Object provides default implementation of clone() method in Java. It's declared as protected and native in Object class, so implemented in native code. Since it's convention to return clone() of object by calling super.clone() method, any cloning process eventually reaches to java.lang.Object clone() method. This method, first checks if corresponding object implements Cloneable interface, which is a marker interface. If that instance doesn't implements Cloneable then it throws CloneNotSupported in Java, a checked exception, which is always required to be handled while cloning an object. If object pass this check, than java.lang.Object's clone() method creates a shallow copy of object and returned it to the caller. Since Object class' clone() method creates copy by creating new instance, and then copying field-by-field, similar to assignment operator, it's fine for primitives and Immutable object, but not suited if your class contains some mutable data-structure e.g. Collection classes like ArrayList or arrays. In that case, both original object and copy of object will point to the same object in heap. You can prevent this by using technique known as deep cloning, on which each mutable field is cloned separately.
 * For deep cloning we need to make sure all the reference variables classes implements cloanable interface and override clone method and call super.clone() and if the class contains list/set of objects then we need to manually take care of creating different copy of this object.
 
 #AtomicInteger :
@@ -452,6 +467,7 @@ getAndDecrement(),getAndIncrement() and getAndSet() in java.util.concurrent.atom
 * Reason of Why String is immutable in Java is to allow String to cache its hashcode , being immutable String in Java caches its hashcode, and do not calculate every time we call hashcode method of String, which makes it very fast as hashmap key to be used in hashmap in Java.  This one is also suggested by  Jaroslav Sedlacek in comments below. In short because String is immutable, no one can change its contents once created which guarantees hashCode of String to be same on multiple invocation.
 * Security and String pool being primary reason of making String immutable.
 * When you use String.subString() in java it causes the problem of memory leak.Internally it calls new String(int offSet, int count , char []). This char is nothing but a original 1.Incase if the originals String has very huge memory it will still be referred to create new subString,thus jvm wont garbage collect it.
+* It is important to remember, that even if an object is immutable and thereby thread safe, the reference to this object may not be thread safe.
 
 Why strings are immutable in java :
 - it avoids inconsistency of data in multithreaded environment. For e.g if two threads are acting on same string variable and if one thread changes to that reference another thread will get affected if strings were not immutable.
