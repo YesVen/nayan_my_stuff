@@ -1,0 +1,19 @@
+package functionalInterfaces;
+
+public class TestConstructorRef {
+
+}
+
+class Person {
+	String firstName;
+	String secondName;
+	Person (String fName, String sName) {
+		this.firstName = fName;
+		this.secondName = sName;
+	}
+} 
+
+@FunctionalInterface
+interface PersonFactory<P extends Person> {
+	
+}

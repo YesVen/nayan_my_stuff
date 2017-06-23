@@ -1,0 +1,20 @@
+package collection;
+
+public class TestMyList {
+	
+}
+
+class MyList<E> {
+	private Object[] elements;
+	
+	public void MyList () {
+		
+	}
+	
+	public void add (E e) {
+		if (elements == null) {
+			
+		}
+	}
+	
+}

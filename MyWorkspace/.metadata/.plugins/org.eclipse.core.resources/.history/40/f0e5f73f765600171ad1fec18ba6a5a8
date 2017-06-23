@@ -1,0 +1,19 @@
+package com;
+
+public class Test {
+	
+}
+
+class Myclass {
+	
+	static int count = 0;
+	
+	Myclass () {
+		count++;
+	}
+}
+
+class abstract  absrClass {
+	
+	
+}

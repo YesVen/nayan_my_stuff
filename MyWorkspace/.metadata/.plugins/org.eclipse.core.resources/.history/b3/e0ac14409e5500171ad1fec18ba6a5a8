@@ -1,0 +1,33 @@
+package collection;
+
+public class TestMyList {
+	
+}
+
+class MyList<E> {
+	
+	int modCount;
+	int size;
+	
+	private Object[] elements;
+	
+	public void MyList () {
+		
+	}
+	
+	public void add (E e) {
+		if (elements == null) {
+			elements = new Object[10];
+		}
+		modCount++;
+		//checking if list exhausted
+		if (size == elements.length) {
+			int newSize = size + (elements.length / 2);
+			Object[] newArray = new Object[newSize]; 
+		}
+		
+		elements[size++] = e;
+	}
+	
+	
+}

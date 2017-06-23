@@ -1,9 +1,0 @@
-package nonStatic;
-
-public class Outer {
-
-	private String text = "Nayan"
-	private class inner {
-		
-	}
-}

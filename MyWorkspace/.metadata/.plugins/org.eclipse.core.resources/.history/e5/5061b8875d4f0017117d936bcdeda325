@@ -1,8 +1,0 @@
-package nonStatic;
-
-public class Outer {
-
-	private class inner {
-		
-	}
-}

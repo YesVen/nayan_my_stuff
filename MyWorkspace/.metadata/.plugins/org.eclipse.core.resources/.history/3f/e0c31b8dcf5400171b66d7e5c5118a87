@@ -1,0 +1,21 @@
+package streams;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class TestMap {
+	
+	public static void main (String a[]) {
+		Map<Integer, String> map = new HashMap<>();
+
+		for (int i = 0; i < 10; i++) {
+		    map.putIfAbsent(i, "val" + i);
+		}
+		
+		map.putIfAbsent(2, "val" + 2);
+
+		map.forEach((id, val) -> System.out.println(val));
+
+	}
+
+}

@@ -1,0 +1,26 @@
+package streams;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class TestStreams {
+
+	public static void main(String[] args) {
+		
+		List<String> list = new ArrayList<>();
+		list.add("ddd2");
+		list.add("aaa2");
+		list.add("bbb1");
+		list.add("aaa1");
+		list.add("bbb3");
+		list.add("ccc");
+		list.add("bbb2");
+		list.add("ddd1");
+		
+		// filter and forEach
+		/*list.stream().filter(s -> s.startsWith("a"))
+					 .forEach(s -> System.out.println(s));*/
+
+	}
+
+}

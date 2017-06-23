@@ -246,6 +246,34 @@ String object created by new() operator is by default not added in String pool a
 * One special thing about string objects is that you can create string objects without using new operator i.e using string literals. This is not possible with other derived types (except wrapper classes). One more special thing about strings is that you can concatenate two string objects using ‘+’. This is the relaxation java gives to string objects as they will be used most of the time while coding
 * String, StringBuffer and StringBuilder all are final classes.
 
+#Immutable :
+* Immutable objects are by default thread-safe because there state can not be modified once created. Since String is immutable in Java, its inherently thread-safe.
+* Example of thread-safe class in Java: Vector, Hashtable, ConcurrentHashMap, String etc.
+* Reason of Why String is immutable in Java is to allow String to cache its hashcode , being immutable String in Java caches its hashcode, and do not calculate every time we call hashcode method of String, which makes it very fast as hashmap key to be used in hashmap in Java.  This one is also suggested by  Jaroslav Sedlacek in comments below. In short because String is immutable, no one can change its contents once created which guarantees hashCode of String to be same on multiple invocation.
+* Security and String pool being primary reason of making String immutable.
+* When you use String.subString() in java it causes the problem of memory leak.Internally it calls new String(int offSet, int count , char []). This char is nothing but a original 1.Incase if the originals String has very huge memory it will still be referred to create new subString,thus jvm wont garbage collect it.
+* It is important to remember, that even if an object is immutable and thereby thread safe, the reference to this object may not be thread safe.
+
+Why strings are immutable in java :
+- it avoids inconsistency of data in multithreaded environment. For e.g if two threads are acting on same string variable and if one thread changes to that reference another thread will get affected if strings were not immutable.
+- since strings are immutable this hash value will also not change hence jvm does chaching if hashcode. It becomes efficient when immutable objects are used as keys in hashmap and hashset.
+- since string are widely used as parameters in java class like network connection, opening files immutable feature of string adds to the security as other variable referring to it wont able to change its content.
+
+Since string are immutable every time  any changes to that string will lead to creation of new reference resulting into memory wastage. To avoid this and optimize memory usage there is a concept called string pool.
+
+Now we can start to see why making String objects immutable is such a good idea. If several reference variables refer to the same String without even knowing it, it would be very bad if any of them could change the String's value.
+You might say, "Well that's all well and good, but what if someone overrides the String class functionality; couldn't that cause problems in the pool?" That's one of the main reasons that the String class is marked final. Nobody can override the behaviors of any of the String methods, so you can rest assured that the String objects you are counting on to be immutable will, in fact, be immutable.
+Strings immutable feature along with the string pool concept helps in memory optimization.
+
+How to make class immutable :
+- The class is final. That means no subclasses can be created. A subclass of an immutable class can be made mutable again. As noted above, an attacker could use that to get to confidential data.
+- The variables are all final and cannot be changed after construction
+- In the constructor we use the import org.joda.time.DateTime class. This is a better version than the java.util.Date because it is immutable. Using a java.util.Date would be dangerous as it is a mutable class and we can’t control the calling thread (which might modify it).
+- There are no setter methods for the members.
+- If you provide an interface/method to change the content of object than method should create new object and modify the required changes and return it.
+
+
+
 #AutoBoxing:
 * Integer = 1 is always autoboxed using Integer.valueOf() and caches object ranges from -128 to 127.
 
@@ -461,33 +489,6 @@ Read and write are atomic for all variable declared volatile including long and 
  java 1.5, java language provides atomic variable e.g. AtomicInteger or AtomicLong which provides methods like
 getAndDecrement(),getAndIncrement() and getAndSet() in java.util.concurrent.atomic package which are all atomic.
 
-#Immutable :
-* Immutable objects are by default thread-safe because there state can not be modified once created. Since String is immutable in Java, its inherently thread-safe.
-* Example of thread-safe class in Java: Vector, Hashtable, ConcurrentHashMap, String etc.
-* Reason of Why String is immutable in Java is to allow String to cache its hashcode , being immutable String in Java caches its hashcode, and do not calculate every time we call hashcode method of String, which makes it very fast as hashmap key to be used in hashmap in Java.  This one is also suggested by  Jaroslav Sedlacek in comments below. In short because String is immutable, no one can change its contents once created which guarantees hashCode of String to be same on multiple invocation.
-* Security and String pool being primary reason of making String immutable.
-* When you use String.subString() in java it causes the problem of memory leak.Internally it calls new String(int offSet, int count , char []). This char is nothing but a original 1.Incase if the originals String has very huge memory it will still be referred to create new subString,thus jvm wont garbage collect it.
-* It is important to remember, that even if an object is immutable and thereby thread safe, the reference to this object may not be thread safe.
-
-Why strings are immutable in java :
-- it avoids inconsistency of data in multithreaded environment. For e.g if two threads are acting on same string variable and if one thread changes to that reference another thread will get affected if strings were not immutable.
-- since strings are immutable this hash value will also not change hence jvm does chaching if hashcode. It becomes efficient when immutable objects are used as keys in hashmap and hashset.
-- since string are widely used as parameters in java class like network connection, opening files immutable feature of string adds to the security as other variable referring to it wont able to change its content.
-
-Since string are immutable every time  any changes to that string will lead to creation of new reference resulting into memory wastage. To avoid this and optimize memory usage there is a concept called string pool.
-
-Now we can start to see why making String objects immutable is such a good idea. If several reference variables refer to the same String without even knowing it, it would be very bad if any of them could change the String's value.
-You might say, "Well that's all well and good, but what if someone overrides the String class functionality; couldn't that cause problems in the pool?" That's one of the main reasons that the String class is marked final. Nobody can override the behaviors of any of the String methods, so you can rest assured that the String objects you are counting on to be immutable will, in fact, be immutable.
-Strings immutable feature along with the string pool concept helps in memory optimization.
-
-How to make class immutable :
-- The class is final. That means no subclasses can be created. A subclass of an immutable class can be made mutable again. As noted above, an attacker could use that to get to confidential data.
-- The variables are all final and cannot be changed after construction
-- In the constructor we use the import org.joda.time.DateTime class. This is a better version than the java.util.Date because it is immutable. Using a java.util.Date would be dangerous as it is a mutable class and we can’t control the calling thread (which might modify it).
-- There are no setter methods for the members.
-- If you provide an interface/method to change the content of object than method should create new object and modify the required changes and return it.
-
-
 #Volatile :
 * On declaring the variable as volatile it tells JVM that this variable need not to be cached and the value for the variable is always fetched from main memory and written into main memory.JVM performs write operation first before read on volatile variables.
 * volatile keyword in Java is only application to variable and using volatile keyword with class and method is illegal.
@@ -540,6 +541,18 @@ Reflection allows instantiation of new objects, invocation of methods, and get/s
 Dis Advantages:
 Since reflection allows code to perform operations that would be illegal in non-reflective code, such as accessing private fields and methods
 
+#Generics:
+* Generics takes care of type safety.Generics takes care of both ends (while putting in collection and while getting out of collection).
+* Older legace code was allowed to put anything into collection.In order to support legacy code generics exist only at complie time i.e typing information doest not exist at runtime.Through a process called 'Type Erasuere' the complier does all the verification on your generics code and then strips the type information out of class bytecode.
+* Arrays give you both compile time as well as runtime safety.At runtime if wrong object is passed then it throws ArrayStoreException
+* Type of the variable declaration must match the type you pass to the actual object type(This is because wrong object might pass in to it). For Arrays it is possible.
+e.g: List<Animal> list = new ArrayList<Dog>(); // not possible.
+ Animal[] animals = new Dogs[];
+* If you want to write method which take list of parent objects and user want to send list of child object in that case we need to use:
+ public void doSomething (List <? extends Animal>) {}
+ but with you can only read from List.Adding is prohibitted.
+* ? super Dog can be used where in Dog and Object in higher herarchy than dog can passed.We can add into that list.
+
 HashCode Contract:
 1.Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer
 2.If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result
@@ -554,6 +567,8 @@ Look at the hierarchy.
 Collections Anatomy
 
 * iterator() and listIterator are methods present in List interface.
+Difference between Iterator and ListIterator:
+ListIterator can add elements and traverse in both direction.
 
 ArrayList: This are simply array of objects.With initial size of 10.After addition of 10 elements size of array increases by 50% of its size and copies data from old array to new array.Removal of object is costly since that array needs to reshuffle.
 * ArrayList has iterator has well as listIterator.
@@ -588,9 +603,9 @@ Doubly-linked list implementation of the List and Deque interfaces. Implements a
 HashMap :
 - How HashMap  works in Java :
  - HashMap  works on principle of hashing, we have put() and get() method for storing and retrieving object form HashMap .
- - When we pass key and value to put() to store on HashMap , it uses key object hashcode() method to find the hashcode and with help of hashcode it identifies bucket/index for storing key value pair. While retrieving it uses key object hashcode to reach to that bucket and applies equals method to find out correct key value pair if multiple key value pair exist and return value object associated with that key. 
+ - When we pass key and value to put() to store on HashMap , it uses key object's hashcode() method to find the hashcode and with help of hashcode it identifies bucket/index for storing key value pair. While retrieving it uses key object hashcode to reach to that bucket and applies equals method to find out correct key value pair if multiple key value pair exist and return value object associated with that key. 
  - What will happen if two different keys have same hashcode?
- - They will be stored in same bucket to the next node of linked list. And keys equals () method will be used to - identify correct key value pair in HashMap while retrieving the key .
+ - If two key has same hashcode but not equals then they will be stored in same bucket to the next node of linked list. And keys equals () method will be used to - identify correct key value pair in HashMap while retrieving the key .
 
 HashMap consist of an Array of Entry objects.Entry is an static inner class in HashMap which consist of int hash,object key,object value,Entry next
 When an element needs to be added based on hash value of key it finds the right bucket/index in array and creates Entry object in it .

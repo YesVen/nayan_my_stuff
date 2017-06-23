@@ -1,0 +1,14 @@
+package functionalInterfaces;
+
+public class TestConstructorRef {
+
+}
+
+class Person {
+	String firstName;
+	String secondName;
+	Person (String fname, String sName) {
+		this.firstName = fname;
+		this.secondName = sName;
+	}
+} 

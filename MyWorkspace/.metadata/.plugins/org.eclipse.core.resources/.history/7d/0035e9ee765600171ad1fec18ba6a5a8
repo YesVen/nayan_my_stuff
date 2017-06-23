@@ -1,0 +1,40 @@
+package com;
+
+public class Test {
+	
+	public static void main(String args[]) {
+		A a = new A();
+		System.out.println(a.c);
+		B b = new B();
+		System.out.println(b.c);
+		C c = new C();
+		System.out.println(c.c);
+	}
+}
+
+class Myclass {
+	
+	static int count = 0;
+	
+	Myclass () {
+		count++;
+	}
+}
+
+ abstract  class absrClass {
+	
+	 Myclass c = new Myclass();	
+	 
+}
+ 
+ class A extends absrClass {
+	 
+ }
+ 
+class B extends absrClass {
+	 
+ }
+
+class C extends absrClass {
+	 
+}

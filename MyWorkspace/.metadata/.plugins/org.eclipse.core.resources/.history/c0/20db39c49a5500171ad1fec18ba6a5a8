@@ -1,0 +1,24 @@
+package collection;
+
+public class TestMyList {
+	
+}
+
+class MyList<E> {
+	int modCount;
+	private Object[] elements;
+	
+	public void MyList () {
+		
+	}
+	
+	public void add (E e) {
+		if (elements == null) {
+			elements = new Object[10];
+		}
+		
+		//check if list exhausted
+		
+	}
+	
+}

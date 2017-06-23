@@ -1,0 +1,17 @@
+package functionalInterfaces;
+
+public class TestFunctInterface {
+
+	public void doConvertion () {
+		
+		Convertor<Integer,String> convertor = i -> Integer.valueOf(i);
+		convertor.convert(3);
+	}
+		
+	
+}
+
+@FunctionalInterface
+interface Convertor<R,I> {
+	R convert (I i);
+}

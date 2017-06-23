@@ -2,7 +2,7 @@ package stringCodingPractice;
 
 public class StringPermutations { 
 	public static void main(String args[]) {
-		permutation("123"); 
+		permutation("1234"); 
 	}
 	
 	/* * A method exposed to client to calculate permutation of String in Java. 

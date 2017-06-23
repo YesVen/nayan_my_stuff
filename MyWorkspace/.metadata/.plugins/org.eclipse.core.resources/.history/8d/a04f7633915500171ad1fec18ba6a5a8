@@ -1,0 +1,12 @@
+package com;
+
+import java.util.List;
+import java.util.Vector;
+
+public class Test {
+	public static void main (String a[]) {
+		
+		List<Integer> list = new Vector<>();
+		list.i
+	} 
+}	
