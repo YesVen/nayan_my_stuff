@@ -2,18 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Itr" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="Itr"/>
-			<item value="modCount++;"/>
-			<item value="ConcurrentModificationException"/>
-			<item value="concurr"/>
-			<item value="ArrayList"/>
-			<item value="aop"/>
+			<item value="done"/>
+			<item value="KeySet"/>
+			<item value="keySet"/>
+			<item value="class"/>
+			<item value="Class"/>
+			<item value="tab"/>
+			<item value="linkFirst"/>
+			<item value="LinkedList"/>
 		</list>
 		<list key="replacehistory">
 		</list>

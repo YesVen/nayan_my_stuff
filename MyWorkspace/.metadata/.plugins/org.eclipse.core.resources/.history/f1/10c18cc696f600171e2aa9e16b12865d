@@ -1,0 +1,21 @@
+package CodingPractice;
+
+public class PalindromeWithNum {
+
+	public static void main (String a[]) {
+		checkPalindrome(734545437);
+	}
+	
+	//734545437
+	private static void checkPalindrome (int num) {
+		
+		int reverseNum = 0;
+		int fact = 10;
+		
+		int l = num % fact;
+		 while (true) {
+			 int l = num % 10; 
+		 }
+		
+	}
+}

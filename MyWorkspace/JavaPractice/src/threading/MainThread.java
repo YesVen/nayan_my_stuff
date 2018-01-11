@@ -17,8 +17,13 @@ public class MainThread {
 	class Task extends Thread {
 		
 		public void run () {
-			for (int i = 1; i <= 100; i++) {
+			for (int i = 1; i <= 1000; i++) {
 				System.out.println(i);
+				try {
+					Thread.currentThread().sleep(500);
+				} catch (InterruptedException e) {
+					System.out.println("interruped");
+				}
 			}
 		}
 	}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;l&apos; in &apos;CodingPractice.PalindromeWithNum.checkPalindrome(...)&apos; to &apos;last&apos;&#x0D;&#x0A;- Original project: &apos;JavaPractice&apos;&#x0D;&#x0A;- Original element: &apos;CodingPractice.PalindromeWithNum.checkPalindrome(int).l&apos;&#x0D;&#x0A;- Renamed element: &apos;l&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;l&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;CodingPractice{PalindromeWithNum.java[PalindromeWithNum~checkPalindrome~I@l!257!275!261!261!I!0!false" name="last" references="true" stamp="1515651381627" version="1.0"/>
+</session>

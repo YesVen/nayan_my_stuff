@@ -2,7 +2,9 @@ package streams;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TestStreams {
 
@@ -65,7 +67,7 @@ public class TestStreams {
 
 		//reduce
 		
-		int a[] = {1,2,3,4,5,6};
+		/*int a[] = {1,2,3,4,5,6};
 		//Arrays.stream(a).reduce((i, j) -> (i+j)).ifPresent(i -> System.out.println(i));
 		//System.out.println(Arrays.stream(a).reduce(100, (i, j) -> (i+j)));
 		
@@ -76,7 +78,27 @@ public class TestStreams {
 	      
 	      List<String> list1 = Arrays.asList("Mohan", "Sohan", "Ramesh");
 	      String result = list1.parallelStream().reduce("-", (s1, s2) -> s1 + s2, (p, q) -> p + q);
-	      System.out.println(result);
+	      System.out.println(result);*/
+	
+		//collect collect: Collect is an extremely useful terminal operation to transform the elements
+		//of the stream into a different kind of result, 
+		//e.g. a List, Set or Map. Collect accepts a Collector which consists of 
+		//four different operations: a supplier, an accumulator, a combiner and a finisher.  
+		//Java 8 supports various built-in collectors via the Collectors class.
+		
+		List<String> list1 = Arrays.asList("Mukesh", "Vishal", "Amar");
+	    String result = list1.parallelStream().collect(StringBuilder::new,
+	    		(response, element) -> response.append(" ").append(element),
+	    		(response1, response2) -> response1.append(",").append(response2.toString()))
+	    		.toString();
+	    System.out.println("Result: " + result);
+	    
+	    List<Integer> list2 = Arrays.asList(23, 43, 12, 25);	  
+	  	  IntSummaryStatistics stats = list2.stream()
+	  			     .collect(Collectors.summarizingInt(i -> i + i));
+	  	  System.out.println("Sum:"+stats.getSum());
+	  	  
+	  	  //http://www.concretepage.com/java/jdk-8/java-8-stream-collect-example
 	}
 	
 

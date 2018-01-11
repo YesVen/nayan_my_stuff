@@ -1,9 +1,0 @@
-package functionalInterfaces;
-
-public class TestFunctInterface {
-
-}
-
-interface Convertor<R,I> {
-	R convert (I i);
-}

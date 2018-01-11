@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract method &apos;private void linkLast(E e)&apos; from &apos;collection.MyLinkedList.add()&apos; to &apos;collection.MyLinkedList&apos;&#x0D;&#x0A;- Original project: &apos;JavaPractice&apos;&#x0D;&#x0A;- Method name: &apos;linkLast&apos;&#x0D;&#x0A;- Destination type: &apos;collection.MyLinkedList&apos;&#x0D;&#x0A;- Declared visibility: &apos;private&apos;" comments="false" description="Extract method &apos;linkLast&apos;" destination="0" exceptions="false" flags="786434" id="org.eclipse.jdt.ui.extract.method" input="/src&lt;collection{TestMyLinkedList.java" name="linkLast" replace="false" selection="236 210" stamp="1498382916388" version="1.0" visibility="2"/>
+</session>

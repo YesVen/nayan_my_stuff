@@ -16,27 +16,27 @@ http://enos.itcollege.ee/~jpoial/allalaadimised/lugemist/Spring-Interview-Questi
 6. AOP --> done
 
 ORM : 
-1. Hibernate : done
-2. JPA : done
+1. JDBC
+2. Hibernate : done
 3. JNDI : done
 
 Building Tool :
-1. MAVEN
+1. ANT, MAVEN
 
 SOURCE CONTROL 
-1. GIT
+1. SVN,GIT,mercury,perforce
 
 CONTINUES INTEGRATION 
 1. Jenkins 
 
 Unit testing 
-1. Junit : done
+1. Junit :
+2. EasyMock, PowerMock
 
 UI :
-1. Angular 2
-2. CSS
-3. Type Script
-4. Bootstrap
+- JSP
+- angularjs
+- Angular 4
 
 DATABASE :
 1. MYSQL

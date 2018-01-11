@@ -1,9 +1,0 @@
-package immutability;
-
-public class ThreadSafeImmutability {
-	
-}
-
-class ImmutableInt {
-	
-}

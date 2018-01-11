@@ -1,0 +1,12 @@
+package CodingPractice;
+
+public class PalindromeWithNum {
+
+	public static void main () {
+		
+	}
+	
+	checkPalindrome () {
+		
+	}
+}

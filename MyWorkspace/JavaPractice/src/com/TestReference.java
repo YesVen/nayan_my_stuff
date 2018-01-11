@@ -22,9 +22,6 @@ public class TestReference {
 		a = a + 1;
 	}
 	
-	void increment (Integer a) {
-		a = a + 1;
-	}
 	
 	void addElement (List<Integer> list) {
 		list.add(3);

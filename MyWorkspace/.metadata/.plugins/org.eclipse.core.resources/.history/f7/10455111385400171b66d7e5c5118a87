@@ -1,9 +1,0 @@
-package defaultMtdInterface;
-
-public class TestDefaultMtdInterface {
-
-}
-
-interface A {
-	
-}

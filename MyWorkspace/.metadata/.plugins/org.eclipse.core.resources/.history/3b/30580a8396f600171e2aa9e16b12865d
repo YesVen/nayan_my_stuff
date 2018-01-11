@@ -1,0 +1,15 @@
+package CodingPractice;
+
+public class PalindromeWithNum {
+
+	public static void main (String a[]) {
+		checkPalindrome(734545437);
+	}
+	
+	//734545437
+	private static void checkPalindrome (int num) {
+		
+		System.out.println((num % 1000)/100); 
+		
+	}
+}

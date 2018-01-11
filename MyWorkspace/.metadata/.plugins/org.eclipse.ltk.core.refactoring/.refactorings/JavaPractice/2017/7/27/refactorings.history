@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;JavaPractice/src/collection/HashMapTest.java&apos; to &apos;HashMap.java&apos;" description="Rename resource &apos;HashMapTest.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/collection/HashMapTest.java" name="HashMap.java" stamp="1499497583818" updateReferences="true"/>
+</session>

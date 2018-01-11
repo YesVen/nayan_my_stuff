@@ -243,7 +243,40 @@ This event is published when the ApplicationContext is started using the start()
 ContextStoppedEvent
 This event is published when the ApplicationContext is stopped using the stop() method on the ConfigurableApplicationContext interface. You can do required housekeep work after receiving this event.
 ContextClosedEvent
-This event is published when the ApplicationContext is closed using the close() method on the ConfigurableApplicationContext interface. A closed context reaches its end of life; it cannot be refreshed or restarted.
+This event is published when the ApplicationContext is closed using the close() method on the ConfigurableApplicationContext interface. A closed context 
+reaches its end of life; it cannot be refreshed or restarted.
+
+***
+When we are working with Spring MVC and are also using Spring in the services layer, we provide two application-contexts. The first one is configured using ContextLoaderListener and the other with DispatcherServlet
+a) Application-Contexts are hierarchial and so are WebApplicationContexts.
+b) ContextLoaderListener creates a root web-application-context for the web-application and puts it in the ServletContext. This context can be used to load and unload the spring-managed beans ir-respective of what technology is being used in the controller layer(Struts or Spring MVC).
+c) DispatcherServlet creates its own WebApplicationContext and the handlers/controllers/view-resolvers are managed by this context.
+d) When ContextLoaderListener is used in tandem with DispatcherServlet, a root web-application-context is created first as said earlier and a child-context is also created by DispatcherSerlvet and is attached to the root application-context
+
+ApplicationContext
+
+applicationContext.xml is the root context configuration for every web application.
+Spring loads applicationContext.xml file and creates the ApplicationContext for the whole application.
+There will be only one application context per web application.
+If you are not explicitly declaring the context configuration file name in web.xml using the contextConfigLocation param, Spring will search for the applicationContext.xml under WEB-INF folder and throw FileNotFoundException if it could not find this file.
+
+WebApplicationContext
+
+Apart from ApplicationContext, there can be multiple WebApplicationContext in a single web application.
+In simple words, each DispatcherServlet associated with single WebApplicationContext.
+xxx-servlet.xml file is specific to the DispatcherServlet and a web application can have more than one DispatcherServlet configured to handle the requests.
+In such scenarios, each DispatcherServlet would have a separate xxx-servlet.xml configured. But, applicationContext.xml will be common for all the servlet configuration files.
+Spring will by default load file named “xxx-servlet.xml” from your webapps WEB-INF folder where xxx is the servlet name in web.xml.
+If you want to change the name of that file name or change the location, add initi-param with contextConfigLocation as param name.
+
+ContextLoaderListener
+
+Performs the actual initialization work for the root application context.
+Reads a “contextConfigLocation” context-param and passes its value to the context instance, parsing it into potentially multiple file paths which can be separated by any number of commas and spaces, e.g. “WEB-INF/applicationContext1.xml, WEB-INF/applicationContext2.xml”.
+ContextLoaderListener is optional. Just to make a point here: you can boot up a Spring application without ever configuring ContextLoaderListener, just a basic minimum web.xml with DispatcherServlet.
+
+Good link to expolre:
+http://javabeat.net/spring-mvc-application-context/
 
 ********************************************************************************
 

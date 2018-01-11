@@ -20,8 +20,8 @@ public class TestMap {
 		
 		map.forEach((id, val) -> System.out.println(val));*/
 		
-		map.compute(2, (i, b) -> b.replace("val", "str"));
-		map.forEach((id, val) -> System.out.println(val));
+		map.compute(2, (i, b) -> b.replace("val", i.toString()));
+		map.forEach((id, val) -> System.out.println(""+id+" "+val));
 		
 	}
 
